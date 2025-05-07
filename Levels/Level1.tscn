@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://60okax2aajfx"]
+
+[ext_resource type="PackedScene" uid="uid://d3equlu2k18pa" path="res://Player/AnimPlayer.tscn" id="1_ysn8j"]
+[ext_resource type="PackedScene" uid="uid://ciu6qrhn3f35e" path="res://Weapons/Bullet.tscn" id="2_6ll4n"]
+[ext_resource type="Texture2D" uid="uid://bj33xhy6d31ui" path="res://Sprites/grass2.png" id="4_bdlbp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uu6xs"]
+size = Vector2(1432, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhr70"]
+size = Vector2(2000, 20)
+
+[node name="Level1" type="Node2D"]
+
+[node name="AnimPlayer" parent="." groups=["Player"] instance=ExtResource("1_ysn8j")]
+position = Vector2(608, 407)
+bullet = ExtResource("2_6ll4n")
+
+[node name="Camera2D" type="Camera2D" parent="AnimPlayer"]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_drag_margin = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(596, 461)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(18, 0)
+scale = Vector2(5.0473, 1)
+texture = ExtResource("4_bdlbp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-5, -3)
+shape = SubResource("RectangleShape2D_uu6xs")
+
+[node name="Area2D" type="Area2D" parent="."]
+process_mode = 4
+position = Vector2(662, 1052)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_lhr70")
+
+[node name="SceneLimit" type="Marker2D" parent="."]
+position = Vector2(658, 1162)
+
+[connection signal="body_entered" from="Area2D" to="AnimPlayer" method="_on_area_2d_body_entered"]

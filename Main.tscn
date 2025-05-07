@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvdfsmvn6flws"]
+
+[ext_resource type="Script" uid="uid://bxqodkil6popv" path="res://Game.gd" id="1_lgr22"]
+[ext_resource type="PackedScene" uid="uid://bcx2lbhnpuubm" path="res://mob.tscn" id="2_3dxm6"]
+[ext_resource type="Script" uid="uid://bfq3swfrk3l1j" path="res://UI/Label.gd" id="3_fos0i"]
+[ext_resource type="PackedScene" uid="uid://60okax2aajfx" path="res://Levels/Level1.tscn" id="4_3dxm6"]
+[ext_resource type="AudioStream" uid="uid://bbu6t65prtnwr" path="res://SFX/Summer_Park.ogg" id="5_fos0i"]
+[ext_resource type="FontFile" uid="uid://0mcwamf86rrp" path="res://Fonts/Xolonium-Regular.ttf" id="8_trn2v"]
+
+[sub_resource type="Curve2D" id="Curve2D_fos0i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 37, 428, 0, 0, 0, 0, 590, 420)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_3dxm6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1274, 423, 0, 0, 0, 0, 937, 421, 0, 0, 0, 0, 594, 419)
+}
+point_count = 3
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_lgr22")
+mob_scene = ExtResource("2_3dxm6")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="HUD" groups=["HUD"]]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("8_trn2v")
+theme_override_font_sizes/font_size = 30
+text = "Score: 0"
+script = ExtResource("3_fos0i")
+
+[node name="Level1" parent="." instance=ExtResource("4_3dxm6")]
+position = Vector2(-8, 8)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fos0i")
+bus = &"BGM"
+
+[node name="BackgroundMusic2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_fos0i")
+bus = &"BGM"
+
+[node name="MobLeft" type="Path2D" parent="."]
+curve = SubResource("Curve2D_fos0i")
+
+[node name="MobPath" type="PathFollow2D" parent="MobLeft"]
+position = Vector2(37, 428)
+rotation = -0.0144655
+
+[node name="MobRight" type="Path2D" parent="."]
+curve = SubResource("Curve2D_3dxm6")
+
+[node name="MobPath" type="PathFollow2D" parent="MobRight"]
+position = Vector2(1274, 423)
+rotation = -3.13566
