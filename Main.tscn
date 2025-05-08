@@ -9,13 +9,13 @@
 
 [sub_resource type="Curve2D" id="Curve2D_fos0i"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 37, 428, 0, 0, 0, 0, 590, 420)
+"points": PackedVector2Array(0, 0, 0, 0, -78, 413, 0, 0, 0, 0, 590, 420)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_3dxm6"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1274, 423, 0, 0, 0, 0, 937, 421, 0, 0, 0, 0, 594, 419)
+"points": PackedVector2Array(0, 0, 0, 0, 1273, 422, 0, 0, 0, 0, 934, 422, 0, 0, 0, 0, 614, 421)
 }
 point_count = 3
 
@@ -48,12 +48,12 @@ bus = &"BGM"
 curve = SubResource("Curve2D_fos0i")
 
 [node name="MobPath" type="PathFollow2D" parent="MobLeft"]
-position = Vector2(37, 428)
-rotation = -0.0144655
+position = Vector2(-78, 413)
+rotation = 0.0104787
 
 [node name="MobRight" type="Path2D" parent="."]
 curve = SubResource("Curve2D_3dxm6")
 
 [node name="MobPath" type="PathFollow2D" parent="MobRight"]
-position = Vector2(1274, 423)
-rotation = -3.13566
+position = Vector2(1273, 422)
+rotation = 3.14159

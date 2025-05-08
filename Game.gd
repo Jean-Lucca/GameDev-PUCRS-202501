@@ -12,17 +12,27 @@ func _ready() -> void:
 	player = current_scene.get_node("AnimPlayer")
 	scene_limit = current_scene.get_node("SceneLimit")
 	
-	var mob = mob_scene.instantiate();
+	var mob = mob_scene.instantiate();	
 	var path_follow = $MobLeft/MobPath
 	path_follow.progress = 0  # Or some start point on the path
 	path_follow.add_child(mob)
+	var sprite = mob.get_node("AnimatedSprite2D")	
+	sprite.animation = "walk_right"
+	sprite.play()
+	
 	add_child(mob)
 	
 	var mob2 = mob_scene.instantiate();
 	var path_follow2 = $MobRight/MobPath
-	path_follow2.progress = 0  # Or some start point on the path
+	path_follow2.progress = 0  # Or some start point on the path	
 	path_follow2.add_child(mob2)
 	add_child(mob2)
+	
+	var sprite2 = mob2.get_node("AnimatedSprite2D")	
+	sprite2.animation = "walk_left"
+	sprite2.flip_v = true  # If vertically flipped
+	sprite2.flip_h = true 
+	sprite2.play()
 	
 	$BackgroundMusic.play()
 	AudioServer.set_bus_volume_linear(1, 0.3)
