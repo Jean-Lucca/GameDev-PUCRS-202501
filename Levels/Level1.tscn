@@ -23,8 +23,7 @@ drag_vertical_enabled = true
 editor_draw_drag_margin = true
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-visible = false
-position = Vector2(776, 465)
+position = Vector2(779, 468)
 collision_mask = 2
 metadata/_edit_group_ = true
 
@@ -35,6 +34,7 @@ texture = ExtResource("4_bdlbp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(-168, 1)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_uu6xs")
 
 [node name="Area2D" type="Area2D" parent="."]
