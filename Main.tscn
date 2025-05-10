@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvdfsmvn6flws"]
+[gd_scene load_steps=8 format=3 uid="uid://bvdfsmvn6flws"]
 
 [ext_resource type="Script" uid="uid://bxqodkil6popv" path="res://Game.gd" id="1_lgr22"]
 [ext_resource type="PackedScene" uid="uid://bcx2lbhnpuubm" path="res://mob.tscn" id="2_3dxm6"]
 [ext_resource type="Script" uid="uid://bfq3swfrk3l1j" path="res://UI/Label.gd" id="3_fos0i"]
 [ext_resource type="PackedScene" uid="uid://60okax2aajfx" path="res://Levels/Level1.tscn" id="4_3dxm6"]
 [ext_resource type="AudioStream" uid="uid://bbu6t65prtnwr" path="res://SFX/Summer_Park.ogg" id="5_fos0i"]
+[ext_resource type="Script" uid="uid://dj5fkhbypmewb" path="res://vida.gd" id="5_lgr22"]
 [ext_resource type="FontFile" uid="uid://0mcwamf86rrp" path="res://Fonts/Xolonium-Regular.ttf" id="8_trn2v"]
 
 [node name="Main" type="Node2D"]
@@ -21,8 +22,18 @@ theme_override_font_sizes/font_size = 30
 text = "Score: 0"
 script = ExtResource("3_fos0i")
 
+[node name="Vida" type="Label" parent="HUD" groups=["HUD"]]
+offset_left = 196.0
+offset_top = -2.0
+offset_right = 328.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("8_trn2v")
+theme_override_font_sizes/font_size = 30
+text = "Vida: 3"
+script = ExtResource("5_lgr22")
+
 [node name="Level1" parent="." instance=ExtResource("4_3dxm6")]
-position = Vector2(-8, 8)
+position = Vector2(-32, -84)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_fos0i")

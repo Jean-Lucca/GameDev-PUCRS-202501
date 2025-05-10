@@ -8,16 +8,21 @@ extends CharacterBody2D
 @onready var jump_sound = $JumpSound
 @export var bullet : PackedScene
 @export var enemy_indicator: PackedScene  # Cena do indicador
-@export var attack_range := 300.0
+@export var attack_range := 200.0
 @onready var line_indicator = Line2D.new()  # Create the Line2D node
+@onready var range_bar = $EnemyRangeBar
+@onready var range_bar_left = $EnemyRangeBarLeft
 var indicators = {}  # Dicionário para rastrear indicadores por inimigo
 var facing_dir := 1  # 1 = right, -1 = left
 @onready var hit_sound = $HitSound
-
+@onready var life = 3
+var is_invincible = false
+var invincibility_time = 0.0
+const INVINCIBILITY_DURATION = 3.0
 
 func _ready():
 	add_to_group("AnimPlayer")
-	line_indicator.visible = true
+	line_indicator.visible = false
 
 func animate_side():
 	if velocity.x > 0:
@@ -52,26 +57,55 @@ func move_side(delta):
 
 func detect_enemy_in_direction(dir: int) -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("Enemies")
+	var found_enemy = null
+	var found = false
+
 	for enemy in enemies:
 		if not is_instance_valid(enemy):
 			continue
-		
+
 		var to_enemy = enemy.global_position - global_position
 		var horizontal_ok = (dir == 1 and to_enemy.x > 0) or (dir == -1 and to_enemy.x < 0)
-		var vertical_ok = abs(to_enemy.y) < 50  # Tolerable vertical margin
+		var vertical_ok = abs(to_enemy.y) < 50  # margem vertical
 		var range_ok = to_enemy.length() < attack_range
 
 		if horizontal_ok and vertical_ok and range_ok:
-			# If conditions are met, draw a line to the enemy
-			line_indicator.visible = true  # Show the line
-			line_indicator.clear_points()  # Clear any previous lines
-			line_indicator.add_point(global_position)  # Start point (player)
-			line_indicator.add_point(enemy.global_position)  # End point (enemy)
-			return enemy  # Return the first enemy that matches the criteria
+			found_enemy = enemy
+			found = true
+			break
+	return found_enemy
 
-	# If no enemy found, hide the line
-	line_indicator.visible = false
-	return null
+func detect_enemy_in_direction_delta() -> void:
+	var enemies = get_tree().get_nodes_in_group("Enemies")
+	var right_detected = false
+	var left_detected = false
+
+	for enemy in enemies:
+		if not is_instance_valid(enemy):
+			continue
+
+		var to_enemy = enemy.global_position - global_position
+		var vertical_ok = abs(to_enemy.y) < 50
+		var range_ok = to_enemy.length() < attack_range
+
+		if vertical_ok and range_ok:
+			if to_enemy.x > 0:
+				right_detected = true
+			elif to_enemy.x < 0:
+				left_detected = true
+
+	# Atualiza cor da barra da direita
+	if right_detected:
+		range_bar.color = Color(1, 0, 0, 0.8)  # vermelho
+	else:
+		range_bar.color = Color(0.5, 0.5, 0.5, 0.5)  # cinza
+
+	# Atualiza cor da barra da esquerda
+	if left_detected:
+		range_bar_left.color = Color(0, 0.4, 1, 0.8)  # azul
+	else:
+		range_bar_left.color = Color(0.5, 0.5, 0.5, 0.5)  # cinza
+
 
 func print_position():
 	print(position)
@@ -108,12 +142,42 @@ func move_8way(delta):
 	#move_and_slide()
 
 func _physics_process(delta):
+	if is_invincible:
+		invincibility_time -= delta
+		if invincibility_time <= 0:
+			is_invincible = false
+			$PlayerSprite.modulate = Color(1, 1, 1)  # volta ao normal
 	# move_8way(delta)
 	move_side(delta)
+	check_enemy_collisions()
+	detect_enemy_in_direction_delta()
 	
 	#if position.y >= 1200:
 		#get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
 
+func check_enemy_collisions():
+	var enemies = get_tree().get_nodes_in_group("Enemies")
+	for enemy in enemies:
+		if not is_instance_valid(enemy):
+			continue
+		if global_position.distance_to(enemy.global_position) < 40:
+			# Arbitrary hit radius; adjust as needed
+			take_damage()
+			break
+
+func take_damage():
+	if is_invincible:
+		return  # ignora dano
+	life -= 1
+	get_tree().call_group("HUD", "update_vida")
+	is_invincible = true
+	invincibility_time = INVINCIBILITY_DURATION
+	$PlayerSprite.modulate = Color(1, 1, 1, 0.5)  # visual: fica meio transparente
+	print("Hit by enemy! Remaining life:", life)
+	hit_sound.play()
+
+	if life <= 0:
+		get_tree().change_scene_to_file("res://Levels/GameOver.tscn")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	get_tree().change_scene_to_file("res://Levels/GameOver.tscn")

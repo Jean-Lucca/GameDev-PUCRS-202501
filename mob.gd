@@ -27,8 +27,9 @@ func _physics_process(delta):
 	else:
 		velocity = Vector2.ZERO
 		move_and_slide()
-		#sprite.animation = "attack"
+		sprite.animation = "attack"
 		sprite.play()
+		player.take_damage()
 	
 func _on_body_entered(body: Node) -> void:	
 	if body.name == "Anim_Player":  

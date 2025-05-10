@@ -23,6 +23,7 @@ drag_vertical_enabled = true
 editor_draw_drag_margin = true
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(776, 465)
 collision_mask = 2
 metadata/_edit_group_ = true

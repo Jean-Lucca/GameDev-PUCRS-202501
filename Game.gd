@@ -17,6 +17,8 @@ func _ready() -> void:
 	#$BackgroundMusic.play()
 	AudioServer.set_bus_volume_linear(1, 0.3)
 		
+func start_spawning():
+	spawn_interval = randf_range(0.0, 1.5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -44,6 +46,7 @@ func _process(delta):
 	if spawn_timer >= spawn_interval:
 		spawn_mobs()
 		spawn_timer =0.0
+		start_spawning()
 	pass
 	#$MobLeft/MobPath.progress += 100 * delta  # Adjust speed
 	#$MobRight/MobPath.progress += 100 * delta  # Adjust speed
@@ -73,5 +76,6 @@ func spawn_mobs():
 
 	var sprite2 = mob2.get_node("AnimatedSprite2D")
 	sprite2.animation = "walk_left"
+	sprite2.flip_h = true;
 	sprite2.play()
 	current_scene.add_child(mob2)

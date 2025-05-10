@@ -164,5 +164,15 @@ bus = &"SFX"
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_yk1p8")
 
-[node name="Line2D" type="Line2D" parent="."]
-default_color = Color(0.966154, 0.408061, 0.584138, 1)
+[node name="EnemyRangeBar" type="ColorRect" parent="."]
+offset_left = 1.0
+offset_top = 29.0
+offset_right = 41.0
+offset_bottom = 69.0
+scale = Vector2(5.32738, 0.655998)
+
+[node name="EnemyRangeBarLeft" type="ColorRect" parent="."]
+offset_left = -205.0
+offset_top = 29.0
+offset_right = -2.0
+offset_bottom = 56.0
