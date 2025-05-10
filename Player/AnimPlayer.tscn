@@ -149,6 +149,7 @@ script = ExtResource("1_kpjcp")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_efikj")
 animation = &"left"
+frame_progress = 0.605193
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10.5)

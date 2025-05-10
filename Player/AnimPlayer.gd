@@ -36,18 +36,45 @@ func get_side_input():
 	velocity.x = 0
 	var vel := Input.get_axis("left", "right")
 	if vel != 0:
-		facing_dir = sign(vel)  # Update facing direction based on input
+		facing_dir = sign(vel)
 		print(facing_dir)
-	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):		
+	
+	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):
 		var enemy_hit = detect_enemy_in_direction(facing_dir)
 		setAnim(facing_dir)
+
 		if enemy_hit:
 			print("Hit enemy: ", enemy_hit.name)
 			get_tree().call_group("HUD", "update_score")
 			hit_sound.play()
-			enemy_hit.die()  # Supondo que seu inimigo tenha esse método
+
+			var old_x = global_position.x
+			var enemy_x = enemy_hit.global_position.x
+			
+			enemy_hit.die()
+
+			# Move player to enemy's X position (only X)
+			#global_position.x = enemy_x 
+
+			# Calculate how much the player moved
+			var delta_x = enemy_x - old_x
+			# Move enemies behind the killed one
+			push_enemies_back(enemy_x, delta_x, facing_dir)
 		else:
-			print("No enemy hit")	
+			print("No enemy hit")
+
+func push_enemies_back(origin_x: float, delta_x: float, facing_dir: int):
+	for enemy in get_tree().get_nodes_in_group("Enemies"):
+		if enemy != null and enemy.is_inside_tree() and enemy.has_method("global_position"):
+			var enemy_x = enemy.global_position.x
+
+			# Check if the enemy is behind the origin (based on facing direction)
+			if (facing_dir == 1 and enemy_x > origin_x) or (facing_dir == -1 and enemy_x < origin_x):
+				continue  # This one is in front of or same as the hit enemy
+
+			# Push the enemy back by delta_x (same distance the player traveled)
+			enemy.knockback_offset -= facing_dir * (delta_x + 500)
+
 
 func move_side(delta):
 	velocity.y += gravity * delta
@@ -76,7 +103,11 @@ func detect_enemy_in_direction(dir: int) -> Node2D:
 	return found_enemy
 
 func detect_enemy_in_direction_delta() -> void:
+	if get_tree() == null:
+		return
 	var enemies = get_tree().get_nodes_in_group("Enemies")
+	if enemies.is_empty():
+		return  # No enemies to push
 	var right_detected = false
 	var left_detected = false
 

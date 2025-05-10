@@ -4,7 +4,7 @@ var target: Node2D
 #@onready var sprite = $Sprite2D
 var player: CharacterBody2D
 @export var speed: float = 200.0  # Speed at which the mob chases the player
-@export var attack_range: float = 50.0  # Distance to stop and attack
+@export var attack_range: float = 10.0  # Distance to stop and attack
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
@@ -31,10 +31,12 @@ func _physics_process(delta):
 		sprite.play()
 		player.take_damage()
 	
-func _on_body_entered(body: Node) -> void:	
+func _on_body_entered(body: Node) -> bool:	
 	if body.name == "Anim_Player":  
 		print("Collided with Player!")
 		queue_free() 
+		return true;
+	return false
 		
 func die():
 	_on_visible_on_screen_notifier_2d_screen_exited()
