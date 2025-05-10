@@ -14,7 +14,7 @@ func _ready() -> void:
 	player = current_scene.get_node("AnimPlayer")
 	scene_limit = current_scene.get_node("SceneLimit")
 	
-	#$BackgroundMusic.play()
+	$BackgroundMusic.play()
 	AudioServer.set_bus_volume_linear(1, 0.3)
 		
 func start_spawning():

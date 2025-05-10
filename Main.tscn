@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvdfsmvn6flws"]
+[gd_scene load_steps=9 format=3 uid="uid://bvdfsmvn6flws"]
 
 [ext_resource type="Script" uid="uid://bxqodkil6popv" path="res://Game.gd" id="1_lgr22"]
 [ext_resource type="PackedScene" uid="uid://bcx2lbhnpuubm" path="res://mob.tscn" id="2_3dxm6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://60okax2aajfx" path="res://Levels/Level1.tscn" id="4_3dxm6"]
 [ext_resource type="AudioStream" uid="uid://bbu6t65prtnwr" path="res://SFX/Summer_Park.ogg" id="5_fos0i"]
 [ext_resource type="Script" uid="uid://dj5fkhbypmewb" path="res://vida.gd" id="5_lgr22"]
+[ext_resource type="AudioStream" uid="uid://ctx65bq28ad2x" path="res://SFX/05.-Fight_.wav" id="7_trn2v"]
 [ext_resource type="FontFile" uid="uid://0mcwamf86rrp" path="res://Fonts/Xolonium-Regular.ttf" id="8_trn2v"]
 
 [node name="Main" type="Node2D"]
@@ -36,7 +37,7 @@ script = ExtResource("5_lgr22")
 position = Vector2(-32, -84)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_fos0i")
+stream = ExtResource("7_trn2v")
 bus = &"BGM"
 
 [node name="BackgroundMusic2D" type="AudioStreamPlayer2D" parent="."]
