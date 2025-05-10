@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcx2lbhnpuubm"]
+[gd_scene load_steps=14 format=3 uid="uid://bcx2lbhnpuubm"]
 
 [ext_resource type="Texture2D" uid="uid://tafjuh7y65bh" path="res://Sprites/AjFP5.png" id="1_dy6sc"]
 [ext_resource type="Script" uid="uid://bnft0fw71utvh" path="res://mob.gd" id="1_nokgg"]
+[ext_resource type="PackedScene" uid="uid://ixolq46m6og4" path="res://EnemyIndicator.tscn" id="2_ubaqv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nokgg"]
 atlas = ExtResource("1_dy6sc")
@@ -74,19 +75,18 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dy6sc"]
 
-[node name="Mob" type="RigidBody2D"]
-collision_mask = 0
-gravity_scale = 0.0
+[node name="Mob" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_nokgg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cixyi")
 animation = &"walk_left"
-frame_progress = 0.743437
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 4)
 shape = SubResource("CapsuleShape2D_dy6sc")
 
+[node name="EnemyIndicator" parent="." instance=ExtResource("2_ubaqv")]
+
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-visible = false

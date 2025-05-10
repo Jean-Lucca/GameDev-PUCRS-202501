@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bj33xhy6d31ui" path="res://Sprites/grass2.png" id="4_bdlbp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu6xs"]
-size = Vector2(1432, 34)
+size = Vector2(3848, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhr70"]
 size = Vector2(2000, 20)
@@ -23,21 +23,23 @@ drag_vertical_enabled = true
 editor_draw_drag_margin = true
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(596, 461)
+position = Vector2(776, 465)
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
-position = Vector2(18, 0)
-scale = Vector2(5.0473, 1)
+position = Vector2(-169.5, 0)
+scale = Vector2(12.9966, 1)
 texture = ExtResource("4_bdlbp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-5, -3)
+position = Vector2(-168, 1)
 shape = SubResource("RectangleShape2D_uu6xs")
 
 [node name="Area2D" type="Area2D" parent="."]
 process_mode = 4
 position = Vector2(662, 1052)
+collision_mask = 0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

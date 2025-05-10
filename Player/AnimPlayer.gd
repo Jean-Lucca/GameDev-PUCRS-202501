@@ -7,6 +7,17 @@ extends CharacterBody2D
 @onready var sprite = $PlayerSprite
 @onready var jump_sound = $JumpSound
 @export var bullet : PackedScene
+@export var enemy_indicator: PackedScene  # Cena do indicador
+@export var attack_range := 300.0
+@onready var line_indicator = Line2D.new()  # Create the Line2D node
+var indicators = {}  # Dicionário para rastrear indicadores por inimigo
+var facing_dir := 1  # 1 = right, -1 = left
+@onready var hit_sound = $HitSound
+
+
+func _ready():
+	add_to_group("AnimPlayer")
+	line_indicator.visible = true
 
 func animate_side():
 	if velocity.x > 0:
@@ -19,26 +30,48 @@ func animate_side():
 func get_side_input():
 	velocity.x = 0
 	var vel := Input.get_axis("left", "right")
-	var jump := Input.is_action_just_pressed('ui_select')
-	
-	if is_on_floor() and jump:
-		velocity.y = jump_speed
-		get_tree().call_group("HUD", "update_score")
-		jump_sound.pitch_scale = randf_range(0.8,1.2)
-		jump_sound.play()
-	velocity.x = vel * speed
-	
-	if Input.is_action_just_pressed("click"):
-		print("Shoot")
-		var b := bullet.instantiate()
-		b.position = global_position
-		owner.add_child(b)
+	if vel != 0:
+		facing_dir = sign(vel)  # Update facing direction based on input
+		print(facing_dir)
+	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):		
+		var enemy_hit = detect_enemy_in_direction(facing_dir)
+		setAnim(facing_dir)
+		if enemy_hit:
+			print("Hit enemy: ", enemy_hit.name)
+			get_tree().call_group("HUD", "update_score")
+			hit_sound.play()
+			enemy_hit.die()  # Supondo que seu inimigo tenha esse método
+		else:
+			print("No enemy hit")	
 
 func move_side(delta):
 	velocity.y += gravity * delta
 	get_side_input()
 	animate_side()
 	move_and_slide()
+
+func detect_enemy_in_direction(dir: int) -> Node2D:
+	var enemies = get_tree().get_nodes_in_group("Enemies")
+	for enemy in enemies:
+		if not is_instance_valid(enemy):
+			continue
+		
+		var to_enemy = enemy.global_position - global_position
+		var horizontal_ok = (dir == 1 and to_enemy.x > 0) or (dir == -1 and to_enemy.x < 0)
+		var vertical_ok = abs(to_enemy.y) < 50  # Tolerable vertical margin
+		var range_ok = to_enemy.length() < attack_range
+
+		if horizontal_ok and vertical_ok and range_ok:
+			# If conditions are met, draw a line to the enemy
+			line_indicator.visible = true  # Show the line
+			line_indicator.clear_points()  # Clear any previous lines
+			line_indicator.add_point(global_position)  # Start point (player)
+			line_indicator.add_point(enemy.global_position)  # End point (enemy)
+			return enemy  # Return the first enemy that matches the criteria
+
+	# If no enemy found, hide the line
+	line_indicator.visible = false
+	return null
 
 func print_position():
 	print(position)
@@ -58,6 +91,12 @@ func animate():
 		sprite.play("up")
 	else:
 		sprite.stop()
+		
+func setAnim(dir: int):
+	if dir == -1:
+		sprite.play("left")
+	if dir == 1: 
+		sprite.play("right")		
 		
 func move_8way(delta): 
 	get_8way_input()
