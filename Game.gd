@@ -6,6 +6,7 @@ extends Node2D
 @export var current_scene: Node2D = null
 var spawn_timer : float = 0.0
 var spawn_interval : float = 2.0  # Spawn mobs every 5 seconds
+var time_left := 60.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,6 +43,17 @@ func goto_scene(path: String) -> void:
 	scene_limit = current_scene.get_node("SceneLimit")
 	
 func _process(delta):
+	time_left -= delta
+	if (time_left <= 0):
+		time_left = 0
+		get_tree().change_scene_to_file("res://Levels/YouWin.tscn")
+	
+	var time_label = get_node("HUD/TimerLabel")
+	if (time_label):
+		var minutes = int(time_left) / 60
+		var seconds = int(time_left) % 60
+		time_label.text = "%02d:%02d" % [minutes, seconds]
+	
 	spawn_timer += delta
 	if spawn_timer >= spawn_interval:
 		spawn_mobs()

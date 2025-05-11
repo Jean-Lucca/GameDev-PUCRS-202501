@@ -24,14 +24,21 @@ text = "Score: 0"
 script = ExtResource("3_fos0i")
 
 [node name="Vida" type="Label" parent="HUD" groups=["HUD"]]
-offset_left = 196.0
-offset_top = -2.0
-offset_right = 328.0
-offset_bottom = 35.0
+offset_left = 234.0
+offset_right = 366.0
+offset_bottom = 37.0
 theme_override_fonts/font = ExtResource("8_trn2v")
 theme_override_font_sizes/font_size = 30
 text = "Vida: 3"
 script = ExtResource("5_lgr22")
+
+[node name="TimerLabel" type="Label" parent="HUD" groups=["HUD"]]
+offset_left = 529.0
+offset_right = 624.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("8_trn2v")
+theme_override_font_sizes/font_size = 30
+text = "01:00"
 
 [node name="Level1" parent="." instance=ExtResource("4_3dxm6")]
 position = Vector2(-32, -84)
