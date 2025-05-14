@@ -15,10 +15,10 @@ extends CharacterBody2D
 var indicators = {}  # Dicionário para rastrear indicadores por inimigo
 var facing_dir := 1  # 1 = right, -1 = left
 @onready var hit_sound = $HitSound
-@onready var life = 3
+@onready var life = 300000000
 var is_invincible = false
 var invincibility_time = 0.0
-const INVINCIBILITY_DURATION = 3.0
+const INVINCIBILITY_DURATION = 1.5
 
 func _ready():
 	add_to_group("AnimPlayer")
@@ -37,7 +37,7 @@ func get_side_input():
 	var vel := Input.get_axis("left", "right")
 	if vel != 0:
 		facing_dir = sign(vel)
-		print(facing_dir)
+		#print(facing_dir)
 	
 	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):
 		var enemy_hit = detect_enemy_in_direction(facing_dir)
@@ -54,7 +54,7 @@ func get_side_input():
 			enemy_hit.die()
 
 			# Move player to enemy's X position (only X)
-			#global_position.x = enemy_x 
+			global_position.x = enemy_x 
 
 			# Calculate how much the player moved
 			var delta_x = enemy_x - old_x
@@ -180,21 +180,7 @@ func _physics_process(delta):
 			$PlayerSprite.modulate = Color(1, 1, 1)  # volta ao normal
 	# move_8way(delta)
 	move_side(delta)
-	check_enemy_collisions()
 	detect_enemy_in_direction_delta()
-	
-	#if position.y >= 1200:
-		#get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
-
-func check_enemy_collisions():
-	var enemies = get_tree().get_nodes_in_group("Enemies")
-	for enemy in enemies:
-		if not is_instance_valid(enemy):
-			continue
-		if global_position.distance_to(enemy.global_position) < 40:
-			# Arbitrary hit radius; adjust as needed
-			take_damage()
-			break
 
 func take_damage():
 	if is_invincible:

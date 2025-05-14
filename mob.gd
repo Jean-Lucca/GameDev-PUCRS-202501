@@ -3,13 +3,17 @@ var target: Node2D
 #@onready var animation_player = $mob
 #@onready var sprite = $Sprite2D
 var player: CharacterBody2D
+var camera: Camera2D
 @export var speed: float = 200.0  # Speed at which the mob chases the player
-@export var attack_range: float = 10.0  # Distance to stop and attack
+@export var attack_range: float = 35.0  # Distance to stop and attack
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
+	var cameras = get_tree().get_nodes_in_group("Camera")
 	if players.size() > 0:
 		player = players[0]
+	if cameras.size() > 0:
+		camera = cameras[0]
 		
 		
 func _physics_process(delta):
@@ -22,14 +26,16 @@ func _physics_process(delta):
 
 	if distance > attack_range:
 		direction = direction.normalized()
-		velocity = direction * speed
+		velocity = direction * speed		
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		sprite.animation = "attack"
 		sprite.play()
-		player.take_damage()
+		print(sprite.frame)
+		if(sprite.frame == 5):
+			player.take_damage()
 	
 func _on_body_entered(body: Node) -> bool:	
 	if body.name == "Anim_Player":  
@@ -39,6 +45,7 @@ func _on_body_entered(body: Node) -> bool:
 	return false
 		
 func die():
+	camera.shake()	
 	_on_visible_on_screen_notifier_2d_screen_exited()
 			
 func _on_visible_on_screen_notifier_2d_screen_exited():	

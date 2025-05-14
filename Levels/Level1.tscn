@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://60okax2aajfx"]
+[gd_scene load_steps=7 format=3 uid="uid://60okax2aajfx"]
 
 [ext_resource type="PackedScene" uid="uid://d3equlu2k18pa" path="res://Player/AnimPlayer.tscn" id="1_ysn8j"]
 [ext_resource type="PackedScene" uid="uid://ciu6qrhn3f35e" path="res://Weapons/Bullet.tscn" id="2_6ll4n"]
+[ext_resource type="Script" uid="uid://djgyigcwfq8jo" path="res://Levels/camera_2d.gd" id="3_iotdp"]
 [ext_resource type="Texture2D" uid="uid://bj33xhy6d31ui" path="res://Sprites/grass2.png" id="4_bdlbp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu6xs"]
@@ -21,9 +22,10 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_drag_margin = true
+script = ExtResource("3_iotdp")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(779, 468)
+position = Vector2(771, 466)
 collision_mask = 2
 metadata/_edit_group_ = true
 
@@ -34,7 +36,6 @@ texture = ExtResource("4_bdlbp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(-168, 1)
-scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_uu6xs")
 
 [node name="Area2D" type="Area2D" parent="."]

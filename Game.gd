@@ -1,9 +1,12 @@
 extends Node2D
 
 @export var player: CharacterBody2D
+@export var camera: Camera2D
 @export var scene_limit: Marker2D
 @export var mob_scene: PackedScene
 @export var current_scene: Node2D = null
+@onready var Spawn_esquerda = $SpawnEsquerda
+@onready var Spawn_direita = $SpawnDireita
 var spawn_timer : float = 0.0
 var spawn_interval : float = 2.0  # Spawn mobs every 5 seconds
 var time_left := 60.0
@@ -13,8 +16,9 @@ func _ready() -> void:
 	get_tree().call_group("Player","print_position")
 	current_scene = get_child(1)
 	player = current_scene.get_node("AnimPlayer")
+	camera = player.get_node("Camera2D")
+	camera.add_to_group("Camera")
 	scene_limit = current_scene.get_node("SceneLimit")
-	
 	$BackgroundMusic.play()
 	AudioServer.set_bus_volume_linear(1, 0.3)
 		
@@ -72,7 +76,7 @@ func spawn_mobs():
 	# LEFT MOB
 	var mob = mob_scene.instantiate()
 	mob.add_to_group("Enemies")
-	var left_spawn_pos = Vector2(camera_pos.x - screen_half_width + 50, initial_y_position)
+	var left_spawn_pos = Vector2(Spawn_esquerda.position.x - player.position.x, initial_y_position)
 	mob.global_position = left_spawn_pos
 	current_scene.add_child(mob)
 	
@@ -83,7 +87,7 @@ func spawn_mobs():
 	# RIGHT MOB
 	var mob2 = mob_scene.instantiate()
 	mob2.add_to_group("Enemies")
-	var right_spawn_pos = Vector2(camera_pos.x + screen_half_width - 50, initial_y_position)
+	var right_spawn_pos = Vector2(Spawn_direita.position.x + player.position.x, initial_y_position)
 	mob2.global_position = right_spawn_pos
 
 	var sprite2 = mob2.get_node("AnimatedSprite2D")

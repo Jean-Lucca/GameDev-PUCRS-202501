@@ -147,9 +147,9 @@ size = Vector2(24, 41)
 script = ExtResource("1_kpjcp")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_efikj")
-animation = &"left"
-frame_progress = 0.605193
+animation = &"down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10.5)
@@ -167,13 +167,13 @@ stream = ExtResource("4_yk1p8")
 
 [node name="EnemyRangeBar" type="ColorRect" parent="."]
 offset_left = 1.0
-offset_top = 29.0
+offset_top = 21.0
 offset_right = 41.0
-offset_bottom = 69.0
+offset_bottom = 61.0
 scale = Vector2(5.32738, 0.655998)
 
 [node name="EnemyRangeBarLeft" type="ColorRect" parent="."]
 offset_left = -205.0
-offset_top = 29.0
+offset_top = 21.0
 offset_right = -2.0
-offset_bottom = 56.0
+offset_bottom = 48.0
