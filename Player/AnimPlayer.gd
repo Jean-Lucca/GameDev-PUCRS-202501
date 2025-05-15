@@ -43,6 +43,7 @@ func get_side_input(delta):
 		is_attacking = true
 
 		if enemy_hit:
+			get_tree().call_group("LimitBreak", "add_limit_break")
 			get_tree().call_group("HUD", "update_score")
 			hit_sound.play()
 			var old_x = global_position.x

@@ -5,6 +5,7 @@ extends Node2D
 @export var scene_limit: Marker2D
 @export var mob_scene: PackedScene
 @export var current_scene: Node2D = null
+@onready var limit_break: Node2D = null
 @onready var Spawn_esquerda = $SpawnEsquerda
 @onready var Spawn_direita = $SpawnDireita
 var spawn_timer : float = 0.0

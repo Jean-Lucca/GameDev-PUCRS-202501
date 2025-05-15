@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://3uvtbeorgkxj"]
+
+[ext_resource type="Script" uid="uid://dy0xadcmxegl5" path="res://limit_break.gd" id="1_30is7"]
+[ext_resource type="Texture2D" uid="uid://dtj22gps4h8xo" path="res://images/limit_break.png" id="1_g8lv0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iru08"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30is7"]
+bg_color = Color(0.686275, 0.678431, 0.705882, 1)
+
+[node name="LimitBreak" type="Node2D"]
+script = ExtResource("1_30is7")
+
+[node name="LimitBreak" type="Sprite2D" parent="."]
+position = Vector2(919, 546)
+texture = ExtResource("1_g8lv0")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 819.0
+offset_top = 545.0
+offset_right = 1023.0
+offset_bottom = 580.0
+theme_override_constants/outline_size = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_iru08")
+theme_override_styles/fill = SubResource("StyleBoxFlat_30is7")
+show_percentage = false
