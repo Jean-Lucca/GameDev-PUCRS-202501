@@ -52,7 +52,7 @@ stream = ExtResource("5_fos0i")
 bus = &"BGM"
 
 [node name="SpawnEsquerda" type="Marker2D" parent="."]
-position = Vector2(-44, 322)
+position = Vector2(250, 311)
 
 [node name="SpawnDireita" type="Marker2D" parent="."]
-position = Vector2(1195, 317)
+position = Vector2(861, 311)

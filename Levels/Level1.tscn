@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://60okax2aajfx"]
+[gd_scene load_steps=6 format=3 uid="uid://60okax2aajfx"]
 
 [ext_resource type="PackedScene" uid="uid://d3equlu2k18pa" path="res://Player/AnimPlayer.tscn" id="1_ysn8j"]
-[ext_resource type="PackedScene" uid="uid://ciu6qrhn3f35e" path="res://Weapons/Bullet.tscn" id="2_6ll4n"]
 [ext_resource type="Script" uid="uid://djgyigcwfq8jo" path="res://Levels/camera_2d.gd" id="3_iotdp"]
 [ext_resource type="Texture2D" uid="uid://bj33xhy6d31ui" path="res://Sprites/grass2.png" id="4_bdlbp"]
 
@@ -15,7 +14,6 @@ size = Vector2(2000, 20)
 
 [node name="AnimPlayer" parent="." groups=["Player"] instance=ExtResource("1_ysn8j")]
 position = Vector2(608, 407)
-bullet = ExtResource("2_6ll4n")
 
 [node name="Camera2D" type="Camera2D" parent="AnimPlayer"]
 position_smoothing_enabled = true

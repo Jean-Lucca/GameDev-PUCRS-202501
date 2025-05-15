@@ -1,7 +1,5 @@
 extends CharacterBody2D
 var target: Node2D
-#@onready var animation_player = $mob
-#@onready var sprite = $Sprite2D
 var player: CharacterBody2D
 var camera: Camera2D
 @export var speed: float = 200.0  # Speed at which the mob chases the player
@@ -15,8 +13,7 @@ func _ready():
 		player = players[0]
 	if cameras.size() > 0:
 		camera = cameras[0]
-		
-		
+				
 func _physics_process(delta):
 	if not player or not is_instance_valid(player):
 		return
@@ -25,7 +22,7 @@ func _physics_process(delta):
 func stopMoving():
 	stop = true
 func startMoving():
-	stop = true
+	stop = false
 		
 func move():
 	var sprite = $AnimatedSprite2D
@@ -36,26 +33,23 @@ func move():
 		speed = 300
 		if distance > attack_range:
 			direction = direction.normalized()
-			velocity = direction * speed		
+			velocity = direction * speed					
+			if velocity.x < 0:
+				sprite.animation = "walk_left"
+			elif velocity.x > 0:
+				sprite.animation = "walk_right"
+			sprite.play()
 			move_and_slide()
 		else:
 			velocity = Vector2.ZERO
 			move_and_slide()
 			sprite.animation = "attack"
-			sprite.play()
-			print(sprite.frame)
+			sprite.play()			
 			if(sprite.frame == 5):
 				player.take_damage()
 	else:
 		speed = 0
 	
-func _on_body_entered(body: Node) -> bool:	
-	if body.name == "Anim_Player":  
-		print("Collided with Player!")
-		queue_free() 
-		return true;
-	return false
-		
 func die():
 	camera.shake()	
 	_on_visible_on_screen_notifier_2d_screen_exited()
