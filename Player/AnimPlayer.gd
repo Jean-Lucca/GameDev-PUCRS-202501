@@ -32,7 +32,7 @@ func animate_side():
 	else:
 		sprite.stop()
 		
-func get_side_input():
+func get_side_input(delta):
 	velocity.x = 0
 	var vel := Input.get_axis("left", "right")
 	if vel != 0:
@@ -54,10 +54,10 @@ func get_side_input():
 			enemy_hit.die()
 
 			# Move player to enemy's X position (only X)
-			global_position.x = enemy_x 
-
+			global_position.x = move_toward(global_position.x, enemy_x, 1500 * delta) 
+			
 			# Calculate how much the player moved
-			var delta_x = enemy_x - old_x
+			var delta_x = enemy_x + old_x
 			# Move enemies behind the killed one
 			push_enemies_back(enemy_x, delta_x, facing_dir)
 		else:
@@ -67,6 +67,8 @@ func push_enemies_back(origin_x: float, delta_x: float, facing_dir: int):
 	for enemy in get_tree().get_nodes_in_group("Enemies"):
 		if enemy != null and enemy.is_inside_tree() and enemy.has_method("global_position"):
 			var enemy_x = enemy.global_position.x
+			print(enemy_x)
+			enemy.stopMoving()
 
 			# Check if the enemy is behind the origin (based on facing direction)
 			if (facing_dir == 1 and enemy_x > origin_x) or (facing_dir == -1 and enemy_x < origin_x):
@@ -74,11 +76,12 @@ func push_enemies_back(origin_x: float, delta_x: float, facing_dir: int):
 
 			# Push the enemy back by delta_x (same distance the player traveled)
 			enemy.knockback_offset -= facing_dir * (delta_x + 500)
+			enemy.startMoving()
 
 
 func move_side(delta):
 	velocity.y += gravity * delta
-	get_side_input()
+	get_side_input(delta)
 	animate_side()
 	move_and_slide()
 

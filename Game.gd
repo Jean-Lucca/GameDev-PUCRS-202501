@@ -63,9 +63,6 @@ func _process(delta):
 		spawn_mobs()
 		spawn_timer =0.0
 		start_spawning()
-	pass
-	#$MobLeft/MobPath.progress += 100 * delta  # Adjust speed
-	#$MobRight/MobPath.progress += 100 * delta  # Adjust speed
 	
 func spawn_mobs():
 	var screen_size = get_viewport_rect().size
