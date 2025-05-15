@@ -164,7 +164,7 @@ position = Vector2(5, -32)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
 animation = &"left"
-frame_progress = 0.449678
+frame_progress = 0.486883
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -185,7 +185,7 @@ stream = ExtResource("4_yk1p8")
 offset_left = 1.0
 offset_top = 21.0
 offset_right = 41.0
-offset_bottom = 61.0
+offset_bottom = 62.0
 scale = Vector2(5.32738, 0.655998)
 
 [node name="EnemyRangeBarLeft" type="ColorRect" parent="."]

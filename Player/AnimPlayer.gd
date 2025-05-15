@@ -43,17 +43,13 @@ func get_side_input(delta):
 		is_attacking = true
 
 		if enemy_hit:
-			print("Hit enemy: ", enemy_hit.name)
 			get_tree().call_group("HUD", "update_score")
 			hit_sound.play()
 			var old_x = global_position.x
 			var enemy_x = enemy_hit.global_position.x			
-			enemy_hit.die()
-			
-			# Move player to enemy's X position (only X)
+			enemy_hit.die()			
 			global_position.x = move_toward(global_position.x, enemy_x, 1500 * delta) 
 						
-			# Calculate how much the player moved
 			var delta_x = enemy_x + old_x
 			push_enemies_back(enemy_x, delta_x)
 		else:
@@ -73,7 +69,6 @@ func push_enemies_back(origin_x: float, delta_x: float):
 		else:		
 			enemy.global_position.x += push_distance
 				
-		print("Pushed enemy: ", enemy.name, " to x: ", enemy.global_position.x)
 		enemy.startMoving()
 
 
