@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 @export var gravity := 2500.0
 @onready var sprite = $PlayerSprite
-@export var attack_range := 200.0
-@onready var range_bar = $EnemyRangeBar
-@onready var range_bar_left = $EnemyRangeBarLeft
+@onready var buster_left = $Buster_left
+@onready var buster_right = $Buster_right
+@export var attack_range := 150.0
 var facing_dir := 1  # 1 = right, -1 = left
 @onready var hit_sound = $HitSound
 @onready var life = 300000000
@@ -126,15 +126,15 @@ func detect_enemy_in_direction_delta() -> void:
 
 	# Atualiza cor da barra da direita
 	if right_detected:
-		range_bar.color = Color(1, 0, 0, 0.8)  # vermelho
+		buster_right.play("golden_right")
 	else:
-		range_bar.color = Color(0.5, 0.5, 0.5, 0.5)  # cinza
+		buster_right.play("normal_right")
 
 	# Atualiza cor da barra da esquerda
 	if left_detected:
-		range_bar_left.color = Color(0, 0.4, 1, 0.8)  # azul
+		buster_left.play("red_left")
 	else:
-		range_bar_left.color = Color(0.5, 0.5, 0.5, 0.5)  # cinza
+		buster_left.play("normal_left")
 
 func animate():
 	if detect_enemy_in_direction(facing_dir):

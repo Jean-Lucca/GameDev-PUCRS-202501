@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3equlu2k18pa"]
+[gd_scene load_steps=28 format=3 uid="uid://d3equlu2k18pa"]
 
 [ext_resource type="Script" uid="uid://bkv0gni4voe8x" path="res://Player/AnimPlayer.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://bhtx6wywyq5hk" path="res://Sprites/cloud_attack.png" id="2_3q168"]
 [ext_resource type="Texture2D" uid="uid://bgjn46ny5nkyc" path="res://Sprites/cloud.png" id="2_n20f4"]
 [ext_resource type="AudioStream" uid="uid://d12aaump7v4xs" path="res://SFX/jump1.ogg" id="3_2n4i2"]
 [ext_resource type="AudioStream" uid="uid://sp7oy8cjqbki" path="res://SFX/slash.mp3" id="6_n20f4"]
+[ext_resource type="Texture2D" uid="uid://cinptlwqoy2nr" path="res://Sprites/buster_yellow_sides.png" id="6_v1a1l"]
+[ext_resource type="Texture2D" uid="uid://b2ggifk2a5nvu" path="res://Sprites/buster_sides.png" id="7_0qryd"]
+[ext_resource type="Texture2D" uid="uid://cg0uvrl12v577" path="res://Sprites/buster_red_sides.png" id="8_p75ea"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gsndo"]
 atlas = ExtResource("2_n20f4")
@@ -122,6 +125,84 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfnw"]
 size = Vector2(24, 41)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_13v4u"]
+atlas = ExtResource("6_v1a1l")
+region = Rect2(2, 83, 103, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gat8"]
+atlas = ExtResource("7_0qryd")
+region = Rect2(2, 83, 103, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkt47"]
+atlas = ExtResource("8_p75ea")
+region = Rect2(0, 69, 103, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ff6fu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13v4u")
+}],
+"loop": true,
+"name": &"golden_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gat8")
+}],
+"loop": true,
+"name": &"normal_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkt47")
+}],
+"loop": true,
+"name": &"red_left",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj33g"]
+atlas = ExtResource("6_v1a1l")
+region = Rect2(104, 83, 104, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xygvm"]
+atlas = ExtResource("7_0qryd")
+region = Rect2(104, 83, 104, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh8iy"]
+atlas = ExtResource("8_p75ea")
+region = Rect2(103, 69, 103, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vadok"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj33g")
+}],
+"loop": true,
+"name": &"golden_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xygvm")
+}],
+"loop": true,
+"name": &"normal_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh8iy")
+}],
+"loop": true,
+"name": &"red_right",
+"speed": 5.0
+}]
+
 [node name="AnimPlayer" type="CharacterBody2D"]
 script = ExtResource("1_kpjcp")
 
@@ -129,7 +210,7 @@ script = ExtResource("1_kpjcp")
 position = Vector2(5, -32)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
-animation = &"right"
+animation = &"left"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -147,15 +228,20 @@ bus = &"SFX"
 stream = ExtResource("6_n20f4")
 volume_db = -3.032
 
-[node name="EnemyRangeBar" type="ColorRect" parent="."]
-offset_left = 1.0
-offset_top = 21.0
-offset_right = 41.0
-offset_bottom = 62.0
-scale = Vector2(5.32738, 0.655998)
+[node name="Buster_left" type="AnimatedSprite2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+z_index = 6
+position = Vector2(-42.75, 51.75)
+scale = Vector2(1.067, 1.128)
+sprite_frames = SubResource("SpriteFrames_ff6fu")
+animation = &"normal_left"
 
-[node name="EnemyRangeBarLeft" type="ColorRect" parent="."]
-offset_left = -205.0
-offset_top = 21.0
-offset_right = -2.0
-offset_bottom = 48.0
+[node name="Buster_right" type="AnimatedSprite2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+z_index = 6
+position = Vector2(52.5, 51.75)
+scale = Vector2(1.06731, 1.13415)
+sprite_frames = SubResource("SpriteFrames_vadok")
+animation = &"normal_right"
