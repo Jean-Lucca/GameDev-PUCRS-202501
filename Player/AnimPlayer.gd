@@ -12,7 +12,7 @@ var is_invincible = false
 var invincibility_time = 0.0
 const INVINCIBILITY_DURATION = 1.5
 var is_attacking = false
-
+var nodes = null
 func _ready():
 	add_to_group("AnimPlayer")
 
@@ -45,19 +45,23 @@ func get_side_input(delta):
 		if enemy_hit:
 			get_tree().call_group("LimitBreak", "add_limit_break")
 			get_tree().call_group("HUD", "update_score")
-			hit_sound.play()
-			var old_x = global_position.x
-			var enemy_x = enemy_hit.global_position.x			
-			enemy_hit.die()			
-			global_position.x = move_toward(global_position.x, enemy_x, 1500 * delta) 
-						
-			var delta_x = enemy_x + old_x
-			push_enemies_back(enemy_x, delta_x)
-		else:
-			print("No enemy hit")
-				
+			
+			nodes = get_tree().get_nodes_in_group("LimitBreak")
+			if nodes.size() > 0:
+				if nodes[0].is_full():
+					#aqui vai a implementação do ataque especial
+					print("is full")
+				else:
+					basic_attack(delta, enemy_hit)													
 
-func push_enemies_back(origin_x: float, delta_x: float):
+func basic_attack(delta, enemy_hit):
+		hit_sound.play()
+		var enemy_x = enemy_hit.global_position.x			
+		enemy_hit.die()			
+		global_position.x = move_toward(global_position.x, enemy_x, 1500 * delta) 						
+		push_enemies_back(enemy_x)
+
+func push_enemies_back(origin_x: float):
 	for enemy in get_tree().get_nodes_in_group("Enemies"):		
 		var enemy_pos = enemy.global_position
 		var enemy_x = enemy_pos.x
@@ -82,7 +86,6 @@ func move_side(delta):
 func detect_enemy_in_direction(dir: int) -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("Enemies")
 	var found_enemy = null
-	var found = false
 
 	for enemy in enemies:
 		if not is_instance_valid(enemy):
@@ -95,7 +98,6 @@ func detect_enemy_in_direction(dir: int) -> Node2D:
 
 		if horizontal_ok and vertical_ok and range_ok:
 			found_enemy = enemy
-			found = true
 			break
 	return found_enemy
 
@@ -173,6 +175,6 @@ func take_damage():
 	if life <= 0:
 		get_tree().change_scene_to_file("res://Levels/GameOver.tscn")
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered() -> void:
 	get_tree().change_scene_to_file("res://Levels/GameOver.tscn")
 	pass # Replace with function body.

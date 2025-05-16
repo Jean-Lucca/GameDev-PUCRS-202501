@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://60okax2aajfx"]
+[gd_scene load_steps=5 format=3 uid="uid://60okax2aajfx"]
 
 [ext_resource type="PackedScene" uid="uid://d3equlu2k18pa" path="res://Player/AnimPlayer.tscn" id="1_ysn8j"]
 [ext_resource type="Script" uid="uid://djgyigcwfq8jo" path="res://Levels/camera_2d.gd" id="3_iotdp"]
@@ -6,9 +6,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu6xs"]
 size = Vector2(3848, 42)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhr70"]
-size = Vector2(2000, 20)
 
 [node name="Level1" type="Node2D"]
 
@@ -36,16 +33,5 @@ texture = ExtResource("4_bdlbp")
 position = Vector2(-168, 1)
 shape = SubResource("RectangleShape2D_uu6xs")
 
-[node name="Area2D" type="Area2D" parent="."]
-process_mode = 4
-position = Vector2(662, 1052)
-collision_mask = 0
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_lhr70")
-
 [node name="SceneLimit" type="Marker2D" parent="."]
 position = Vector2(658, 1162)
-
-[connection signal="body_entered" from="Area2D" to="AnimPlayer" method="_on_area_2d_body_entered"]

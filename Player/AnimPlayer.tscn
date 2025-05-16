@@ -1,15 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://d3equlu2k18pa"]
+[gd_scene load_steps=17 format=3 uid="uid://d3equlu2k18pa"]
 
 [ext_resource type="Script" uid="uid://bkv0gni4voe8x" path="res://Player/AnimPlayer.gd" id="1_kpjcp"]
-[ext_resource type="Texture2D" uid="uid://b0f85xqy4tetm" path="res://Sprites/char.png" id="1_xhfnw"]
 [ext_resource type="Texture2D" uid="uid://bhtx6wywyq5hk" path="res://Sprites/cloud_attack.png" id="2_3q168"]
 [ext_resource type="Texture2D" uid="uid://bgjn46ny5nkyc" path="res://Sprites/cloud.png" id="2_n20f4"]
 [ext_resource type="AudioStream" uid="uid://d12aaump7v4xs" path="res://SFX/jump1.ogg" id="3_2n4i2"]
-[ext_resource type="AudioStream" uid="uid://cic7f08mu4otg" path="res://SFX/hit.wav" id="4_yk1p8"]
+[ext_resource type="AudioStream" uid="uid://sp7oy8cjqbki" path="res://SFX/slash.mp3" id="6_n20f4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k88xd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsndo"]
 atlas = ExtResource("2_n20f4")
-region = Rect2(46, 116, 173, 180)
+region = Rect2(35, 119, 173, 178)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1a1l"]
 atlas = ExtResource("2_3q168")
@@ -35,54 +34,16 @@ region = Rect2(754, 606, 173, 180)
 atlas = ExtResource("2_3q168")
 region = Rect2(927, 606, 173, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gsndo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q168"]
 atlas = ExtResource("2_n20f4")
-region = Rect2(35, 119, 173, 178)
+region = Rect2(4, 439, 164, 173)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d6rpx"]
-atlas = ExtResource("1_xhfnw")
-region = Rect2(0, 192, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r3kul"]
-atlas = ExtResource("1_xhfnw")
-region = Rect2(64, 192, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jatw7"]
-atlas = ExtResource("1_xhfnw")
-region = Rect2(128, 192, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rv870"]
-atlas = ExtResource("1_xhfnw")
-region = Rect2(192, 192, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_n20f4"]
+atlas = ExtResource("2_n20f4")
+region = Rect2(168, 439, 164, 173)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_efikj"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k88xd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v1a1l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0qryd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p75ea")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1ir0u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ujrku")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4mpka")
-}],
-"loop": true,
-"name": &"down",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gsndo")
@@ -137,19 +98,24 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d6rpx")
+"texture": SubResource("AtlasTexture_3q168")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r3kul")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jatw7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rv870")
+"texture": SubResource("AtlasTexture_n20f4")
 }],
 "loop": true,
-"name": &"up",
+"name": &"wind_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3q168")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n20f4")
+}],
+"loop": true,
+"name": &"wind_right",
 "speed": 5.0
 }]
 
@@ -163,8 +129,7 @@ script = ExtResource("1_kpjcp")
 position = Vector2(5, -32)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
-animation = &"left"
-frame_progress = 0.486883
+animation = &"right"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -179,7 +144,8 @@ volume_db = -6.0
 bus = &"SFX"
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_yk1p8")
+stream = ExtResource("6_n20f4")
+volume_db = -3.032
 
 [node name="EnemyRangeBar" type="ColorRect" parent="."]
 offset_left = 1.0

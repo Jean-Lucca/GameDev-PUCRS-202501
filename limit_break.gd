@@ -14,6 +14,13 @@ func add_limit_break():
 	if limit_bar:
 		limit_bar.value = min(limit_bar.value + 5, limit_bar.max_value)
 		update_bar_color()
+		
+func zero_limit_break():
+	if limit_bar.value == 100:
+		limit_bar.value = 0	
+		
+func is_full():
+	return limit_bar.value == 100
 
 func update_bar_color():
 	var fill_style = limit_bar.get("theme_override_styles/fill")
