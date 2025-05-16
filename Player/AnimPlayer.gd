@@ -50,9 +50,9 @@ func get_side_input(delta):
 			if nodes.size() > 0:
 				if nodes[0].is_full():
 					#aqui vai a implementação do ataque especial
-					print("is full")
-				else:
-					basic_attack(delta, enemy_hit)													
+					print("is full")			
+									
+			basic_attack(delta, enemy_hit)													
 
 func basic_attack(delta, enemy_hit):
 		hit_sound.play()
