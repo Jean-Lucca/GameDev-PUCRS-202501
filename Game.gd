@@ -71,6 +71,9 @@ func spawn_mobs():
 	var camera_pos = player.global_position
 	var initial_y_position = 450  # Or store once if fixed
 	
+	Spawn_esquerda.global_position = Vector2(player.global_position.x - 500, Spawn_esquerda.global_position.y)
+	Spawn_direita.global_position = Vector2(player.global_position.x + 500, Spawn_direita.global_position.y)
+
 	# LEFT MOB
 	var mob = mob_scene.instantiate()
 	mob.add_to_group("Enemies")
