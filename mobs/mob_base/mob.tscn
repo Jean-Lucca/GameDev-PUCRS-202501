@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://bcx2lbhnpuubm"]
 
-[ext_resource type="Script" uid="uid://bnft0fw71utvh" path="res://mob.gd" id="1_nokgg"]
+[ext_resource type="Script" uid="uid://bnft0fw71utvh" path="res://mobs/mob_base/mob.gd" id="1_nokgg"]
 [ext_resource type="Texture2D" uid="uid://bmv60ggn0tywr" path="res://Sprites/Attack.png" id="2_ubaqv"]
 [ext_resource type="Texture2D" uid="uid://k5kfp4q2005m" path="res://Sprites/Run.png" id="3_ubaqv"]
 

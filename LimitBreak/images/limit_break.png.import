@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtj22gps4h8xo"
-path="res://.godot/imported/limit_break.png-5ce95d021a1d8b34042e4d800e948dd8.ctex"
+path="res://.godot/imported/limit_break.png-1c4d5b5018bcb250a44a7b3575548859.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/limit_break.png"
-dest_files=["res://.godot/imported/limit_break.png-5ce95d021a1d8b34042e4d800e948dd8.ctex"]
+source_file="res://LimitBreak/images/limit_break.png"
+dest_files=["res://.godot/imported/limit_break.png-1c4d5b5018bcb250a44a7b3575548859.ctex"]
 
 [params]
 

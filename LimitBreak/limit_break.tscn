@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://3uvtbeorgkxj"]
 
-[ext_resource type="Script" uid="uid://dy0xadcmxegl5" path="res://limit_break.gd" id="1_30is7"]
-[ext_resource type="Texture2D" uid="uid://dtj22gps4h8xo" path="res://images/limit_break.png" id="1_g8lv0"]
+[ext_resource type="Script" uid="uid://dy0xadcmxegl5" path="res://LimitBreak/limit_break.gd" id="1_30is7"]
+[ext_resource type="Texture2D" uid="uid://dtj22gps4h8xo" path="res://LimitBreak/images/limit_break.png" id="1_g8lv0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iru08"]
 
