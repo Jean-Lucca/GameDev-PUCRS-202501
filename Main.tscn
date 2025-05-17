@@ -16,6 +16,9 @@ mob_scene = ExtResource("2_3dxm6")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
+[node name="LimitBreak" parent="HUD" instance=ExtResource("9_03owx")]
+position = Vector2(12, -1)
+
 [node name="Score" type="Label" parent="HUD" groups=["HUD"]]
 offset_right = 40.0
 offset_bottom = 23.0
@@ -58,6 +61,3 @@ position = Vector2(250, 311)
 
 [node name="SpawnDireita" type="Marker2D" parent="."]
 position = Vector2(861, 311)
-
-[node name="LimitBreak" parent="." instance=ExtResource("9_03owx")]
-position = Vector2(-4, 0)

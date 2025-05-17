@@ -5,6 +5,9 @@ extends CharacterBody2D
 @onready var buster_left = $Buster_left
 @onready var buster_right = $Buster_right
 @export var attack_range := 150.0
+@export var wind_slash: PackedScene
+
+
 var facing_dir := 1  # 1 = right, -1 = left
 @onready var hit_sound = $HitSound
 @onready var life = 300000000
@@ -15,6 +18,7 @@ var is_attacking = false
 var nodes = null
 func _ready():
 	add_to_group("AnimPlayer")
+	wind_slash = preload("res://Player/wind_slash.tscn")
 
 func animate_side():
 	if is_attacking && sprite.frame != 6:	
@@ -43,16 +47,17 @@ func get_side_input(delta):
 		is_attacking = true
 
 		if enemy_hit:
-			get_tree().call_group("LimitBreak", "add_limit_break")
 			get_tree().call_group("HUD", "update_score")
 			
 			nodes = get_tree().get_nodes_in_group("LimitBreak")
 			if nodes.size() > 0:
 				if nodes[0].is_full():
-					#aqui vai a implementação do ataque especial
+					get_tree().call_group("LimitBreak", "zero_limit_break")
+					launch_wind_slash()
 					print("is full")			
 									
 			basic_attack(delta, enemy_hit)													
+			get_tree().call_group("LimitBreak", "add_limit_break")
 
 func basic_attack(delta, enemy_hit):
 		hit_sound.play()
@@ -60,6 +65,20 @@ func basic_attack(delta, enemy_hit):
 		enemy_hit.die()			
 		global_position.x = move_toward(global_position.x, enemy_x, 1500 * delta) 						
 		push_enemies_back(enemy_x)
+
+func launch_wind_slash():
+	if wind_slash:
+		var projectile = wind_slash.instantiate()
+		projectile.add_to_group("wind_slash")
+		projectile.position = global_position
+		if facing_dir == 1:
+			projectile.direction = Vector2.RIGHT  
+			projectile.get_node("AnimatedSprite2D").flip_h = false
+		if facing_dir == -1:
+			projectile.direction = Vector2.LEFT
+			projectile.get_node("AnimatedSprite2D").flip_h = true
+		get_tree().current_scene.add_child(projectile) 
+
 
 func push_enemies_back(origin_x: float):
 	for enemy in get_tree().get_nodes_in_group("Enemies"):		

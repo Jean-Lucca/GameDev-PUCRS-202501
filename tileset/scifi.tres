@@ -1,0 +1,20 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b4ebrcpeklbu6"]
+
+[ext_resource type="Texture2D" uid="uid://bfr030pw2s22g" path="res://Sprites/5. Industrial Tileset - Starter Pack 32p/1_Industrial_Tileset_1C.png" id="1_0hwuw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_avjcm"]
+texture = ExtResource("1_0hwuw")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[resource]
+tile_size = Vector2i(32, 32)
+sources/2 = SubResource("TileSetAtlasSource_avjcm")

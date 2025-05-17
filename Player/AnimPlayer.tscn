@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d3equlu2k18pa"]
+[gd_scene load_steps=26 format=3 uid="uid://d3equlu2k18pa"]
 
 [ext_resource type="Script" uid="uid://bkv0gni4voe8x" path="res://Player/AnimPlayer.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://bhtx6wywyq5hk" path="res://Sprites/cloud_attack.png" id="2_3q168"]
@@ -36,14 +36,6 @@ region = Rect2(754, 606, 173, 180)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mpka"]
 atlas = ExtResource("2_3q168")
 region = Rect2(927, 606, 173, 180)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3q168"]
-atlas = ExtResource("2_n20f4")
-region = Rect2(4, 439, 164, 173)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n20f4"]
-atlas = ExtResource("2_n20f4")
-region = Rect2(168, 439, 164, 173)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_efikj"]
 animations = [{
@@ -98,28 +90,6 @@ animations = [{
 "loop": true,
 "name": &"right",
 "speed": 40.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3q168")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n20f4")
-}],
-"loop": true,
-"name": &"wind_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3q168")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n20f4")
-}],
-"loop": true,
-"name": &"wind_right",
-"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfnw"]
@@ -210,7 +180,7 @@ script = ExtResource("1_kpjcp")
 position = Vector2(5, -32)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
-animation = &"left"
+animation = &"right"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -232,7 +202,7 @@ volume_db = -3.032
 light_mask = 4
 visibility_layer = 4
 z_index = 6
-position = Vector2(-42.75, 51.75)
+position = Vector2(-42.75, 24.75)
 scale = Vector2(1.067, 1.128)
 sprite_frames = SubResource("SpriteFrames_ff6fu")
 animation = &"normal_left"
@@ -241,7 +211,7 @@ animation = &"normal_left"
 light_mask = 4
 visibility_layer = 4
 z_index = 6
-position = Vector2(52.5, 51.75)
+position = Vector2(52.5, 24.75)
 scale = Vector2(1.06731, 1.13415)
 sprite_frames = SubResource("SpriteFrames_vadok")
 animation = &"normal_right"
