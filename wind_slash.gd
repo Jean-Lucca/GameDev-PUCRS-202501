@@ -10,6 +10,7 @@ func _ready():
 	area.connect("body_entered", Callable(self, "_on_body_entered"))
 
 func _on_body_entered(body):
+	print("checkbody")
 	if body.is_in_group("Enemies"):
 		print("Mob atingido pelo Wind Slash!")
 		body.die() 

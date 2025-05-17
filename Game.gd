@@ -69,12 +69,11 @@ func spawn_mobs():
 	var screen_size = get_viewport_rect().size
 	var screen_half_width = screen_size.x / 2
 	var camera_pos = player.global_position
-	var initial_y_position = 450  # Or store once if fixed
+	var initial_y_position = 450  
 	
 	Spawn_esquerda.global_position = Vector2(player.global_position.x - 500, Spawn_esquerda.global_position.y)
 	Spawn_direita.global_position = Vector2(player.global_position.x + 500, Spawn_direita.global_position.y)
 
-	# LEFT MOB
 	var mob = mob_scene.instantiate()
 	mob.add_to_group("Enemies")
 	var left_spawn_pos = Vector2(Spawn_esquerda.position.x - player.position.x, initial_y_position)
@@ -85,7 +84,6 @@ func spawn_mobs():
 	sprite.animation = "walk_right"
 	sprite.play()
 
-	# RIGHT MOB
 	var mob2 = mob_scene.instantiate()
 	mob2.add_to_group("Enemies")
 	var right_spawn_pos = Vector2(Spawn_direita.position.x + player.position.x, initial_y_position)

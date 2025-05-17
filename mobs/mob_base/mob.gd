@@ -50,12 +50,6 @@ func move():
 	else:
 		speed = 0
 		
-func _on_body_entered(body):
-	if body.is_in_group("wind_slash"):  # crie um grupo para seus inimigos
-		print("Mob atingido pelo Wind Slash!")
-		die()
-		# aplique dano, animação, etc.	
-	
 func die():
 	camera.shake()	
 	_on_visible_on_screen_notifier_2d_screen_exited()
