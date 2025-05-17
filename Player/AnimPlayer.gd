@@ -6,8 +6,6 @@ extends CharacterBody2D
 @onready var buster_right = $Buster_right
 @export var attack_range := 150.0
 @export var wind_slash: PackedScene
-
-
 var facing_dir := 1  # 1 = right, -1 = left
 @onready var hit_sound = $HitSound
 @onready var life = 300000000
@@ -16,6 +14,7 @@ var invincibility_time = 0.0
 const INVINCIBILITY_DURATION = 1.5
 var is_attacking = false
 var nodes = null
+
 func _ready():
 	add_to_group("AnimPlayer")
 	wind_slash = preload("res://Player/wind_slash.tscn")
@@ -45,26 +44,45 @@ func get_side_input(delta):
 		var enemy_hit = detect_enemy_in_direction(facing_dir)
 		setAnim(facing_dir)
 		is_attacking = true
-
+		hit_sound.play()
+		pop_limit_break()
+		
 		if enemy_hit:
-			get_tree().call_group("HUD", "update_score")
-			
-			nodes = get_tree().get_nodes_in_group("LimitBreak")
-			if nodes.size() > 0:
-				if nodes[0].is_full():
-					get_tree().call_group("LimitBreak", "zero_limit_break")
-					launch_wind_slash()
-					print("is full")			
-									
-			basic_attack(delta, enemy_hit)													
+			get_tree().call_group("HUD", "update_score")													
+			basic_attack(enemy_hit)													
 			get_tree().call_group("LimitBreak", "add_limit_break")
 
-func basic_attack(delta, enemy_hit):
-		hit_sound.play()
-		var enemy_x = enemy_hit.global_position.x			
-		enemy_hit.die()			
-		global_position.x = move_toward(global_position.x, enemy_x, 1500 * delta) 						
+func pop_limit_break():
+	nodes = get_tree().get_nodes_in_group("LimitBreak")
+	if nodes.size() > 0:
+		if nodes[0].is_full():
+			get_tree().call_group("LimitBreak", "zero_limit_break")
+			launch_wind_slash()
+			print("is full")		
+
+func basic_attack(enemy_hit):
+	if enemy_hit == null:
+		return
+
+	var enemy_x = enemy_hit.global_position.x
+	
+	# Enemy dies (you can delay this if you want animation)
+	enemy_hit.die()
+
+	# Smoothly move player toward the enemy
+	var move_duration := 0.2
+	var move_target := Vector2(enemy_x, global_position.y)
+
+	var tween := get_tree().create_tween()
+	tween.tween_property(self, "global_position", move_target, move_duration)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
+
+	# When finished moving, push enemies away
+	tween.finished.connect(func():
 		push_enemies_back(enemy_x)
+	)
+
 
 func launch_wind_slash():
 	if wind_slash:
@@ -81,19 +99,37 @@ func launch_wind_slash():
 
 
 func push_enemies_back(origin_x: float):
-	for enemy in get_tree().get_nodes_in_group("Enemies"):		
+	var push_distance = 100.0
+	var duration = 0.3
+	var max_distance = 100.0  # Só empurra inimigos próximos ao origin_x
+
+	for enemy in get_tree().get_nodes_in_group("Enemies"):
+		if enemy == null:
+			continue
+
+		if not enemy.has_method("stopMoving") or not enemy.has_method("startMoving"):
+			push_warning("Enemy %s does not implement required methods." % enemy.name)
+			continue
+
 		var enemy_pos = enemy.global_position
-		var enemy_x = enemy_pos.x
-		
+		var distance_to_origin = abs(enemy_pos.x - origin_x)
+		if distance_to_origin > max_distance:
+			continue  # Pula inimigos muito distantes
+
 		enemy.stopMoving()
-				
-		var push_distance = 100.0
-		if enemy_x < origin_x:			
-			enemy.global_position.x -= push_distance
-		else:		
-			enemy.global_position.x += push_distance
-				
-		enemy.startMoving()
+
+		var target_x = enemy_pos.x - push_distance if enemy_pos.x < origin_x else enemy_pos.x + push_distance
+		var target_position = Vector2(target_x, enemy_pos.y)
+
+		var tween := get_tree().create_tween()
+		tween.tween_property(enemy, "global_position", target_position, duration)\
+			.set_trans(Tween.TRANS_SINE)\
+			.set_ease(Tween.EASE_OUT)
+
+		tween.finished.connect(func():
+			if is_instance_valid(enemy): 
+				enemy.startMoving()
+		)
 
 
 func move_side(delta):

@@ -63,7 +63,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"left",
-"speed": 40.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -89,7 +89,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"right",
-"speed": 40.0
+"speed": 20.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfnw"]
@@ -181,6 +181,7 @@ position = Vector2(5, -32)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
 animation = &"right"
+frame_progress = 0.265561
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

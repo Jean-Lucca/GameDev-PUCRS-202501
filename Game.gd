@@ -53,6 +53,9 @@ func _process(delta):
 		time_left = 0
 		get_tree().change_scene_to_file("res://Levels/YouWin.tscn")
 	
+	Spawn_esquerda.global_position = Vector2(player.global_position.x - 500, Spawn_esquerda.global_position.y)
+	Spawn_direita.global_position = Vector2(player.global_position.x + 500, Spawn_direita.global_position.y)
+	
 	var time_label = get_node("HUD/TimerLabel")
 	if (time_label):
 		var minutes = int(time_left) / 60
@@ -70,10 +73,7 @@ func spawn_mobs():
 	var screen_half_width = screen_size.x / 2
 	var camera_pos = player.global_position
 	var initial_y_position = 450  
-	
-	Spawn_esquerda.global_position = Vector2(player.global_position.x - 500, Spawn_esquerda.global_position.y)
-	Spawn_direita.global_position = Vector2(player.global_position.x + 500, Spawn_direita.global_position.y)
-
+		
 	var mob = mob_scene.instantiate()
 	mob.add_to_group("Enemies")
 	var left_spawn_pos = Vector2(Spawn_esquerda.position.x - player.position.x, initial_y_position)
