@@ -19,12 +19,13 @@ func _ready() -> void:
 	player = current_scene.get_node("AnimPlayer")
 	camera = player.get_node("Camera2D")
 	camera.add_to_group("Camera")
+	#camera.zoom = Vector2(0.4,0.4)
 	scene_limit = current_scene.get_node("SceneLimit")
 	$BackgroundMusic.play()
 	AudioServer.set_bus_volume_linear(1, 0.3)
 		
 func start_spawning():
-	spawn_interval = randf_range(0.0, 1.5)
+	spawn_interval = randf_range(1.5, 2.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -53,9 +54,10 @@ func _process(delta):
 		time_left = 0
 		get_tree().change_scene_to_file("res://Levels/YouWin.tscn")
 	
-	Spawn_esquerda.global_position = Vector2(player.global_position.x - 500, Spawn_esquerda.global_position.y)
-	Spawn_direita.global_position = Vector2(player.global_position.x + 500, Spawn_direita.global_position.y)
-	
+	Spawn_esquerda.global_position = Vector2(player.global_position.x - 1000, Spawn_esquerda.global_position.y)
+	Spawn_direita.global_position = Vector2(player.global_position.x + 1000, Spawn_direita.global_position.y)
+	print(Spawn_direita.global_position)
+	print(Spawn_esquerda.global_position)
 	var time_label = get_node("HUD/TimerLabel")
 	if (time_label):
 		var minutes = int(time_left) / 60
@@ -76,7 +78,7 @@ func spawn_mobs():
 		
 	var mob = mob_scene.instantiate()
 	mob.add_to_group("Enemies")
-	var left_spawn_pos = Vector2(Spawn_esquerda.position.x - player.position.x, initial_y_position)
+	var left_spawn_pos = Vector2(Spawn_esquerda.position.x, initial_y_position)
 	mob.global_position = left_spawn_pos
 	current_scene.add_child(mob)
 	
@@ -86,7 +88,7 @@ func spawn_mobs():
 
 	var mob2 = mob_scene.instantiate()
 	mob2.add_to_group("Enemies")
-	var right_spawn_pos = Vector2(Spawn_direita.position.x + player.position.x, initial_y_position)
+	var right_spawn_pos = Vector2(Spawn_direita.position.x, initial_y_position)
 	mob2.global_position = right_spawn_pos
 
 	var sprite2 = mob2.get_node("AnimatedSprite2D")

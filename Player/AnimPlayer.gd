@@ -63,25 +63,21 @@ func pop_limit_break():
 func basic_attack(enemy_hit):
 	if enemy_hit == null:
 		return
-
+	
 	var enemy_x = enemy_hit.global_position.x
+	push_enemies_back(enemy_x)
 	
 	# Enemy dies (you can delay this if you want animation)
 	enemy_hit.die()
 
 	# Smoothly move player toward the enemy
-	var move_duration := 0.2
+	var move_duration := 0.3
 	var move_target := Vector2(enemy_x, global_position.y)
 
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "global_position", move_target, move_duration)\
-		.set_trans(Tween.TRANS_SINE)\
+		.set_trans(Tween.TRANS_QUINT)\
 		.set_ease(Tween.EASE_OUT)
-
-	# When finished moving, push enemies away
-	tween.finished.connect(func():
-		push_enemies_back(enemy_x)
-	)
 
 
 func launch_wind_slash():
@@ -100,7 +96,7 @@ func launch_wind_slash():
 
 func push_enemies_back(origin_x: float):
 	var push_distance = 100.0
-	var duration = 0.3
+	var duration = 0.1
 	var max_distance = 100.0  # Só empurra inimigos próximos ao origin_x
 
 	for enemy in get_tree().get_nodes_in_group("Enemies"):
@@ -123,7 +119,7 @@ func push_enemies_back(origin_x: float):
 
 		var tween := get_tree().create_tween()
 		tween.tween_property(enemy, "global_position", target_position, duration)\
-			.set_trans(Tween.TRANS_SINE)\
+			.set_trans(Tween.TRANS_BACK)\
 			.set_ease(Tween.EASE_OUT)
 
 		tween.finished.connect(func():

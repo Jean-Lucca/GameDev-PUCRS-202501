@@ -3,7 +3,7 @@ var target: Node2D
 var player: CharacterBody2D
 var camera: Camera2D
 @export var speed: float = 200.0  # Speed at which the mob chases the player
-@export var attack_range: float = 35.0  # Distance to stop and attack
+@export var attack_range: float = 50.0  # Distance to stop and attack
 var stop = false	
 
 func _ready():
