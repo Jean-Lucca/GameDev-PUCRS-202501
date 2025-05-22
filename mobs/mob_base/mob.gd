@@ -9,10 +9,10 @@ var stop = false
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
 	var cameras = get_tree().get_nodes_in_group("Camera")
-	if players.size() > 0:
-		player = players[0]
 	if cameras.size() > 0:
 		camera = cameras[0]
+	if players.size() > 0:
+		player = players[0]
 				
 func _physics_process(delta):
 	if not player or not is_instance_valid(player):

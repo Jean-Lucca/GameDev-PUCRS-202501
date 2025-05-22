@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var buster_right = $Buster_right
 @export var attack_range := 150.0
 @export var wind_slash: PackedScene
+@onready var camera = $Camera2D
 var facing_dir := 1  # 1 = right, -1 = left
 @onready var hit_sound = $HitSound
 @onready var life = 300000000
@@ -14,6 +15,7 @@ var invincibility_time = 0.0
 const INVINCIBILITY_DURATION = 1.5
 var is_attacking = false
 var nodes = null
+
 
 func _ready():
 	add_to_group("AnimPlayer")
@@ -72,7 +74,7 @@ func basic_attack(enemy_hit):
 
 	# Smoothly move player toward the enemy
 	var move_duration := 0.3
-	var move_target := Vector2(enemy_x, global_position.y)
+	var move_target := Vector2(enemy_x, global_position.y)	
 
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "global_position", move_target, move_duration)\
@@ -193,6 +195,7 @@ func animate():
 			return
 	if !is_attacking:
 		sprite.frame = 0
+		Engine.time_scale = 1
 		sprite.stop()	
 		
 func setAnim(dir: int):
@@ -210,6 +213,7 @@ func _physics_process(delta):
 		if invincibility_time <= 0:
 			is_invincible = false
 			$PlayerSprite.modulate = Color(1, 1, 1)  # volta ao normal
+			
 	move_side(delta)
 	detect_enemy_in_direction_delta()
 
@@ -225,6 +229,17 @@ func take_damage():
 
 	if life <= 0:
 		get_tree().change_scene_to_file("res://Levels/GameOver.tscn")
+
+#chamar essa func a cada 4 ataques(?) variar de 4 a mais		
+func attack_zoom():
+	if is_attacking:
+		if is_instance_valid(camera):
+			camera.zoom = Vector2(1.8,1.8)		
+			Engine.time_scale = 0.3
+	else:
+		if is_instance_valid(camera):
+			camera.zoom = Vector2(1.0,1.0)		
+			Engine.time_scale = 1
 
 func _on_area_2d_body_entered() -> void:
 	get_tree().change_scene_to_file("res://Levels/GameOver.tscn")

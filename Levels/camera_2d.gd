@@ -21,5 +21,8 @@ func _process(delta):
 		if _shake_time_left <= 0:
 			offset = _original_offset
 
+func zoom(vector):
+	Camera2D.zoom = vector
+
 func shake():
 	_shake_time_left = shake_duration
