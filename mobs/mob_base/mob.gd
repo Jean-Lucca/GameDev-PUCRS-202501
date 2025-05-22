@@ -46,7 +46,7 @@ func move():
 			sprite.animation = "attack"
 			sprite.play()			
 			if(sprite.frame == 5):
-				player.take_damage()
+				player.take_damage()		
 	else:
 		speed = 0
 		

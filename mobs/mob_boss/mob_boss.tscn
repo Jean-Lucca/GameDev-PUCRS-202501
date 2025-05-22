@@ -1,5 +1,6 @@
-[gd_scene load_steps=37 format=3 uid="uid://c17u0k324vg01"]
+[gd_scene load_steps=32 format=3 uid="uid://c17u0k324vg01"]
 
+[ext_resource type="Script" uid="uid://bnft0fw71utvh" path="res://mobs/mob_base/mob.gd" id="1_3gake"]
 [ext_resource type="Texture2D" uid="uid://bdlw4y8cfb0t7" path="res://mobs/mob_boss/sprites/unit_atk_207002417.png" id="1_qxxn7"]
 [ext_resource type="Texture2D" uid="uid://chpev7gyd2qkl" path="res://mobs/mob_boss/sprites/unit_limit_atk_207002417.png" id="2_3gake"]
 [ext_resource type="Texture2D" uid="uid://c4157e16s4f4s" path="res://mobs/mob_boss/sprites/unit_standby_207002417.png" id="3_5pp7n"]
@@ -54,30 +55,6 @@ region = Rect2(225, 633, 225, 211)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8o4w3"]
 atlas = ExtResource("1_qxxn7")
 region = Rect2(450, 633, 225, 211)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mvhmu"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(0, 1140, 225, 190)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cb8ky"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(225, 1140, 225, 190)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xf53a"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(450, 1140, 225, 190)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x78te"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(0, 1330, 225, 190)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_31bo5"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(225, 1330, 225, 190)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xsamw"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(450, 1330, 225, 190)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_83otm"]
 atlas = ExtResource("2_3gake")
@@ -165,24 +142,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8o4w3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mvhmu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cb8ky")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xf53a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x78te")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_31bo5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xsamw")
 }],
 "loop": true,
 "name": &"attack",
@@ -236,15 +195,26 @@ animations = [{
 "texture": SubResource("AtlasTexture_0ci8w")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ci8w")
+}],
+"loop": true,
+"name": &"walk_right",
 "speed": 5.0
 }]
 
 [node name="MobBoss" type="CharacterBody2D"]
+script = ExtResource("1_3gake")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2g8di")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -16)
 sprite_frames = SubResource("SpriteFrames_b8pns")
-animation = &"attack-2"
+animation = &"walk_left"
+frame_progress = 0.463705

@@ -8,6 +8,7 @@ extends Node2D
 @onready var limit_break: Node2D = null
 @onready var Spawn_esquerda = $SpawnEsquerda
 @onready var Spawn_direita = $SpawnDireita
+var mob_boss = load("res://mobs/mob_boss/mob_boss.tscn")
 var spawn_timer : float = 0.0
 var spawn_interval : float = 2.0  # Spawn mobs every 5 seconds
 var time_left := 60.0
@@ -21,13 +22,12 @@ func _ready() -> void:
 	camera.add_to_group("Camera")
 	#camera.zoom = Vector2(0.4,0.4)
 	scene_limit = current_scene.get_node("SceneLimit")
-	$BackgroundMusic.play()
+	#$BackgroundMusic.play()
 	AudioServer.set_bus_volume_linear(1, 0.3)
 		
 func start_spawning():
 	spawn_interval = randf_range(1.5, 2.0)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if scene_limit == null:
 		player = current_scene.get_node("AnimPlayer")
@@ -92,6 +92,7 @@ func spawn_mobs():
 
 	var sprite2 = mob2.get_node("AnimatedSprite2D")
 	sprite2.animation = "walk_left"
-	sprite2.flip_h = true;
-	sprite2.play()
+	sprite2.flip_h = false;
+	sprite2.play()	
 	current_scene.add_child(mob2)
+	
