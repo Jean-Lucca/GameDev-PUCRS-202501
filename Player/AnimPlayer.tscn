@@ -93,7 +93,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfnw"]
-size = Vector2(24, 41)
+size = Vector2(40, 73)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13v4u"]
 atlas = ExtResource("6_v1a1l")
@@ -184,7 +184,7 @@ animation = &"right"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10.5)
+position = Vector2(8, -5.5)
 shape = SubResource("RectangleShape2D_xhfnw")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]

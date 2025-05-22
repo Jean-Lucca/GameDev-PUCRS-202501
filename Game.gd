@@ -56,8 +56,7 @@ func _process(delta):
 	
 	Spawn_esquerda.global_position = Vector2(player.global_position.x - 1000, Spawn_esquerda.global_position.y)
 	Spawn_direita.global_position = Vector2(player.global_position.x + 1000, Spawn_direita.global_position.y)
-	print(Spawn_direita.global_position)
-	print(Spawn_esquerda.global_position)
+	
 	var time_label = get_node("HUD/TimerLabel")
 	if (time_label):
 		var minutes = int(time_left) / 60

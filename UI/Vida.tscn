@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx0gc1momaorl"]
+
+[ext_resource type="Texture2D" uid="uid://bia2smnlc133s" path="res://UI/imagens/health_bar_cut.png" id="1_0hnyc"]
+
+[node name="Vida" type="Node2D"]
+
+[node name="HealthBarCut" type="Sprite2D" parent="."]
+position = Vector2(1122, 24)
+texture = ExtResource("1_0hnyc")
+
+[node name="HealthBarCut2" type="Sprite2D" parent="."]
+position = Vector2(1079, 24)
+texture = ExtResource("1_0hnyc")
+
+[node name="HealthBarCut3" type="Sprite2D" parent="."]
+position = Vector2(1036, 24)
+texture = ExtResource("1_0hnyc")

@@ -15,7 +15,7 @@ var invincibility_time = 0.0
 const INVINCIBILITY_DURATION = 1.5
 var is_attacking = false
 var nodes = null
-
+var count_attacks = 0
 
 func _ready():
 	add_to_group("AnimPlayer")
@@ -40,7 +40,6 @@ func get_side_input(delta):
 	
 	if vel != 0:
 		facing_dir = sign(vel)
-		#print(facing_dir)
 	
 	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):
 		var enemy_hit = detect_enemy_in_direction(facing_dir)
@@ -53,6 +52,7 @@ func get_side_input(delta):
 			get_tree().call_group("HUD", "update_score")													
 			basic_attack(enemy_hit)													
 			get_tree().call_group("LimitBreak", "add_limit_break")
+			count_attacks += 1
 
 func pop_limit_break():
 	nodes = get_tree().get_nodes_in_group("LimitBreak")
@@ -66,13 +66,11 @@ func basic_attack(enemy_hit):
 	if enemy_hit == null:
 		return
 	
-	var enemy_x = enemy_hit.global_position.x
+	var enemy_x = enemy_hit.global_position.x + 30
 	push_enemies_back(enemy_x)
 	
-	# Enemy dies (you can delay this if you want animation)
 	enemy_hit.die()
 
-	# Smoothly move player toward the enemy
 	var move_duration := 0.3
 	var move_target := Vector2(enemy_x, global_position.y)	
 
@@ -208,12 +206,8 @@ func setAnim(dir: int):
 			sprite.flip_h = false
 		
 func _physics_process(delta):
-	if is_invincible:
-		invincibility_time -= delta
-		if invincibility_time <= 0:
-			is_invincible = false
-			$PlayerSprite.modulate = Color(1, 1, 1)  # volta ao normal
-			
+	iframes(delta)
+	attack_zoom()
 	move_side(delta)
 	detect_enemy_in_direction_delta()
 
@@ -232,14 +226,23 @@ func take_damage():
 
 #chamar essa func a cada 4 ataques(?) variar de 4 a mais		
 func attack_zoom():
-	if is_attacking:
-		if is_instance_valid(camera):
-			camera.zoom = Vector2(1.8,1.8)		
-			Engine.time_scale = 0.3
-	else:
-		if is_instance_valid(camera):
-			camera.zoom = Vector2(1.0,1.0)		
-			Engine.time_scale = 1
+	if count_attacks == 5:
+		if is_attacking:
+			if is_instance_valid(camera):
+				camera.zoom = Vector2(1.8,1.8)		
+				Engine.time_scale = 0.3				
+		else:
+			if is_instance_valid(camera):
+				camera.zoom = Vector2(1.0,1.0)		
+				Engine.time_scale = 1
+				count_attacks = 0
+				
+func iframes(delta):
+	if is_invincible:
+		invincibility_time -= delta
+		if invincibility_time <= 0:
+			is_invincible = false
+			$PlayerSprite.modulate = Color(1, 1, 1)  # volta ao normal
 
 func _on_area_2d_body_entered() -> void:
 	get_tree().change_scene_to_file("res://Levels/GameOver.tscn")

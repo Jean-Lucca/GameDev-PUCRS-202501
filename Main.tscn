@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvdfsmvn6flws"]
+[gd_scene load_steps=11 format=3 uid="uid://bvdfsmvn6flws"]
 
 [ext_resource type="Script" uid="uid://bxqodkil6popv" path="res://Game.gd" id="1_lgr22"]
 [ext_resource type="PackedScene" uid="uid://bcx2lbhnpuubm" path="res://mobs/mob_base/mob.tscn" id="2_3dxm6"]
 [ext_resource type="Script" uid="uid://bfq3swfrk3l1j" path="res://UI/Label.gd" id="3_fos0i"]
 [ext_resource type="PackedScene" uid="uid://60okax2aajfx" path="res://Levels/Level1.tscn" id="4_3dxm6"]
+[ext_resource type="FontFile" uid="uid://d2wefwysxfx05" path="res://Fonts/Retroville NC.ttf" id="4_wkp8b"]
 [ext_resource type="AudioStream" uid="uid://bbu6t65prtnwr" path="res://SFX/Summer_Park.ogg" id="5_fos0i"]
 [ext_resource type="Script" uid="uid://dj5fkhbypmewb" path="res://UI/vida.gd" id="5_lgr22"]
 [ext_resource type="AudioStream" uid="uid://ctx65bq28ad2x" path="res://SFX/05.-Fight_.wav" id="7_trn2v"]
-[ext_resource type="FontFile" uid="uid://0mcwamf86rrp" path="res://Fonts/Xolonium-Regular.ttf" id="8_trn2v"]
+[ext_resource type="PackedScene" uid="uid://bx0gc1momaorl" path="res://UI/Vida.tscn" id="7_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://3uvtbeorgkxj" path="res://LimitBreak/limit_break.tscn" id="9_03owx"]
 
 [node name="Main" type="Node2D"]
@@ -22,26 +23,29 @@ position = Vector2(12, -1)
 [node name="Score" type="Label" parent="HUD" groups=["HUD"]]
 offset_right = 40.0
 offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("8_trn2v")
+theme_override_fonts/font = ExtResource("4_wkp8b")
 theme_override_font_sizes/font_size = 30
 text = "Score: 0"
 script = ExtResource("3_fos0i")
 
 [node name="Vida" type="Label" parent="HUD" groups=["HUD"]]
-offset_left = 1034.0
-offset_top = -1.0
-offset_right = 1166.0
-offset_bottom = 36.0
-theme_override_fonts/font = ExtResource("8_trn2v")
+offset_left = 1009.0
+offset_top = 3.0
+offset_right = 1144.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("4_wkp8b")
 theme_override_font_sizes/font_size = 30
 text = "Vida: 3"
 script = ExtResource("5_lgr22")
+
+[node name="Vida2" parent="HUD" instance=ExtResource("7_wkp8b")]
+visible = false
 
 [node name="TimerLabel" type="Label" parent="HUD" groups=["HUD"]]
 offset_left = 529.0
 offset_right = 624.0
 offset_bottom = 41.0
-theme_override_fonts/font = ExtResource("8_trn2v")
+theme_override_fonts/font = ExtResource("4_wkp8b")
 theme_override_font_sizes/font_size = 30
 text = "01:00"
 
