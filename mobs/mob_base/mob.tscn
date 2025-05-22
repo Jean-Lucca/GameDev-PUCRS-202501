@@ -1,8 +1,29 @@
-[gd_scene load_steps=24 format=3 uid="uid://bcx2lbhnpuubm"]
+[gd_scene load_steps=30 format=3 uid="uid://bcx2lbhnpuubm"]
 
 [ext_resource type="Script" uid="uid://bnft0fw71utvh" path="res://mobs/mob_base/mob.gd" id="1_nokgg"]
+[ext_resource type="Shader" uid="uid://dj4kobrqg7o1v" path="res://mobs/mob_base/mob.gdshader" id="2_04md2"]
 [ext_resource type="Texture2D" uid="uid://bmv60ggn0tywr" path="res://Sprites/Attack.png" id="2_ubaqv"]
 [ext_resource type="Texture2D" uid="uid://k5kfp4q2005m" path="res://Sprites/Run.png" id="3_ubaqv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_04md2"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cvpwb"]
+noise = SubResource("FastNoiseLite_04md2")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jjdcy"]
+seed = 1
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u0yg7"]
+noise = SubResource("FastNoiseLite_jjdcy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cvpwb"]
+shader = ExtResource("2_04md2")
+shader_parameter/noise_tex_normal = SubResource("NoiseTexture2D_u0yg7")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_cvpwb")
+shader_parameter/progress = 0.0
+shader_parameter/strength = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cixyi"]
 atlas = ExtResource("2_ubaqv")
@@ -158,6 +179,7 @@ collision_layer = 2
 script = ExtResource("1_nokgg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_cvpwb")
 position = Vector2(14.7059, -6.13072)
 scale = Vector2(1.32721, 1.25357)
 sprite_frames = SubResource("SpriteFrames_cixyi")

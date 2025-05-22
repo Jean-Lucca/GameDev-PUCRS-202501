@@ -13,6 +13,9 @@ func _ready():
 		camera = cameras[0]
 	if players.size() > 0:
 		player = players[0]
+	var sprite = $AnimatedSprite2D
+	if sprite.material:
+		sprite.material = sprite.material.duplicate()  # create a unique copy
 				
 func _physics_process(delta):
 	if not player or not is_instance_valid(player):
@@ -51,8 +54,17 @@ func move():
 		speed = 0
 		
 func die():
-	camera.shake()	
-	_on_visible_on_screen_notifier_2d_screen_exited()
+	var sprite = $AnimatedSprite2D
+	camera.shake()
+	
+	if sprite.material is ShaderMaterial:
+		sprite.material.set_shader_parameter("progress", 0.0)
+		var tween = create_tween()
+		tween.tween_property(sprite.material, "shader_parameter/progress", 1.0, 0.3)
+		tween.connect("finished", Callable(self, "_on_progress_finished"))		
+			
+func _on_progress_finished():
+	queue_free()  # if you want to remove the instance after explosion
 			
 func _on_visible_on_screen_notifier_2d_screen_exited():	
 	queue_free()

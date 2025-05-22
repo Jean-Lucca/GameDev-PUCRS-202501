@@ -10,6 +10,7 @@ extends CharacterBody2D
 var facing_dir := 1  # 1 = right, -1 = left
 @onready var hit_sound = $HitSound
 @onready var life = 300000000
+var shader_material;
 var is_invincible = false
 var invincibility_time = 0.0
 const INVINCIBILITY_DURATION = 1.5
@@ -18,6 +19,7 @@ var nodes = null
 var count_attacks = 0
 
 func _ready():
+	shader_material = sprite.material as ShaderMaterial
 	add_to_group("AnimPlayer")
 	wind_slash = preload("res://Player/wind_slash.tscn")
 
@@ -61,6 +63,14 @@ func pop_limit_break():
 			get_tree().call_group("LimitBreak", "zero_limit_break")
 			launch_wind_slash()
 			print("is full")		
+
+func is_limit_break_full():
+	nodes = get_tree().get_nodes_in_group("LimitBreak")
+	if nodes.size() > 0:
+		if nodes[0].is_full():
+			$PlayerSprite.material.set_shader_parameter("aura_enabled", true)
+		else:
+			$PlayerSprite.material.set_shader_parameter("aura_enabled", false)
 
 func basic_attack(enemy_hit):
 	if enemy_hit == null:
@@ -209,6 +219,7 @@ func _physics_process(delta):
 	iframes(delta)
 	attack_zoom()
 	move_side(delta)
+	is_limit_break_full()
 	detect_enemy_in_direction_delta()
 
 func take_damage():

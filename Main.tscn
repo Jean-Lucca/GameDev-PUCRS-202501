@@ -21,11 +21,12 @@ mob_scene = ExtResource("2_3dxm6")
 position = Vector2(12, -1)
 
 [node name="Score" type="Label" parent="HUD" groups=["HUD"]]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 771.0
+offset_top = 470.0
+offset_right = 942.0
+offset_bottom = 511.0
 theme_override_fonts/font = ExtResource("4_wkp8b")
 theme_override_font_sizes/font_size = 30
-text = "Score: 0"
 script = ExtResource("3_fos0i")
 
 [node name="Vida" type="Label" parent="HUD" groups=["HUD"]]

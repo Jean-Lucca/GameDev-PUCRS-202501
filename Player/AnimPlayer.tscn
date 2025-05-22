@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://d3equlu2k18pa"]
+[gd_scene load_steps=28 format=3 uid="uid://d3equlu2k18pa"]
 
 [ext_resource type="Script" uid="uid://bkv0gni4voe8x" path="res://Player/AnimPlayer.gd" id="1_kpjcp"]
+[ext_resource type="Shader" uid="uid://ywovqbutp63v" path="res://Player/AnimPlayer.gdshader" id="2_0qryd"]
 [ext_resource type="Texture2D" uid="uid://bhtx6wywyq5hk" path="res://Sprites/cloud_attack.png" id="2_3q168"]
 [ext_resource type="Texture2D" uid="uid://bgjn46ny5nkyc" path="res://Sprites/cloud.png" id="2_n20f4"]
 [ext_resource type="AudioStream" uid="uid://d12aaump7v4xs" path="res://SFX/jump1.ogg" id="3_2n4i2"]
@@ -8,6 +9,15 @@
 [ext_resource type="Texture2D" uid="uid://cinptlwqoy2nr" path="res://Sprites/buster_yellow_sides.png" id="6_v1a1l"]
 [ext_resource type="Texture2D" uid="uid://b2ggifk2a5nvu" path="res://Sprites/buster_sides.png" id="7_0qryd"]
 [ext_resource type="Texture2D" uid="uid://cg0uvrl12v577" path="res://Sprites/buster_red_sides.png" id="8_p75ea"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p75ea"]
+shader = ExtResource("2_0qryd")
+shader_parameter/aura_enabled = false
+shader_parameter/aura_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/aura_size = 1.176
+shader_parameter/aura_intensity = 0.497
+shader_parameter/aura2_size = 1.164
+shader_parameter/aura2_intensity = 0.6
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gsndo"]
 atlas = ExtResource("2_n20f4")
@@ -177,6 +187,7 @@ animations = [{
 script = ExtResource("1_kpjcp")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_p75ea")
 position = Vector2(5, -32)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
@@ -184,6 +195,7 @@ animation = &"right"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(8, -5.5)
 shape = SubResource("RectangleShape2D_xhfnw")
 

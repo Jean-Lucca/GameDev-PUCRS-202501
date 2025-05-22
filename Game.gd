@@ -92,7 +92,7 @@ func spawn_mobs():
 
 	var sprite2 = mob2.get_node("AnimatedSprite2D")
 	sprite2.animation = "walk_left"
-	sprite2.flip_h = false;
+	sprite2.flip_h = true;
 	sprite2.play()	
 	current_scene.add_child(mob2)
 	
