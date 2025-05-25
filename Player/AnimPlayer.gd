@@ -22,6 +22,9 @@ func _ready():
 	shader_material = sprite.material as ShaderMaterial
 	add_to_group("AnimPlayer")
 	wind_slash = preload("res://Player/wind_slash.tscn")
+	
+func getAttacks():
+	return count_attacks
 
 func animate_side():
 	if is_attacking && sprite.frame != 6:	
@@ -77,7 +80,9 @@ func basic_attack(enemy_hit):
 		return
 	
 	var enemy_x = enemy_hit.global_position.x + 30
-	push_enemies_back(enemy_x)
+	
+	#aposentado até chegar o inimigo boss
+	#push_enemies_back(enemy_x)
 	
 	enemy_hit.die()
 

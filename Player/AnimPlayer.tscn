@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d3equlu2k18pa"]
+[gd_scene load_steps=32 format=3 uid="uid://d3equlu2k18pa"]
 
 [ext_resource type="Script" uid="uid://bkv0gni4voe8x" path="res://Player/AnimPlayer.gd" id="1_kpjcp"]
 [ext_resource type="Shader" uid="uid://ywovqbutp63v" path="res://Player/AnimPlayer.gdshader" id="2_0qryd"]
@@ -18,6 +18,22 @@ shader_parameter/aura_size = 1.176
 shader_parameter/aura_intensity = 0.497
 shader_parameter/aura2_size = 1.164
 shader_parameter/aura2_intensity = 0.6
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff6fu"]
+atlas = ExtResource("2_n20f4")
+region = Rect2(26, 798, 163, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vadok"]
+atlas = ExtResource("2_n20f4")
+region = Rect2(175, 798, 163, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1w5g"]
+atlas = ExtResource("2_n20f4")
+region = Rect2(329, 798, 163, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0qta"]
+atlas = ExtResource("2_n20f4")
+region = Rect2(489, 798, 163, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gsndo"]
 atlas = ExtResource("2_n20f4")
@@ -49,6 +65,23 @@ region = Rect2(927, 606, 173, 180)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_efikj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vadok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1w5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0qta")
+}],
+"loop": true,
+"name": &"fire-break",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gsndo")
@@ -191,7 +224,7 @@ material = SubResource("ShaderMaterial_p75ea")
 position = Vector2(5, -32)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
-animation = &"right"
+animation = &"left"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

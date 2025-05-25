@@ -9,7 +9,6 @@ func update_score():
 
 func reset_score():
 	score = 0
-	#text = "Score: " + str(score)
 
 func show_combo_popup(combo_text: String):
 	# Create a new Label for the combo popup

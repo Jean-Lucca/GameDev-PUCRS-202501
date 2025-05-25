@@ -56,12 +56,18 @@ func move():
 func die():
 	var sprite = $AnimatedSprite2D
 	camera.shake()
-	
-	if sprite.material is ShaderMaterial:
-		sprite.material.set_shader_parameter("progress", 0.0)
-		var tween = create_tween()
-		tween.tween_property(sprite.material, "shader_parameter/progress", 1.0, 0.3)
-		tween.connect("finished", Callable(self, "_on_progress_finished"))		
+	var count = player.getAttacks()
+	print(count)
+	if count == 4:
+		if sprite.material is ShaderMaterial:
+			stopMoving()
+			$".".remove_from_group("Enemies")
+			sprite.material.set_shader_parameter("progress", 0.0)
+			var tween = create_tween()
+			tween.tween_property(sprite.material, "shader_parameter/progress", 1.0, 1)
+			tween.connect("finished", Callable(self, "_on_progress_finished"))		
+	else:
+		queue_free()
 			
 func _on_progress_finished():
 	queue_free()  # if you want to remove the instance after explosion
