@@ -1,7 +1,7 @@
 extends Camera2D
 
 @export var shake_intensity := 5.0
-@export var shake_duration := 0.3
+@export var shake_duration := 0.2
 
 var _shake_time_left := 0.0
 var _original_offset := Vector2.ZERO

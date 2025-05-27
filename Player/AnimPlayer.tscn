@@ -260,3 +260,8 @@ position = Vector2(71.4999, 28)
 scale = Vector2(1.43269, 1.26829)
 sprite_frames = SubResource("SpriteFrames_vadok")
 animation = &"normal_right"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

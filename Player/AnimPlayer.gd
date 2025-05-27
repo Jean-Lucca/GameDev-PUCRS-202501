@@ -17,12 +17,22 @@ const INVINCIBILITY_DURATION = 1.5
 var is_attacking = false
 var nodes = null
 var count_attacks = 0
+@onready var slow_motion_timer = $Timer
 
 func _ready():
 	shader_material = sprite.material as ShaderMaterial
 	add_to_group("AnimPlayer")
 	wind_slash = preload("res://Player/wind_slash.tscn")
 	
+func start_slow_motion():
+	# Coloca o jogo em slow motion
+	Engine.time_scale = 0.5  # Ajuste conforme o quanto quer deixar lento
+	slow_motion_timer.start()
+
+func _on_timer_timeout():
+	# Retorna ao tempo normal após o tempo do timer
+	Engine.time_scale = 1.0
+
 func getAttacks():
 	return count_attacks
 
@@ -93,6 +103,8 @@ func basic_attack(enemy_hit):
 
 	var move_duration := 0.5
 	var move_target := Vector2(enemy_x, global_position.y)	
+	
+	start_slow_motion()
 
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "global_position", move_target, move_duration)\
