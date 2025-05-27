@@ -6,6 +6,7 @@ var camera: Camera2D
 @export var attack_range: float = 50.0  # Distance to stop and attack
 var stop = false	
 
+
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
 	var cameras = get_tree().get_nodes_in_group("Camera")
@@ -15,11 +16,11 @@ func _ready():
 		player = players[0]
 	var sprite = $AnimatedSprite2D
 	if sprite.material:
-		sprite.material = sprite.material.duplicate()  # create a unique copy
-				
+		sprite.material = sprite.material.duplicate()  # create a unique copy		
+		
 func _physics_process(delta):
 	if not player or not is_instance_valid(player):
-		return
+		return		
 	move()
 	
 func stopMoving():
@@ -33,7 +34,7 @@ func move():
 	var distance = direction.length()
 	
 	if !stop:
-		speed = 300
+		speed = 200
 		if distance > attack_range:
 			direction = direction.normalized()
 			velocity = direction * speed					
@@ -48,7 +49,7 @@ func move():
 			move_and_slide()
 			sprite.animation = "attack"
 			sprite.play()			
-			if(sprite.frame == 5):
+			if(sprite.frame == 9):
 				player.take_damage()		
 	else:
 		speed = 0

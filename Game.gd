@@ -9,9 +9,11 @@ extends Node2D
 @onready var Spawn_esquerda = $SpawnEsquerda
 @onready var Spawn_direita = $SpawnDireita
 var mob_boss = load("res://mobs/mob_boss/mob_boss.tscn")
+var mob_double = load("res://mobs/mob_double/mob_double.tscn")
 var spawn_timer : float = 0.0
-var spawn_interval : float = 2.0  # Spawn mobs every 5 seconds
-var time_left := 60.0
+var spawn_interval : float = 0.0  # Spawn mobs every 5 seconds
+var bpm: float = 120.0
+var time_left := 300.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,7 +24,10 @@ func _ready() -> void:
 	camera.add_to_group("Camera")
 	#camera.zoom = Vector2(0.4,0.4)
 	scene_limit = current_scene.get_node("SceneLimit")
-	#$BackgroundMusic.play()
+	bpm = 120.0  # Set your music's BPM
+	spawn_interval = 60.0 / bpm
+	spawn_timer = 0.0
+	$BackgroundMusic.play()
 	AudioServer.set_bus_volume_linear(1, 0.3)
 		
 func start_spawning():
@@ -54,8 +59,8 @@ func _process(delta):
 		time_left = 0
 		get_tree().change_scene_to_file("res://Levels/YouWin.tscn")
 	
-	Spawn_esquerda.global_position = Vector2(player.global_position.x - 1000, Spawn_esquerda.global_position.y)
-	Spawn_direita.global_position = Vector2(player.global_position.x + 1000, Spawn_direita.global_position.y)
+	Spawn_esquerda.global_position = Vector2(player.global_position.x - 800, Spawn_esquerda.global_position.y)
+	Spawn_direita.global_position = Vector2(player.global_position.x + 800, Spawn_direita.global_position.y)
 	
 	var time_label = get_node("HUD/TimerLabel")
 	if (time_label):
@@ -63,10 +68,11 @@ func _process(delta):
 		var seconds = int(time_left) % 60
 		time_label.text = "%02d:%02d" % [minutes, seconds]
 	
+	# Increment spawn timer
 	spawn_timer += delta
 	if spawn_timer >= spawn_interval:
 		spawn_mobs()
-		spawn_timer =0.0
+		spawn_timer = fmod(spawn_timer, spawn_interval)  # Keep timer in sync with beats
 		start_spawning()
 	
 func spawn_mobs():
@@ -84,8 +90,18 @@ func spawn_mobs():
 	var sprite = mob.get_node("AnimatedSprite2D")
 	sprite.animation = "walk_right"
 	sprite.play()
+	
+	#var mob4 = mob_double.instantiate()
+	#mob4.add_to_group("Enemies")	
+	#mob4.global_position = left_spawn_pos
+#
+	#var sprite4 = mob4.get_node("AnimatedSprite2D")
+	#sprite4.animation = "walk"	
+	#sprite4.play()	
+	#current_scene.add_child(mob4)
+	#
 
-	var mob2 = mob_scene.instantiate()
+	var mob2 = mob_double.instantiate()
 	mob2.add_to_group("Enemies")
 	var right_spawn_pos = Vector2(Spawn_direita.position.x, initial_y_position)
 	mob2.global_position = right_spawn_pos
@@ -95,4 +111,14 @@ func spawn_mobs():
 	sprite2.flip_h = true;
 	sprite2.play()	
 	current_scene.add_child(mob2)
+	
+	#var mob3 = mob_double.instantiate()
+	#mob3.add_to_group("Enemies")	
+	#mob3.global_position = right_spawn_pos
+#
+	#var sprite3 = mob3.get_node("AnimatedSprite2D")
+	#sprite3.animation = "walk"
+	#sprite3.flip_h = true;
+	#sprite3.play()	
+	#current_scene.add_child(mob3)
 	

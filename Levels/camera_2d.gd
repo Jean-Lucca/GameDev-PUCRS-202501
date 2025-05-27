@@ -1,7 +1,7 @@
 extends Camera2D
 
-@export var shake_intensity := 4.0
-@export var shake_duration := 0.2
+@export var shake_intensity := 5.0
+@export var shake_duration := 0.3
 
 var _shake_time_left := 0.0
 var _original_offset := Vector2.ZERO
@@ -21,8 +21,13 @@ func _process(delta):
 		if _shake_time_left <= 0:
 			offset = _original_offset
 
-func zoom(vector):
-	Camera2D.zoom = vector
+func zoom_in(target_zoom: Vector2, duration: float = 0.5):
+	print("caiu aqui")
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "zoom", target_zoom, duration)
+
+func zoom(vector):	
+	self.set("zoom", vector)
 
 func shake():
 	_shake_time_left = shake_duration

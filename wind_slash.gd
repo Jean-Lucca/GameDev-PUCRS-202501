@@ -14,6 +14,7 @@ func _on_body_entered(body):
 	if body.is_in_group("Enemies"):
 		print("Mob atingido pelo Wind Slash!")
 		get_tree().call_group("HUD", "update_score")
+
 		body.die() 
 
 func _physics_process(delta):

@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var sprite = $PlayerSprite
 @onready var buster_left = $Buster_left
 @onready var buster_right = $Buster_right
-@export var attack_range := 150.0
+@export var attack_range := 200.0
 @export var wind_slash: PackedScene
 @onready var camera = $Camera2D
 var facing_dir := 1  # 1 = right, -1 = left
@@ -79,14 +79,19 @@ func basic_attack(enemy_hit):
 	if enemy_hit == null:
 		return
 	
-	var enemy_x = enemy_hit.global_position.x + 30
+	var enemy_x = 0;
+	
+	if facing_dir == 1:
+		enemy_x = enemy_hit.global_position.x + 30
+	else:
+		enemy_x = enemy_hit.global_position.x - 30
 	
 	#aposentado até chegar o inimigo boss
 	#push_enemies_back(enemy_x)
 	
 	enemy_hit.die()
 
-	var move_duration := 0.3
+	var move_duration := 0.5
 	var move_target := Vector2(enemy_x, global_position.y)	
 
 	var tween := get_tree().create_tween()
@@ -110,7 +115,7 @@ func launch_wind_slash():
 
 
 func push_enemies_back(origin_x: float):
-	var push_distance = 100.0
+	var push_distance = 150.0
 	var duration = 0.1
 	var max_distance = 100.0  # Só empurra inimigos próximos ao origin_x
 

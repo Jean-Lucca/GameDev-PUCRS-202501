@@ -241,14 +241,14 @@ bus = &"SFX"
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_n20f4")
-volume_db = -3.032
+volume_db = -25.715
 
 [node name="Buster_left" type="AnimatedSprite2D" parent="."]
 light_mask = 4
 visibility_layer = 4
 z_index = 6
-position = Vector2(-42.75, 24.75)
-scale = Vector2(1.067, 1.128)
+position = Vector2(-61.8997, 27.437)
+scale = Vector2(1.43884, 1.28961)
 sprite_frames = SubResource("SpriteFrames_ff6fu")
 animation = &"normal_left"
 
@@ -256,7 +256,7 @@ animation = &"normal_left"
 light_mask = 4
 visibility_layer = 4
 z_index = 6
-position = Vector2(52.5, 24.75)
-scale = Vector2(1.06731, 1.13415)
+position = Vector2(71.4999, 28)
+scale = Vector2(1.43269, 1.26829)
 sprite_frames = SubResource("SpriteFrames_vadok")
 animation = &"normal_right"

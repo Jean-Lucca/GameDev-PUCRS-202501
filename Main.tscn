@@ -7,9 +7,9 @@
 [ext_resource type="FontFile" uid="uid://d2wefwysxfx05" path="res://Fonts/Retroville NC.ttf" id="4_wkp8b"]
 [ext_resource type="AudioStream" uid="uid://bbu6t65prtnwr" path="res://SFX/Summer_Park.ogg" id="5_fos0i"]
 [ext_resource type="Script" uid="uid://dj5fkhbypmewb" path="res://UI/vida.gd" id="5_lgr22"]
-[ext_resource type="AudioStream" uid="uid://ctx65bq28ad2x" path="res://SFX/05.-Fight_.wav" id="7_trn2v"]
 [ext_resource type="PackedScene" uid="uid://bx0gc1momaorl" path="res://UI/Vida.tscn" id="7_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://3uvtbeorgkxj" path="res://LimitBreak/limit_break.tscn" id="9_03owx"]
+[ext_resource type="AudioStream" uid="uid://cettesu61gq16" path="res://SFX/Wice-Asteroid-Rain.wav" id="9_wkp8b"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_lgr22")
@@ -54,7 +54,7 @@ text = "01:00"
 position = Vector2(-32, -84)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_trn2v")
+stream = ExtResource("9_wkp8b")
 bus = &"BGM"
 
 [node name="BackgroundMusic2D" type="AudioStreamPlayer2D" parent="."]
@@ -62,7 +62,19 @@ stream = ExtResource("5_fos0i")
 bus = &"BGM"
 
 [node name="SpawnEsquerda" type="Marker2D" parent="."]
-position = Vector2(250, 311)
+position = Vector2(464, 317)
+
+[node name="ColorRect" type="ColorRect" parent="SpawnEsquerda"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="SpawnDireita" type="Marker2D" parent="."]
-position = Vector2(861, 311)
+position = Vector2(687, 315)
+
+[node name="ColorRect" type="ColorRect" parent="SpawnDireita"]
+visible = false
+light_mask = 1023
+visibility_layer = 1023
+offset_right = 40.0
+offset_bottom = 40.0
