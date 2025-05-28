@@ -5,7 +5,7 @@ var camera: Camera2D
 @export var speed: float = 200.0  # Speed at which the mob chases the player
 @export var attack_range: float = 50.0  # Distance to stop and attack
 var stop = false	
-
+var revived = false
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
@@ -32,6 +32,11 @@ func move():
 	var sprite = $AnimatedSprite2D
 	var direction = player.global_position - global_position
 	var distance = direction.length()
+
+	if revived && sprite.frame == 11:
+		startMoving()
+		$".".add_to_group("Enemies")
+		print(revived)			
 	
 	if !stop:
 		speed = 300
@@ -59,16 +64,13 @@ func die():
 	var sprite = $AnimatedSprite2D
 	camera.shake()
 	var count = player.getAttacks()
-	print(count)
-	if count == 4:
-		queue_free()
-		#if sprite.material is ShaderMaterial:
-			#stopMoving()
-			#$".".remove_from_group("Enemies")
-			#sprite.material.set_shader_parameter("progress", 0.0)
-			#var tween = create_tween()
-			#tween.tween_property(sprite.material, "shader_parameter/progress", 1.0, 1)
-			#tween.connect("finished", Callable(self, "_on_progress_finished"))		
+	if !revived:
+		#queue_free()
+		stopMoving()
+		$".".remove_from_group("Enemies")
+		sprite.animation = "revive"		
+		sprite.play()		
+		revived = true
 	else:
 		queue_free()
 			

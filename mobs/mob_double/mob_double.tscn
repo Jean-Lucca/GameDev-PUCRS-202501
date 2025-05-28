@@ -137,7 +137,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -186,7 +186,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"revive",
-"speed": 3.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -228,7 +228,6 @@ position = Vector2(0, -5)
 scale = Vector2(1.78906, 1.83594)
 sprite_frames = SubResource("SpriteFrames_ie3oa")
 animation = &"attack"
-frame_progress = 0.122893
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -7)
