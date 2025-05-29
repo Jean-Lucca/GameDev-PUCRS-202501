@@ -36,7 +36,7 @@ func start_slow_motion():
 
 func _on_timer_timeout():
 	# Retorna ao tempo normal após o tempo do timer
-	Engine.time_scale = 1.5
+	Engine.time_scale = 1
 
 func getAttacks():
 	return count_attacks
@@ -234,12 +234,15 @@ func animate():
 		sprite.stop()	
 		
 func setAnim(dir: int):
+	var animations = ["left","right","right2","right3","right4"]
+	var index = randi() % animations.size()
+	var random_anim = animations[index]
 	if !is_attacking:
 		if dir == -1:
-			sprite.play("left")
+			sprite.play(random_anim)
 			sprite.flip_h = true
 		if dir == 1: 
-			sprite.play("right2")	
+			sprite.play(random_anim)	
 			sprite.flip_h = false
 		
 func _physics_process(delta):
