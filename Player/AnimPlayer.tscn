@@ -1,10 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://d3equlu2k18pa"]
+[gd_scene load_steps=38 format=3 uid="uid://d3equlu2k18pa"]
 
 [ext_resource type="Script" uid="uid://bkv0gni4voe8x" path="res://Player/AnimPlayer.gd" id="1_kpjcp"]
 [ext_resource type="Shader" uid="uid://ywovqbutp63v" path="res://Player/AnimPlayer.gdshader" id="2_0qryd"]
 [ext_resource type="Texture2D" uid="uid://bhtx6wywyq5hk" path="res://Sprites/cloud_attack.png" id="2_3q168"]
 [ext_resource type="Texture2D" uid="uid://bgjn46ny5nkyc" path="res://Sprites/cloud.png" id="2_n20f4"]
 [ext_resource type="AudioStream" uid="uid://d12aaump7v4xs" path="res://SFX/jump1.ogg" id="3_2n4i2"]
+[ext_resource type="Texture2D" uid="uid://2orhin1xelho" path="res://Sprites/cloud_attack2.png" id="5_p75ea"]
 [ext_resource type="AudioStream" uid="uid://sp7oy8cjqbki" path="res://SFX/slash.mp3" id="6_n20f4"]
 [ext_resource type="Texture2D" uid="uid://cinptlwqoy2nr" path="res://Sprites/buster_yellow_sides.png" id="6_v1a1l"]
 [ext_resource type="Texture2D" uid="uid://b2ggifk2a5nvu" path="res://Sprites/buster_sides.png" id="7_0qryd"]
@@ -63,6 +64,26 @@ region = Rect2(754, 606, 173, 180)
 atlas = ExtResource("2_3q168")
 region = Rect2(927, 606, 173, 180)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k3gs"]
+atlas = ExtResource("2_n20f4")
+region = Rect2(196, 161, 163, 161)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf3tj"]
+atlas = ExtResource("5_p75ea")
+region = Rect2(54, 404, 161, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36dty"]
+atlas = ExtResource("5_p75ea")
+region = Rect2(207, 404, 161, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b2rn"]
+atlas = ExtResource("5_p75ea")
+region = Rect2(368, 404, 161, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1x61"]
+atlas = ExtResource("5_p75ea")
+region = Rect2(587, 404, 161, 166)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_efikj"]
 animations = [{
 "frames": [{
@@ -103,6 +124,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4mpka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k3gs")
 }],
 "loop": true,
 "name": &"left",
@@ -132,6 +156,32 @@ animations = [{
 }],
 "loop": true,
 "name": &"right",
+"speed": 40.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf3tj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36dty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b2rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b2rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b2rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b2rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1x61")
+}],
+"loop": true,
+"name": &"right2",
 "speed": 40.0
 }]
 
@@ -224,8 +274,8 @@ material = SubResource("ShaderMaterial_p75ea")
 position = Vector2(5, -32)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
-animation = &"left"
-flip_h = true
+animation = &"fire-break"
+frame_progress = 0.961125
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

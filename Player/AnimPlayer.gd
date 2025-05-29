@@ -23,6 +23,11 @@ func _ready():
 	shader_material = sprite.material as ShaderMaterial
 	add_to_group("AnimPlayer")
 	wind_slash = preload("res://Player/wind_slash.tscn")
+	var texture = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
+	var texture_size = texture.get_size()
+
+	print("Width: ", texture_size.x)
+	print("Height: ", texture_size.y)
 	
 func start_slow_motion():
 	# Coloca o jogo em slow motion
@@ -37,8 +42,9 @@ func getAttacks():
 	return count_attacks
 
 func animate_side():
-	if is_attacking && sprite.frame != 6:	
-		return
+	if is_attacking:
+		if sprite.frame != 6:
+			return
 		
 	is_attacking = false
 	
@@ -219,8 +225,8 @@ func detect_enemy_in_direction_delta() -> void:
 		buster_left.play("normal_left")
 
 func animate():
-	if detect_enemy_in_direction(facing_dir):
-		if is_attacking && sprite.frame != 6:	
+	if detect_enemy_in_direction(facing_dir):		
+		if sprite.frame != 6:
 			return
 	if !is_attacking:
 		sprite.frame = 0
@@ -233,7 +239,7 @@ func setAnim(dir: int):
 			sprite.play("left")
 			sprite.flip_h = true
 		if dir == 1: 
-			sprite.play("right")		
+			sprite.play("right2")	
 			sprite.flip_h = false
 		
 func _physics_process(delta):
