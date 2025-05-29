@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4si3i3xnpjso"]
+
+[ext_resource type="Script" uid="uid://c37afrisbjvy0" path="res://mobs/hit_counter/hit_counter.gd" id="1_0uiqk"]
+
+[node name="HitCounter" type="Node2D"]
+script = ExtResource("1_0uiqk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = 6.0
+offset_right = 54.0
+offset_bottom = 10.0
+color = Color(0.177887, 0.151789, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_right = 54.0
+offset_bottom = 4.0
+color = Color(0.805073, 0.0746044, 0.335859, 1)
+metadata/_edit_use_anchors_ = true

@@ -31,7 +31,7 @@ func start_slow_motion():
 
 func _on_timer_timeout():
 	# Retorna ao tempo normal após o tempo do timer
-	Engine.time_scale = 1.0
+	Engine.time_scale = 1.5
 
 func getAttacks():
 	return count_attacks
@@ -88,13 +88,12 @@ func is_limit_break_full():
 func basic_attack(enemy_hit):
 	if enemy_hit == null:
 		return
-	
-	var enemy_x = 0;
-	
+			
+	var enemy_x = 0;	
 	if facing_dir == 1:
-		enemy_x = enemy_hit.global_position.x + 30
+		enemy_x = enemy_hit.global_position.x
 	else:
-		enemy_x = enemy_hit.global_position.x - 30
+		enemy_x = enemy_hit.global_position.x
 	
 	#aposentado até chegar o inimigo boss
 	#push_enemies_back(enemy_x)

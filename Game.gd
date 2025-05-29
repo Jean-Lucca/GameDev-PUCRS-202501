@@ -101,7 +101,7 @@ func spawn_mobs():
 	#current_scene.add_child(mob4)
 	#
 
-	var mob2 = mob_double.instantiate()
+	var mob2 = mob_scene.instantiate()
 	mob2.add_to_group("Enemies")
 	var right_spawn_pos = Vector2(Spawn_direita.position.x, initial_y_position)
 	mob2.global_position = right_spawn_pos

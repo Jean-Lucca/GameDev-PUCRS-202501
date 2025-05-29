@@ -2,9 +2,11 @@ extends CharacterBody2D
 var target: Node2D
 var player: CharacterBody2D
 var camera: Camera2D
+@onready var HitCounter = $HitCounter
 @export var speed: float = 200.0  # Speed at which the mob chases the player
 @export var attack_range: float = 50.0  # Distance to stop and attack
 var stop = false	
+var barras = 1
 
 
 func _ready():
@@ -54,11 +56,17 @@ func move():
 	else:
 		speed = 0
 		
-func die():
+func die(wind_slash = false):
 	var sprite = $AnimatedSprite2D
 	camera.shake()
-	var count = player.getAttacks()
-	print(count)
+	var count = player.getAttacks()	
+	
+	if wind_slash:
+		queue_free()
+	
+	if sistema_barra(sprite):
+		return
+	
 	if count == 4:
 		if sprite.material is ShaderMaterial:
 			stopMoving()
@@ -69,6 +77,18 @@ func die():
 			tween.connect("finished", Callable(self, "_on_progress_finished"))		
 	else:
 		queue_free()
+			
+func sistema_barra(sprite):		
+	if barras > 0:	
+		barras = barras - 1				
+		if global_position.x < player.global_position.x:
+			$".".position.x = player.position.x + 100 
+		else:
+			$".".position.x = player.position.x - 100 		
+		sprite.flip_h = !sprite.flip_h
+		HitCounter.on_hit()
+		return true
+	return false
 			
 func _on_progress_finished():
 	queue_free()  # if you want to remove the instance after explosion

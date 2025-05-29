@@ -106,7 +106,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"left",
-"speed": 30.0
+"speed": 40.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -132,7 +132,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"right",
-"speed": 30.0
+"speed": 40.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfnw"]
