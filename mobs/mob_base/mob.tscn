@@ -1,10 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://bcx2lbhnpuubm"]
+[gd_scene load_steps=30 format=3 uid="uid://bcx2lbhnpuubm"]
 
 [ext_resource type="Script" uid="uid://bnft0fw71utvh" path="res://mobs/mob_base/mob.gd" id="1_nokgg"]
 [ext_resource type="Shader" uid="uid://dj4kobrqg7o1v" path="res://mobs/mob_base/mob.gdshader" id="2_04md2"]
 [ext_resource type="PackedScene" uid="uid://b4si3i3xnpjso" path="res://mobs/hit_counter/hit_counter.tscn" id="4_04md2"]
 [ext_resource type="Texture2D" uid="uid://bk2emaanbdvfl" path="res://mobs/mob_base/sprite/NightBorne.png" id="4_cvpwb"]
-[ext_resource type="PackedScene" uid="uid://7qwxvig7shnl" path="res://mobs/bloodFX/blood_splatter.tscn" id="5_cvpwb"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_04md2"]
 noise_type = 0
@@ -218,9 +217,3 @@ shape = SubResource("CapsuleShape2D_dy6sc")
 
 [node name="HitCounter" parent="." instance=ExtResource("4_04md2")]
 position = Vector2(-30.1471, 31.8797)
-
-[node name="BloodFX" parent="." instance=ExtResource("5_cvpwb")]
-position = Vector2(-41.1765, -10.4222)
-scale = Vector2(0.770619, 0.757362)
-frame_progress = 0.0
-flip_h = true

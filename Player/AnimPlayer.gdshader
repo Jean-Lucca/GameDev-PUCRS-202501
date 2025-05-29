@@ -9,7 +9,7 @@ uniform float aura2_intensity : hint_range(0.0, 1.0) = 0.25;
 
 void fragment() {
 	if (aura_enabled){
-		
+
 	    vec4 tex_color = texture(TEXTURE, UV);
 
 	    if (!aura_enabled) {
@@ -54,6 +54,6 @@ void fragment() {
 	        COLOR = aura;
 	    } else {
 	        COLOR = tex_color;
-	    }	
-	} 
-} 
+	    }
+	}
+}

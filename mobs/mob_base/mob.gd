@@ -3,7 +3,7 @@ var target: Node2D
 var player: CharacterBody2D
 var camera: Camera2D
 @onready var HitCounter = $HitCounter
-@onready var BloodFX = $BloodFX
+@onready var Explosion = preload("res://mobs/bloodFX/Explosion.tscn")
 @export var speed: float = 200.0  # Speed at which the mob chases the player
 @export var attack_range: float = 50.0  # Distance to stop and attack
 var stop = false	
@@ -13,7 +13,6 @@ var barras = 1
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
 	var cameras = get_tree().get_nodes_in_group("Camera")
-	BloodFX.hide()
 	if cameras.size() > 0:
 		camera = cameras[0]
 	if players.size() > 0:
@@ -26,17 +25,11 @@ func _physics_process(delta):
 	if not player or not is_instance_valid(player):
 		return		
 	move()
-	stopBlood()
-	
+		
 func stopMoving():
 	stop = true
 func startMoving():
 	stop = false
-
-func stopBlood():
-	if BloodFX.frame == 8:
-		BloodFX.stop()	
-		BloodFX.hide()
 		
 func move():
 	var sprite = $AnimatedSprite2D
@@ -84,22 +77,19 @@ func die(wind_slash = false):
 			tween.tween_property(sprite.material, "shader_parameter/progress", 1.0, 1)
 			tween.connect("finished", Callable(self, "_on_progress_finished"))		
 	else:
+		var explosion1 = Explosion.instantiate()  # Preload this scene
+		get_parent().add_child(explosion1)
+		explosion1.global_position = global_position  # Match position
+		explosion1.pop_explosion()
 		queue_free()
 			
 func sistema_barra(sprite):		
 	if barras > 0:	
 		barras = barras - 1				
 		if global_position.x < player.global_position.x:  #direita
-			BloodFX.show()
-			BloodFX.play("default")
-			BloodFX.flip_h = false
 			$".".position.x = player.position.x + 130 
 		else:
-			BloodFX.show()
-			BloodFX.play("default")
-			BloodFX.flip_h = true
-			$".".position.x = player.position.x - 130 	  #esquerda
-			
+			$".".position.x = player.position.x - 130 	  #esquerda			
 		sprite.flip_h = !sprite.flip_h
 		HitCounter.on_hit()
 		return true

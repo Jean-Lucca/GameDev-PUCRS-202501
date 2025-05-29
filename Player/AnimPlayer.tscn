@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://d3equlu2k18pa"]
+[gd_scene load_steps=43 format=3 uid="uid://d3equlu2k18pa"]
 
 [ext_resource type="Script" uid="uid://bkv0gni4voe8x" path="res://Player/AnimPlayer.gd" id="1_kpjcp"]
 [ext_resource type="Shader" uid="uid://ywovqbutp63v" path="res://Player/AnimPlayer.gdshader" id="2_0qryd"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cinptlwqoy2nr" path="res://Sprites/buster_yellow_sides.png" id="6_v1a1l"]
 [ext_resource type="Texture2D" uid="uid://b2ggifk2a5nvu" path="res://Sprites/buster_sides.png" id="7_0qryd"]
 [ext_resource type="Texture2D" uid="uid://cg0uvrl12v577" path="res://Sprites/buster_red_sides.png" id="8_p75ea"]
+[ext_resource type="PackedScene" uid="uid://c7tooxutoodki" path="res://Player/aura.tscn" id="12_ujrku"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p75ea"]
 shader = ExtResource("2_0qryd")
@@ -120,6 +121,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4mpka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsndo")
 }],
 "loop": true,
 "name": &"left",
@@ -146,6 +150,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4mpka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsndo")
 }],
 "loop": true,
 "name": &"right",
@@ -172,6 +179,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l1x61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsndo")
 }],
 "loop": true,
 "name": &"right2",
@@ -198,6 +208,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ff6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsndo")
 }],
 "loop": true,
 "name": &"right3",
@@ -224,6 +237,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f65qj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsndo")
 }],
 "loop": true,
 "name": &"right4",
@@ -320,7 +336,6 @@ position = Vector2(5, -32)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
 animation = &"left"
-frame_progress = 0.0324757
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -358,5 +373,8 @@ animation = &"normal_right"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="Aura" parent="." instance=ExtResource("12_ujrku")]
+position = Vector2(-2, 29)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var Explosion = preload("res://Player/aura.tscn")
 @export var gravity := 2500.0
 @onready var sprite = $PlayerSprite
 @onready var buster_left = $Buster_left
@@ -23,11 +24,11 @@ func _ready():
 	shader_material = sprite.material as ShaderMaterial
 	add_to_group("AnimPlayer")
 	wind_slash = preload("res://Player/wind_slash.tscn")
-	var texture = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
-	var texture_size = texture.get_size()
-
-	print("Width: ", texture_size.x)
-	print("Height: ", texture_size.y)
+	
+	var explosion1 = Explosion.instantiate()  # Preload this scene
+	get_parent().add_child(explosion1)
+	explosion1.global_position = global_position  # Match position
+	explosion1.pop_aura()
 	
 func start_slow_motion():
 	# Coloca o jogo em slow motion

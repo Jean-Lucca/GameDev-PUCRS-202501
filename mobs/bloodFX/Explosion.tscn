@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnfy7dfavts5a"]
+
+[ext_resource type="Script" uid="uid://cx1kp58ruqm1s" path="res://mobs/bloodFX/blood.gd" id="1_m6hed"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h62tp"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_b7yx6"]
+_data = [Vector2(0.120438, 0.596823), 0.0, 0.0, 0, 0, Vector2(0.5, 0.252647), 0.0, 0.0, 0, 0, Vector2(0.708029, 0.596823), 0.0, 0.0, 0, 0, Vector2(0.875912, 0.75416), 0.0, 0.0, 0, 0, Vector2(0.989051, 0.980333), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="Explosion" type="Node2D"]
+material = SubResource("CanvasItemMaterial_h62tp")
+script = ExtResource("1_m6hed")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 120
+lifetime = 0.51
+one_shot = true
+speed_scale = 1.45
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 54.06
+initial_velocity_max = 128.39
+scale_amount_min = 4.0
+scale_amount_max = 5.55
+scale_amount_curve = SubResource("Curve_b7yx6")
+color = Color(0.992157, 0, 0, 1)
