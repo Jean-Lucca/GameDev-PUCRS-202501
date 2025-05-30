@@ -60,7 +60,7 @@ func move():
 	else:
 		speed = 0
 		
-func die():
+func die(die):
 	var sprite = $AnimatedSprite2D
 	camera.shake()
 	var count = player.getAttacks()

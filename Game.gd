@@ -31,7 +31,7 @@ func _ready() -> void:
 	AudioServer.set_bus_volume_linear(1, 0.3)
 		
 func start_spawning():
-	spawn_interval = randf_range(1.5, 2.0)
+	spawn_timer = 0.0
 
 func _physics_process(delta: float) -> void:
 	if scene_limit == null:

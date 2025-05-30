@@ -54,8 +54,8 @@ func animate_side():
 		sprite.stop()	
 		
 func get_side_input(delta):
-	if is_attacking:
-		return
+	#if is_attacking:
+		#return
 	
 	velocity.x = 0
 	var vel := Input.get_axis("left", "right")
@@ -105,7 +105,7 @@ func basic_attack(enemy_hit):
 	#aposentado até chegar o inimigo boss
 	#push_enemies_back(enemy_x)
 	
-	enemy_hit.die()
+	enemy_hit.die(false)
 
 	var move_duration := 0.2
 	var move_target := Vector2(enemy_x, global_position.y)	
@@ -248,7 +248,7 @@ func setAnim(dir: int):
 		
 func _physics_process(delta):
 	iframes(delta)
-	attack_zoom()
+	#attack_zoom()
 	move_side(delta)
 	is_limit_break_full()
 	detect_enemy_in_direction_delta()

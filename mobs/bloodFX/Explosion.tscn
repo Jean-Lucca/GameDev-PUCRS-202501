@@ -18,10 +18,10 @@ material = SubResource("CanvasItemMaterial_h62tp")
 script = ExtResource("1_m6hed")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
 emitting = false
 amount = 120
 lifetime = 0.51
-one_shot = true
 speed_scale = 1.45
 explosiveness = 1.0
 spread = 180.0
@@ -34,20 +34,24 @@ scale_amount_curve = SubResource("Curve_b7yx6")
 color = Color(0.992157, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
-visible = false
 emitting = false
 amount = 6400
-lifetime = 0.52
+lifetime = 0.47
 one_shot = true
-explosiveness = 0.9
+explosiveness = 0.8
+randomness = 0.15
 use_fixed_seed = true
 seed = 3098504647
+lifetime_randomness = 0.07
+emission_shape = 2
+emission_sphere_radius = 4.46
 spread = 40.0
-initial_velocity_min = 90.0
-initial_velocity_max = 225.14
+initial_velocity_min = 157.57
+initial_velocity_max = 333.85
 color = Color(1, 0, 0, 1)
 script = ExtResource("2_hsqbi")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.101
 
 [connection signal="timeout" from="Timer" to="CPUParticles2D2" method="_on_timer_timeout"]

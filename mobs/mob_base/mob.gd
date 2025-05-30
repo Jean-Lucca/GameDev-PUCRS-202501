@@ -87,9 +87,9 @@ func sistema_barra(sprite):
 	if barras > 0:	
 		barras = barras - 1				
 		if global_position.x < player.global_position.x:  #direita
-			$".".position.x = player.position.x + 130 
+			$".".position.x = player.position.x + 100 
 		else:
-			$".".position.x = player.position.x - 130 	  #esquerda			
+			$".".position.x = player.position.x - 100 	  #esquerda			
 		sprite.flip_h = !sprite.flip_h
 		HitCounter.on_hit()
 		return true
