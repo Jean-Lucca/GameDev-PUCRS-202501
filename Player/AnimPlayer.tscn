@@ -376,5 +376,6 @@ wait_time = 0.2
 
 [node name="Aura" parent="." instance=ExtResource("12_ujrku")]
 position = Vector2(-2, 29)
+scale = Vector2(1.2, 1.2)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

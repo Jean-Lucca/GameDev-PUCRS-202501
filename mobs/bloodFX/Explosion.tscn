@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnfy7dfavts5a"]
+[gd_scene load_steps=5 format=3 uid="uid://cnfy7dfavts5a"]
 
 [ext_resource type="Script" uid="uid://cx1kp58ruqm1s" path="res://mobs/bloodFX/blood.gd" id="1_m6hed"]
+[ext_resource type="Script" uid="uid://opvxbexo75i2" path="res://mobs/bloodFX/blood_2.gd" id="2_hsqbi"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h62tp"]
 particles_animation = true
@@ -27,7 +28,26 @@ spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 54.06
 initial_velocity_max = 128.39
-scale_amount_min = 4.0
-scale_amount_max = 5.55
+scale_amount_min = 2.75
+scale_amount_max = 2.75
 scale_amount_curve = SubResource("Curve_b7yx6")
 color = Color(0.992157, 0, 0, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+visible = false
+emitting = false
+amount = 6400
+lifetime = 0.52
+one_shot = true
+explosiveness = 0.9
+use_fixed_seed = true
+seed = 3098504647
+spread = 40.0
+initial_velocity_min = 90.0
+initial_velocity_max = 225.14
+color = Color(1, 0, 0, 1)
+script = ExtResource("2_hsqbi")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="CPUParticles2D2" method="_on_timer_timeout"]

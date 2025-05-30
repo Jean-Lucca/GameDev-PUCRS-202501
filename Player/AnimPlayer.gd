@@ -26,9 +26,9 @@ func _ready():
 	wind_slash = preload("res://Player/wind_slash.tscn")
 	
 	var explosion1 = Explosion.instantiate()  # Preload this scene
-	get_parent().add_child(explosion1)
 	explosion1.global_position = global_position  # Match position
 	explosion1.pop_aura()
+	Globals.player = self
 	
 func start_slow_motion():
 	# Coloca o jogo em slow motion
@@ -107,7 +107,7 @@ func basic_attack(enemy_hit):
 	
 	enemy_hit.die()
 
-	var move_duration := 0.5
+	var move_duration := 0.2
 	var move_target := Vector2(enemy_x, global_position.y)	
 	
 	start_slow_motion()

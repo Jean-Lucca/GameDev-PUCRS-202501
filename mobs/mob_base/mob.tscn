@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnft0fw71utvh" path="res://mobs/mob_base/mob.gd" id="1_nokgg"]
 [ext_resource type="Shader" uid="uid://dj4kobrqg7o1v" path="res://mobs/mob_base/mob.gdshader" id="2_04md2"]
-[ext_resource type="PackedScene" uid="uid://b4si3i3xnpjso" path="res://mobs/hit_counter/hit_counter.tscn" id="4_04md2"]
+[ext_resource type="PackedScene" uid="uid://b4si3i3xnpjso" path="res://mobs/mob_base/hit_counter/hit_counter.tscn" id="4_04md2"]
 [ext_resource type="Texture2D" uid="uid://bk2emaanbdvfl" path="res://mobs/mob_base/sprite/NightBorne.png" id="4_cvpwb"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_04md2"]
