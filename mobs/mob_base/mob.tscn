@@ -165,30 +165,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_s6ylg")
 }],
 "loop": true,
-"name": &"walk_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jjdcy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u0yg7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6e2lb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2o80u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n1lab")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s6ylg")
-}],
-"loop": true,
-"name": &"walk_right",
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -207,8 +184,7 @@ material = SubResource("ShaderMaterial_cvpwb")
 position = Vector2(1.47059, -9.19608)
 scale = Vector2(1.68939, 1.55406)
 sprite_frames = SubResource("SpriteFrames_cixyi")
-animation = &"walk_left"
-frame_progress = 0.340565
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.20588, -11.6484)

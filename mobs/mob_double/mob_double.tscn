@@ -1,7 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://vgta4ubny2or"]
+[gd_scene load_steps=34 format=3 uid="uid://vgta4ubny2or"]
 
 [ext_resource type="Script" uid="uid://wgeflucsi2yr" path="res://mobs/mob_double/mob_double.gd" id="1_77le7"]
 [ext_resource type="Texture2D" uid="uid://cvi0pglfamuua" path="res://mobs/mob_double/Skeleton enemy.png" id="1_gorbj"]
+[ext_resource type="Texture2D" uid="uid://darcdik7vlby3" path="res://mobs/mob_base/hit_counter/esquerda.png" id="3_y1j1n"]
+[ext_resource type="Texture2D" uid="uid://2j6d7p65musk" path="res://mobs/mob_base/hit_counter/direita.png" id="4_46iq7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_77le7"]
 atlas = ExtResource("1_gorbj")
@@ -224,13 +226,22 @@ collision_layer = 4
 script = ExtResource("1_77le7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, -5)
 scale = Vector2(1.78906, 1.83594)
 sprite_frames = SubResource("SpriteFrames_ie3oa")
-animation = &"revive"
-frame = 2
-frame_progress = 0.931765
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -7)
 shape = SubResource("CapsuleShape2D_gorbj")
+
+[node name="Esquerda" type="Sprite2D" parent="."]
+position = Vector2(-6, 40)
+scale = Vector2(0.487179, 0.3125)
+texture = ExtResource("3_y1j1n")
+
+[node name="Direita" type="Sprite2D" parent="."]
+position = Vector2(-3, 39)
+scale = Vector2(0.470968, 0.313)
+texture = ExtResource("4_46iq7")

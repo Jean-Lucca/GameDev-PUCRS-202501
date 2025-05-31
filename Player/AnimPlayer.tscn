@@ -125,7 +125,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"left",
-"speed": 40.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -154,7 +154,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"right",
-"speed": 40.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -183,7 +183,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"right2",
-"speed": 40.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -212,7 +212,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"right3",
-"speed": 40.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -241,11 +241,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"right4",
-"speed": 40.0
+"speed": 24.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfnw"]
-size = Vector2(25, 73)
+size = Vector2(40, 73)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13v4u"]
 atlas = ExtResource("12_4mpka")
@@ -356,13 +356,14 @@ script = ExtResource("1_kpjcp")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 z_index = 2
 material = SubResource("ShaderMaterial_p75ea")
-position = Vector2(5, -32)
+position = Vector2(5, -22)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
 animation = &"left"
+frame_progress = 0.713046
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, -5)
+position = Vector2(-3, -5)
 shape = SubResource("RectangleShape2D_xhfnw")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]

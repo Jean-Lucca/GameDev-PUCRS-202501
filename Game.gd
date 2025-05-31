@@ -83,26 +83,33 @@ func spawn_mobs():
 	var count = get_tree().get_node_count_in_group("Enemies")
 	print(count)
 	
-	if count < 6: 
-		var mob = mob_scene.instantiate()
-		mob.add_to_group("Enemies")
+	if count < 6:
+		# MOB ESQUERDA
+		var mob_instance
+		if randi() % 2 == 0:
+			mob_instance = mob_scene.instantiate()
+		else:
+			mob_instance = mob_double.instantiate()
+
+		mob_instance.add_to_group("Enemies")
 		var left_spawn_pos = Vector2(Spawn_esquerda.position.x, initial_y_position)
-		mob.global_position = left_spawn_pos
-		current_scene.add_child(mob)
-		
-		var sprite = mob.get_node("AnimatedSprite2D")
-		sprite.animation = "walk_right"
+		mob_instance.global_position = left_spawn_pos
+		current_scene.add_child(mob_instance)
+
+		var sprite = mob_instance.get_node("AnimatedSprite2D")
 		sprite.play()
 
-		var mob2 = mob_scene.instantiate()
-		mob2.add_to_group("Enemies")
-		var right_spawn_pos = Vector2(Spawn_direita.position.x, initial_y_position)
-		mob2.global_position = right_spawn_pos
+		# MOB DIREITA
+		var mob2_instance
+		if randi() % 2 == 0:
+			mob2_instance = mob_scene.instantiate()
+		else:
+			mob2_instance = mob_double.instantiate()
 
-		var sprite2 = mob2.get_node("AnimatedSprite2D")
-		sprite2.animation = "walk_left"
-		sprite2.flip_h = true;
-		sprite2.play()	
-		current_scene.add_child(mob2)
-	
-	
+		mob2_instance.add_to_group("Enemies")
+		var right_spawn_pos = Vector2(Spawn_direita.position.x, initial_y_position)
+		mob2_instance.global_position = right_spawn_pos
+		current_scene.add_child(mob2_instance)
+
+		var sprite2 = mob2_instance.get_node("AnimatedSprite2D")
+		sprite2.play()

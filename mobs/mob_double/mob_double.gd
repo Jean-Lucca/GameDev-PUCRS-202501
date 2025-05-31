@@ -6,6 +6,8 @@ var camera: Camera2D
 @export var attack_range: float = 50.0  # Distance to stop and attack
 var stop = false	
 var revived = false
+@onready var esquerda = $Esquerda
+@onready var direita = $Direita
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
@@ -46,8 +48,10 @@ func move():
 			if velocity.x < 0:
 				sprite.animation = "walk"
 				sprite.flip_h = true
+				esquerda.hide()
 			elif velocity.x > 0:
 				sprite.animation = "walk"
+				direita.hide()
 			sprite.play()
 			move_and_slide()
 		else:
@@ -64,6 +68,7 @@ func die(die):
 	var sprite = $AnimatedSprite2D
 	camera.shake()
 	var count = player.getAttacks()
+	queue_free()
 	if !revived:
 		#queue_free()
 		stopMoving()

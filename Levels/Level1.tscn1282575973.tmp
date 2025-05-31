@@ -19,7 +19,7 @@ size = Vector2(6137, 42)
 position = Vector2(608, 407)
 
 [node name="Camera2D" type="Camera2D" parent="AnimPlayer"]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.8, 1.8)
 position_smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("3_iotdp")

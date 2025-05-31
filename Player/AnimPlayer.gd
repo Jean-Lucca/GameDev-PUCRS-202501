@@ -19,6 +19,9 @@ var is_attacking = false
 var nodes = null
 var count_attacks = 0
 @onready var slow_motion_timer = $Timer
+var can_attack := true
+@onready var attack_cooldown_timer := Timer.new()
+	
 
 func _ready():
 	shader_material = sprite.material as ShaderMaterial
@@ -32,7 +35,7 @@ func _ready():
 	
 func start_slow_motion():
 	# Coloca o jogo em slow motion
-	Engine.time_scale = 0.5  # Ajuste conforme o quanto quer deixar lento
+	Engine.time_scale = 0.5  # Ajuste conforme o quanto quer deixar lento	
 	slow_motion_timer.start()
 
 func _on_timer_timeout():
@@ -61,6 +64,7 @@ func get_side_input(delta):
 	var vel := Input.get_axis("left", "right")
 	
 	if vel != 0:
+		sprite.flip_h = facing_dir == -1
 		facing_dir = sign(vel)
 	
 	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):
@@ -69,6 +73,14 @@ func get_side_input(delta):
 		is_attacking = true
 		hit_sound.play()
 		if(pop_limit_break()):
+			return
+		
+		if !enemy_hit:
+			print("enemy not hit")
+			current_action.play("block")
+			# Começa o cooldown de ataque
+			can_attack = false
+			attack_cooldown_timer.start()
 			return
 		
 		if enemy_hit:
@@ -248,12 +260,12 @@ func detect_enemy_in_direction_delta() -> void:
 
 func animate():
 	if detect_enemy_in_direction(facing_dir):		
-		if sprite.frame != 6:
-			return
-	if !is_attacking:
-		sprite.frame = 0
-		Engine.time_scale = 1
-		sprite.stop()	
+		#if sprite.frame != 6:
+			#return
+		if !is_attacking:
+			sprite.frame = 0
+			Engine.time_scale = 1
+			sprite.stop()	
 		
 func setAnim(dir: int):
 	var animations = ["left","right","right2","right3","right4"]

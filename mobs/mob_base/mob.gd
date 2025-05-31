@@ -5,7 +5,7 @@ var camera: Camera2D
 @onready var HitCounter = $HitCounter
 @onready var Explosion = preload("res://mobs/bloodFX/Explosion.tscn")
 @export var speed: float = 200.0  # Speed at which the mob chases the player
-@export var attack_range: float = 50.0  # Distance to stop and attack
+@export var attack_range: float = 80.0  # Distance to stop and attack
 var stop = false	
 var barras = 1
 
@@ -42,9 +42,10 @@ func move():
 			direction = direction.normalized()
 			velocity = direction * speed					
 			if velocity.x < 0:
-				sprite.animation = "walk_left"
+				sprite.animation = "walk"
+				sprite.flip_h = true
 			elif velocity.x > 0:
-				sprite.animation = "walk_right"
+				sprite.animation = "walk"
 			sprite.play()
 			move_and_slide()
 		else:
@@ -87,9 +88,9 @@ func sistema_barra(sprite):
 	if barras > 0:	
 		barras = barras - 1				
 		if global_position.x < player.global_position.x:  #direita
-			$".".position.x = player.position.x + 100 
+			$".".position.x = player.position.x + 80 
 		else:
-			$".".position.x = player.position.x - 100 	  #esquerda			
+			$".".position.x = player.position.x - 80 	  #esquerda			
 		sprite.flip_h = !sprite.flip_h
 		HitCounter.on_hit()
 		return true
