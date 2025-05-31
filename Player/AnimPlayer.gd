@@ -229,21 +229,21 @@ func detect_enemy_in_direction_delta() -> void:
 		buster_right.play("normal_right")
 
 	# Atualiza cor da barra da esquerda
-	if left_detected:
+	if right_detected and left_detected:
+		current_action.show()
+		buster_right.play("red_blue")
+		current_action.play("ed")
+	elif right_detected:
+		current_action.show()
+		buster_right.play("red_right")
+		current_action.play("direita")
+	elif left_detected:
 		current_action.show()
 		buster_right.play("blue_left")
 		current_action.play("esquerda")
 	else:
 		buster_right.play("normal_right")
-		
-	if right_detected && left_detected:
-		current_action.show()
-		buster_right.play("red_blue")
-		current_action.play("ed")
-		
-	#if !left_detected || !right_detected:
-		#buster_right.play("normal_right")
-		#current_action.hide()
+		current_action.hide()
 	
 
 func animate():
