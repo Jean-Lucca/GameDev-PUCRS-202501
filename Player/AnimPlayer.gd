@@ -3,8 +3,8 @@ extends CharacterBody2D
 @onready var Explosion = preload("res://Player/aura.tscn")
 @export var gravity := 2500.0
 @onready var sprite = $PlayerSprite
-@onready var buster_left = $Buster_left
-@onready var buster_right = $Buster_right
+@onready var buster_right = $Buster_interface
+@onready var current_action = $CurrentAction
 @export var attack_range := 200.0
 @export var wind_slash: PackedScene
 @onready var camera = $Camera2D
@@ -68,7 +68,8 @@ func get_side_input(delta):
 		setAnim(facing_dir)
 		is_attacking = true
 		hit_sound.play()
-		pop_limit_break()
+		if(pop_limit_break()):
+			return
 		
 		if enemy_hit:
 			get_tree().call_group("HUD", "update_score")													
@@ -82,7 +83,10 @@ func pop_limit_break():
 		if nodes[0].is_full():
 			get_tree().call_group("LimitBreak", "zero_limit_break")
 			launch_wind_slash()
-			print("is full")		
+			print("is full")
+			return true
+	return false
+		
 
 func is_limit_break_full():
 	nodes = get_tree().get_nodes_in_group("LimitBreak")
@@ -116,6 +120,8 @@ func basic_attack(enemy_hit):
 	tween.tween_property(self, "global_position", move_target, move_duration)\
 		.set_trans(Tween.TRANS_QUINT)\
 		.set_ease(Tween.EASE_OUT)
+	
+	velocity = Vector2.ZERO	
 
 
 func launch_wind_slash():
@@ -209,21 +215,36 @@ func detect_enemy_in_direction_delta() -> void:
 
 		if vertical_ok and range_ok:
 			if to_enemy.x > 0:
-				right_detected = true
+				right_detected = true				
 			elif to_enemy.x < 0:
 				left_detected = true
 
 	# Atualiza cor da barra da direita
+			
 	if right_detected:
-		buster_right.play("golden_right")
+		current_action.show()
+		buster_right.play("red_right")
+		current_action.play("direita")
 	else:
 		buster_right.play("normal_right")
 
 	# Atualiza cor da barra da esquerda
 	if left_detected:
-		buster_left.play("red_left")
+		current_action.show()
+		buster_right.play("blue_left")
+		current_action.play("esquerda")
 	else:
-		buster_left.play("normal_left")
+		buster_right.play("normal_right")
+		
+	if right_detected && left_detected:
+		current_action.show()
+		buster_right.play("red_blue")
+		current_action.play("ed")
+		
+	#if !left_detected || !right_detected:
+		#buster_right.play("normal_right")
+		#current_action.hide()
+	
 
 func animate():
 	if detect_enemy_in_direction(facing_dir):		

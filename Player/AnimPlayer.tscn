@@ -8,9 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://2orhin1xelho" path="res://Sprites/cloud_attack2.png" id="5_p75ea"]
 [ext_resource type="Texture2D" uid="uid://bfjwd0cf4vnu4" path="res://Sprites/cloud_attack3.png" id="6_1ir0u"]
 [ext_resource type="AudioStream" uid="uid://sp7oy8cjqbki" path="res://SFX/slash.mp3" id="6_n20f4"]
-[ext_resource type="Texture2D" uid="uid://cinptlwqoy2nr" path="res://Sprites/buster_yellow_sides.png" id="6_v1a1l"]
-[ext_resource type="Texture2D" uid="uid://b2ggifk2a5nvu" path="res://Sprites/buster_sides.png" id="7_0qryd"]
-[ext_resource type="Texture2D" uid="uid://cg0uvrl12v577" path="res://Sprites/buster_red_sides.png" id="8_p75ea"]
+[ext_resource type="Texture2D" uid="uid://owlpqi7huu56" path="res://Player/interface.png" id="12_4mpka"]
 [ext_resource type="PackedScene" uid="uid://c7tooxutoodki" path="res://Player/aura.tscn" id="12_ujrku"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p75ea"]
@@ -250,33 +248,29 @@ animations = [{
 size = Vector2(40, 73)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13v4u"]
-atlas = ExtResource("6_v1a1l")
-region = Rect2(2, 83, 103, 41)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6gat8"]
-atlas = ExtResource("7_0qryd")
-region = Rect2(2, 83, 103, 41)
+atlas = ExtResource("12_4mpka")
+region = Rect2(288, 576, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkt47"]
-atlas = ExtResource("8_p75ea")
-region = Rect2(0, 69, 103, 69)
+atlas = ExtResource("12_4mpka")
+region = Rect2(288, 384, 96, 96)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ff6fu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gat8"]
+atlas = ExtResource("12_4mpka")
+region = Rect2(192, 576, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m05h3"]
+atlas = ExtResource("12_4mpka")
+region = Rect2(0, 384, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wamoa"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_13v4u")
 }],
 "loop": true,
-"name": &"golden_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6gat8")
-}],
-"loop": true,
-"name": &"normal_left",
+"name": &"block",
 "speed": 5.0
 }, {
 "frames": [{
@@ -284,30 +278,50 @@ animations = [{
 "texture": SubResource("AtlasTexture_fkt47")
 }],
 "loop": true,
-"name": &"red_left",
+"name": &"direita",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gat8")
+}],
+"loop": true,
+"name": &"ed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m05h3")
+}],
+"loop": true,
+"name": &"esquerda",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oj33g"]
-atlas = ExtResource("6_v1a1l")
-region = Rect2(104, 83, 104, 41)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh8iy"]
+atlas = ExtResource("12_4mpka")
+region = Rect2(0, 192, 384, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xygvm"]
-atlas = ExtResource("7_0qryd")
-region = Rect2(104, 83, 104, 41)
+atlas = ExtResource("12_4mpka")
+region = Rect2(0, 0, 384, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jh8iy"]
-atlas = ExtResource("8_p75ea")
-region = Rect2(103, 69, 103, 69)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k3gs"]
+atlas = ExtResource("12_4mpka")
+region = Rect2(0, 96, 384, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj33g"]
+atlas = ExtResource("12_4mpka")
+region = Rect2(0, 288, 384, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vadok"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oj33g")
+"texture": SubResource("AtlasTexture_jh8iy")
 }],
 "loop": true,
-"name": &"golden_right",
+"name": &"blue_left",
 "speed": 5.0
 }, {
 "frames": [{
@@ -320,7 +334,15 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jh8iy")
+"texture": SubResource("AtlasTexture_2k3gs")
+}],
+"loop": true,
+"name": &"red_blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj33g")
 }],
 "loop": true,
 "name": &"red_right",
@@ -335,11 +357,10 @@ material = SubResource("ShaderMaterial_p75ea")
 position = Vector2(5, -32)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
-animation = &"left"
+animation = &"right3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(8, -5.5)
+position = Vector2(-3, -5)
 shape = SubResource("RectangleShape2D_xhfnw")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
@@ -353,29 +374,27 @@ bus = &"SFX"
 stream = ExtResource("6_n20f4")
 volume_db = -25.715
 
-[node name="Buster_left" type="AnimatedSprite2D" parent="."]
-light_mask = 4
-visibility_layer = 4
-z_index = 6
-position = Vector2(-61.8997, 27.437)
-scale = Vector2(1.43884, 1.28961)
-sprite_frames = SubResource("SpriteFrames_ff6fu")
-animation = &"normal_left"
+[node name="CurrentAction" type="AnimatedSprite2D" parent="."]
+z_index = 7
+position = Vector2(-2.5, 50)
+scale = Vector2(0.572917, 0.625)
+sprite_frames = SubResource("SpriteFrames_wamoa")
+animation = &"esquerda"
 
-[node name="Buster_right" type="AnimatedSprite2D" parent="."]
+[node name="Buster_interface" type="AnimatedSprite2D" parent="."]
 light_mask = 4
 visibility_layer = 4
 z_index = 6
-position = Vector2(71.4999, 28)
-scale = Vector2(1.43269, 1.26829)
+position = Vector2(-3, 50)
+scale = Vector2(0.536834, 0.564786)
 sprite_frames = SubResource("SpriteFrames_vadok")
-animation = &"normal_right"
+animation = &"red_right"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.15
 
 [node name="Aura" parent="." instance=ExtResource("12_ujrku")]
-position = Vector2(-2, 29)
+position = Vector2(-1, 26)
 scale = Vector2(1.2, 1.2)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

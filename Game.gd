@@ -80,45 +80,29 @@ func spawn_mobs():
 	var screen_half_width = screen_size.x / 2
 	var camera_pos = player.global_position
 	var initial_y_position = 450  
+	var count = get_tree().get_node_count_in_group("Enemies")
+	print(count)
+	
+	if count < 4: 
+		var mob = mob_scene.instantiate()
+		mob.add_to_group("Enemies")
+		var left_spawn_pos = Vector2(Spawn_esquerda.position.x, initial_y_position)
+		mob.global_position = left_spawn_pos
+		current_scene.add_child(mob)
 		
-	var mob = mob_scene.instantiate()
-	mob.add_to_group("Enemies")
-	var left_spawn_pos = Vector2(Spawn_esquerda.position.x, initial_y_position)
-	mob.global_position = left_spawn_pos
-	current_scene.add_child(mob)
-	
-	var sprite = mob.get_node("AnimatedSprite2D")
-	sprite.animation = "walk_right"
-	sprite.play()
-	
-	#var mob4 = mob_double.instantiate()
-	#mob4.add_to_group("Enemies")	
-	#mob4.global_position = left_spawn_pos
-#
-	#var sprite4 = mob4.get_node("AnimatedSprite2D")
-	#sprite4.animation = "walk"	
-	#sprite4.play()	
-	#current_scene.add_child(mob4)
-	#
+		var sprite = mob.get_node("AnimatedSprite2D")
+		sprite.animation = "walk_right"
+		sprite.play()
 
-	var mob2 = mob_scene.instantiate()
-	mob2.add_to_group("Enemies")
-	var right_spawn_pos = Vector2(Spawn_direita.position.x, initial_y_position)
-	mob2.global_position = right_spawn_pos
+		var mob2 = mob_scene.instantiate()
+		mob2.add_to_group("Enemies")
+		var right_spawn_pos = Vector2(Spawn_direita.position.x, initial_y_position)
+		mob2.global_position = right_spawn_pos
 
-	var sprite2 = mob2.get_node("AnimatedSprite2D")
-	sprite2.animation = "walk_left"
-	sprite2.flip_h = true;
-	sprite2.play()	
-	current_scene.add_child(mob2)
+		var sprite2 = mob2.get_node("AnimatedSprite2D")
+		sprite2.animation = "walk_left"
+		sprite2.flip_h = true;
+		sprite2.play()	
+		current_scene.add_child(mob2)
 	
-	#var mob3 = mob_double.instantiate()
-	#mob3.add_to_group("Enemies")	
-	#mob3.global_position = right_spawn_pos
-#
-	#var sprite3 = mob3.get_node("AnimatedSprite2D")
-	#sprite3.animation = "walk"
-	#sprite3.flip_h = true;
-	#sprite3.play()	
-	#current_scene.add_child(mob3)
 	

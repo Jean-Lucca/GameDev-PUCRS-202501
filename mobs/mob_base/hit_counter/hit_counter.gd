@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var esquerda = $ColorRect
+@onready var Esquerda = $Esquerda
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
@@ -8,3 +9,4 @@ func _ready():
 	
 func on_hit():
 	esquerda.hide()
+	Esquerda.hide()
