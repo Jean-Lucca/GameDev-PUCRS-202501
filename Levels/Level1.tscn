@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://djgyigcwfq8jo" path="res://Levels/camera_2d.gd" id="3_iotdp"]
 [ext_resource type="PackedScene" uid="uid://bionfa64k6kk3" path="res://tileset/tile_map_layer.tscn" id="4_iotdp"]
 [ext_resource type="TileSet" uid="uid://b4ebrcpeklbu6" path="res://tileset/scifi.tres" id="4_nutv8"]
-[ext_resource type="Texture2D" uid="uid://dbrgqc0uxjinw" path="res://Parallax/parallax-00.png" id="5_7fl83"]
+[ext_resource type="Texture2D" uid="uid://dls2gokdm267g" path="res://neoncity/1.png" id="5_7fl83"]
 [ext_resource type="Script" uid="uid://ybfvq221f33u" path="res://clouds.gd" id="6_p5226"]
-[ext_resource type="Texture2D" uid="uid://4h7xoy1qnbg0" path="res://Parallax/parallax-01.png" id="7_tuji2"]
-[ext_resource type="Texture2D" uid="uid://cm5i1u0d6kifp" path="res://Parallax/parallax-02.png" id="8_f5cpa"]
-[ext_resource type="Texture2D" uid="uid://b27njluwimyyn" path="res://Parallax/parallax-03.png" id="9_104vp"]
+[ext_resource type="Texture2D" uid="uid://dui0amjt4xuay" path="res://neoncity/2.png" id="7_p5226"]
+[ext_resource type="Texture2D" uid="uid://c33sb2x76spic" path="res://neoncity/3.png" id="8_tuji2"]
+[ext_resource type="Texture2D" uid="uid://dvatkmbt682xj" path="res://neoncity/4.png" id="9_f5cpa"]
 [ext_resource type="Texture2D" uid="uid://dsandvqr6eap7" path="res://Parallax/parallax-04.png" id="10_3momc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu6xs"]
@@ -40,6 +40,7 @@ shape = SubResource("RectangleShape2D_uu6xs")
 position = Vector2(658, 1162)
 
 [node name="TileMap" parent="." instance=ExtResource("4_iotdp")]
+texture_filter = 1
 position = Vector2(-325, 436)
 
 [node name="Layer1" type="TileMapLayer" parent="TileMap"]
@@ -50,38 +51,45 @@ tile_set = ExtResource("4_nutv8")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1440, 0)
+texture_repeat = 2
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
 texture = ExtResource("5_7fl83")
 centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+texture_repeat = 3
 position = Vector2(2, 0)
 motion_scale = Vector2(0, 0)
-motion_mirroring = Vector2(1440, 0)
+motion_mirroring = Vector2(575, 0)
 script = ExtResource("6_p5226")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-texture = ExtResource("7_tuji2")
+texture_filter = 1
+texture = ExtResource("7_p5226")
 centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(2, 0)
 motion_scale = Vector2(0.1, 0.1)
-motion_mirroring = Vector2(1440, 0)
+motion_mirroring = Vector2(575, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
-texture = ExtResource("8_f5cpa")
+texture_filter = 1
+texture = ExtResource("8_tuji2")
 centered = false
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(2, 0)
 motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(1440, 0)
+motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
-texture = ExtResource("9_104vp")
+texture_filter = 1
+texture = ExtResource("9_f5cpa")
 centered = false
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]

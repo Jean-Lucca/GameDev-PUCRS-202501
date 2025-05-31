@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://chv25x1cgxqu5"]
+
+[ext_resource type="Texture2D" uid="uid://dls2gokdm267g" path="res://neoncity/1.png" id="1_6axp4"]
+[ext_resource type="Texture2D" uid="uid://dui0amjt4xuay" path="res://neoncity/2.png" id="2_ykc37"]
+[ext_resource type="Texture2D" uid="uid://c33sb2x76spic" path="res://neoncity/3.png" id="3_k2yd5"]
+
+[node name="Parallax" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+position = Vector2(289, 164)
+texture = ExtResource("1_6axp4")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture_filter = 1
+position = Vector2(289, 164)
+texture = ExtResource("2_ykc37")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(288, 164)
+texture = ExtResource("3_k2yd5")
+centered = false

@@ -390,7 +390,7 @@ z_index = 6
 position = Vector2(-3, 50)
 scale = Vector2(0.536834, 0.564786)
 sprite_frames = SubResource("SpriteFrames_vadok")
-animation = &"normal_right"
+animation = &"red_right"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.15

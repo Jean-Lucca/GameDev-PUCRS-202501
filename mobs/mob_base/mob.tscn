@@ -202,6 +202,7 @@ collision_layer = 2
 script = ExtResource("1_nokgg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 material = SubResource("ShaderMaterial_cvpwb")
 position = Vector2(1.47059, -9.19608)
 scale = Vector2(1.68939, 1.55406)
