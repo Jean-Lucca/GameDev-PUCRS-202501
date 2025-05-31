@@ -183,6 +183,20 @@ func push_enemies_back(origin_x: float):
 				enemy.startMoving()
 		)
 
+func stopAllEnemy():
+	for enemy in get_tree().get_nodes_in_group("Enemies"):
+		if enemy == null:
+			continue
+		
+		enemy.stopMoving()
+
+func startAllEnemy():
+	for enemy in get_tree().get_nodes_in_group("Enemies"):
+		if enemy == null:
+			continue
+		
+		enemy.startMoving()
+		
 
 func move_side(delta):
 	velocity.y += gravity * delta

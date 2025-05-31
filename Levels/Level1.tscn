@@ -16,6 +16,7 @@ size = Vector2(6137, 42)
 [node name="Level1" type="Node2D"]
 
 [node name="AnimPlayer" parent="." groups=["Player"] instance=ExtResource("1_ysn8j")]
+texture_filter = 1
 position = Vector2(608, 407)
 
 [node name="Camera2D" type="Camera2D" parent="AnimPlayer"]
