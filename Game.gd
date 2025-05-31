@@ -92,7 +92,7 @@ func spawn_mobs():
 			mob_instance = mob_double.instantiate()
 
 		mob_instance.add_to_group("Enemies")
-		var left_spawn_pos = Vector2(Spawn_esquerda.position.x, initial_y_position)
+		var left_spawn_pos = Vector2(Spawn_esquerda.position.x + randf_range(-20, 20), initial_y_position)
 		mob_instance.global_position = left_spawn_pos
 		current_scene.add_child(mob_instance)
 
@@ -107,7 +107,7 @@ func spawn_mobs():
 			mob2_instance = mob_double.instantiate()
 
 		mob2_instance.add_to_group("Enemies")
-		var right_spawn_pos = Vector2(Spawn_direita.position.x, initial_y_position)
+		var right_spawn_pos = Vector2(Spawn_direita.position.x + randf_range(-20, 20), initial_y_position)
 		mob2_instance.global_position = right_spawn_pos
 		current_scene.add_child(mob2_instance)
 

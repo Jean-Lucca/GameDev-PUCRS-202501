@@ -1,14 +1,14 @@
-[gd_scene load_steps=11 format=4 uid="uid://60okax2aajfx"]
+[gd_scene load_steps=11 format=3 uid="uid://60okax2aajfx"]
 
 [ext_resource type="PackedScene" uid="uid://d3equlu2k18pa" path="res://Player/AnimPlayer.tscn" id="1_ysn8j"]
 [ext_resource type="Script" uid="uid://djgyigcwfq8jo" path="res://Levels/camera_2d.gd" id="3_iotdp"]
-[ext_resource type="TileSet" uid="uid://b4ebrcpeklbu6" path="res://tileset/scifi.tres" id="4_nutv8"]
 [ext_resource type="Texture2D" uid="uid://dls2gokdm267g" path="res://neoncity/1.png" id="5_7fl83"]
 [ext_resource type="Script" uid="uid://ybfvq221f33u" path="res://clouds.gd" id="6_p5226"]
 [ext_resource type="Texture2D" uid="uid://dui0amjt4xuay" path="res://neoncity/2.png" id="7_p5226"]
 [ext_resource type="Texture2D" uid="uid://c33sb2x76spic" path="res://neoncity/3.png" id="8_tuji2"]
 [ext_resource type="Texture2D" uid="uid://dvatkmbt682xj" path="res://neoncity/4.png" id="9_f5cpa"]
 [ext_resource type="Texture2D" uid="uid://dsandvqr6eap7" path="res://Parallax/parallax-04.png" id="10_3momc"]
+[ext_resource type="Texture2D" uid="uid://de0w253r2tv0n" path="res://neoncity/road&lamps.png" id="10_7fl83"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu6xs"]
 size = Vector2(6137, 42)
@@ -19,6 +19,8 @@ size = Vector2(6137, 42)
 position = Vector2(608, 407)
 
 [node name="Camera2D" type="Camera2D" parent="AnimPlayer"]
+position = Vector2(0, -20)
+offset = Vector2(0, -15)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 editor_draw_drag_margin = true
@@ -31,23 +33,17 @@ position = Vector2(771, 466)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-visible = false
 position = Vector2(2.5, -8)
 shape = SubResource("RectangleShape2D_uu6xs")
 
 [node name="SceneLimit" type="Marker2D" parent="."]
 position = Vector2(658, 1162)
 
-[node name="Layer1" type="TileMapLayer" parent="."]
-use_parent_material = true
-position = Vector2(-325, 436)
-tile_map_data = PackedByteArray("AADu/wAAAgACAAAAAADv/wAAAgABAAAAAADw/wAAAgACAAAAAADx/wAAAgAAAAAAAADy/wAAAgABAAAAAADz/wAAAgACAAAAAAD0/wAAAgAAAAAAAAD1/wAAAgABAAAAAAD2/wAAAgACAAAAAAD3/wAAAgAAAAAAAAD4/wAAAgABAAAAAAD5/wAAAgACAAAAAAD6/wAAAgAAAAAAAAD7/wAAAgABAAAAAAD8/wAAAgACAAAAAAD9/wAAAgAAAAAAAAD+/wAAAgABAAAAAAD//wAAAgACAAAAAAAAAAAAAgAAAAAAAAABAAAAAgABAAAAAAACAAAAAgACAAAAAAADAAAAAgAAAAAAAAAEAAAAAgABAAAAAAAFAAAAAgACAAAAAAAGAAAAAgAAAAAAAAAHAAAAAgABAAAAAAAIAAAAAgACAAAAAAAJAAAAAgAAAAAAAAAKAAAAAgABAAAAAAALAAAAAgACAAAAAAAMAAAAAgAAAAAAAAANAAAAAgABAAAAAAAOAAAAAgACAAAAAAAPAAAAAgAAAAAAAAAQAAAAAgABAAAAAAARAAAAAgACAAAAAAASAAAAAgAAAAAAAAATAAAAAgABAAAAAAAUAAAAAgACAAAAAAAVAAAAAgAAAAAAAAAWAAAAAgABAAAAAAAXAAAAAgACAAAAAAAYAAAAAgAAAAAAAAAZAAAAAgABAAAAAAAaAAAAAgACAAAAAAAbAAAAAgAAAAAAAAAcAAAAAgABAAAAAAAdAAAAAgACAAAAAAAeAAAAAgAAAAAAAAAfAAAAAgABAAAAAAAgAAAAAgACAAAAAAAhAAAAAgAAAAAAAAAiAAAAAgABAAAAAAAjAAAAAgACAAAAAAAkAAAAAgAAAAAAAAAlAAAAAgABAAAAAAAmAAAAAgACAAAAAAAnAAAAAgAAAAAAAAAoAAAAAgABAAAAAAApAAAAAgACAAAAAAAqAAAAAgAAAAAAAAArAAAAAgABAAAAAAAsAAAAAgACAAAAAAAtAAAAAgAAAAAAAAAuAAAAAgABAAAAAAAvAAAAAgACAAAAAAAwAAAAAgAAAAAAAAAxAAAAAgABAAAAAAAyAAAAAgACAAAAAAAzAAAAAgAAAAAAAAA0AAAAAgABAAAAAAA1AAAAAgACAAAAAAA2AAAAAgAAAAAAAAA3AAAAAgABAAAAAAA4AAAAAgACAAAAAAA5AAAAAgAAAAAAAAA6AAAAAgABAAAAAAA7AAAAAgACAAAAAAA8AAAAAgAAAAAAAAA9AAAAAgABAAAAAAA+AAAAAgACAAAAAAA/AAAAAgAAAAAAAABAAAAAAgABAAAAAABBAAAAAgACAAAAAABCAAAAAgAAAAAAAABDAAAAAgABAAAAAABEAAAAAgACAAAAAADs/wAAAgAAAAAAAADt/wAAAgABAAAAAADp/wAAAgAAAAAAAADq/wAAAgABAAAAAADr/wAAAgACAAAAAADm/wAAAgAAAAAAAADn/wAAAgABAAAAAADo/wAAAgACAAAAAADj/wAAAgAAAAAAAADk/wAAAgABAAAAAADl/wAAAgACAAAAAADg/wAAAgAAAAAAAADh/wAAAgABAAAAAADi/wAAAgACAAAAAADd/wAAAgAAAAAAAADe/wAAAgABAAAAAADf/wAAAgACAAAAAADa/wAAAgAAAAAAAADb/wAAAgABAAAAAADc/wAAAgACAAAAAADX/wAAAgAAAAAAAADY/wAAAgABAAAAAADZ/wAAAgACAAAAAADU/wAAAgAAAAAAAADV/wAAAgABAAAAAADW/wAAAgACAAAAAADR/wAAAgAAAAAAAADS/wAAAgABAAAAAADT/wAAAgACAAAAAADO/wAAAgAAAAAAAADP/wAAAgABAAAAAADQ/wAAAgACAAAAAADL/wAAAgAAAAAAAADM/wAAAgABAAAAAADN/wAAAgACAAAAAADI/wAAAgAAAAAAAADJ/wAAAgABAAAAAADK/wAAAgACAAAAAADF/wAAAgAAAAAAAADG/wAAAgABAAAAAADH/wAAAgACAAAAAADC/wAAAgAAAAAAAADD/wAAAgABAAAAAADE/wAAAgACAAAAAABFAAAAAgAAAAAAAABGAAAAAgABAAAAAABHAAAAAgACAAAAAABIAAAAAgAAAAAAAABJAAAAAgABAAAAAABKAAAAAgACAAAAAABLAAAAAgAAAAAAAABMAAAAAgABAAAAAABNAAAAAgACAAAAAABOAAAAAgAAAAAAAABPAAAAAgABAAAAAABQAAAAAgACAAAAAABRAAAAAgAAAAAAAABSAAAAAgABAAAAAABTAAAAAgACAAAAAABUAAAAAgAAAAAAAABVAAAAAgABAAAAAABWAAAAAgAAAAAAAABXAAAAAgABAAAAAABYAAAAAgACAAAAAABZAAAAAgAAAAAAAABaAAAAAgABAAAAAABbAAAAAgACAAAAAABcAAAAAgAAAAAAAABdAAAAAgABAAAAAABeAAAAAgACAAAAAABfAAAAAgAAAAAAAABgAAAAAgABAAAAAABhAAAAAgACAAAAAABiAAAAAgAAAAAAAABjAAAAAgABAAAAAABkAAAAAgACAAAAAABlAAAAAgAAAAAAAABmAAAAAgABAAAAAABnAAAAAgACAAAAAABoAAAAAgAAAAAAAABpAAAAAgABAAAAAABqAAAAAgACAAAAAABrAAAAAgAAAAAAAABsAAAAAgABAAAAAABtAAAAAgACAAAAAABuAAAAAgAAAAAAAABvAAAAAgABAAAAAABwAAAAAgACAAAAAABxAAAAAgAAAAAAAAByAAAAAgABAAAAAABzAAAAAgACAAAAAAB0AAAAAgAAAAAAAAB1AAAAAgABAAAAAAB2AAAAAgACAAAAAAB3AAAAAgAAAAAAAAB4AAAAAgABAAAAAAB5AAAAAgACAAAAAAB6AAAAAgAAAAAAAAB7AAAAAgABAAAAAAB8AAAAAgACAAAAAAB9AAAAAgAAAAAAAAB+AAAAAgABAAAAAAB/AAAAAgACAAAAAACAAAAAAgAAAAAAAACBAAAAAgABAAAAAACCAAAAAgACAAAAAAA=")
-tile_set = ExtResource("4_nutv8")
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 texture_repeat = 2
+position = Vector2(0, 3)
 motion_scale = Vector2(0, 0)
 motion_mirroring = Vector2(576, 0)
 
@@ -58,33 +54,36 @@ centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 texture_repeat = 3
-position = Vector2(2, 0)
+position = Vector2(2, 3)
 motion_scale = Vector2(0, 0)
 motion_mirroring = Vector2(575, 0)
 script = ExtResource("6_p5226")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 texture_filter = 1
+position = Vector2(0, 2)
 texture = ExtResource("7_p5226")
 centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(2, 0)
+position = Vector2(2, 3)
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(575, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 texture_filter = 1
+position = Vector2(0, 3)
 texture = ExtResource("8_tuji2")
 centered = false
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(2, 0)
+position = Vector2(2, 3)
 motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
 texture_filter = 1
+position = Vector2(0, 5)
 texture = ExtResource("9_f5cpa")
 centered = false
 
@@ -99,3 +98,18 @@ motion_mirroring = Vector2(1440, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
 texture = ExtResource("10_3momc")
 centered = false
+
+[node name="Road&lamps" type="Sprite2D" parent="."]
+position = Vector2(578, 231)
+scale = Vector2(0.6, 0.582407)
+texture = ExtResource("10_7fl83")
+
+[node name="Road&lamps2" type="Sprite2D" parent="."]
+position = Vector2(1730, 231)
+scale = Vector2(0.6, 0.582407)
+texture = ExtResource("10_7fl83")
+
+[node name="Road&lamps3" type="Sprite2D" parent="."]
+position = Vector2(-574, 231)
+scale = Vector2(0.6, 0.582407)
+texture = ExtResource("10_7fl83")
