@@ -206,8 +206,8 @@ material = SubResource("ShaderMaterial_cvpwb")
 position = Vector2(1.47059, -9.19608)
 scale = Vector2(1.68939, 1.55406)
 sprite_frames = SubResource("SpriteFrames_cixyi")
-animation = &"walk_right"
-frame_progress = 0.5877
+animation = &"walk_left"
+frame_progress = 0.340565
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.20588, -11.6484)

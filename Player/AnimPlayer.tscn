@@ -245,7 +245,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfnw"]
-size = Vector2(40, 73)
+size = Vector2(25, 73)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13v4u"]
 atlas = ExtResource("12_4mpka")
@@ -350,17 +350,19 @@ animations = [{
 }]
 
 [node name="AnimPlayer" type="CharacterBody2D"]
+z_index = 6
 script = ExtResource("1_kpjcp")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+z_index = 2
 material = SubResource("ShaderMaterial_p75ea")
 position = Vector2(5, -32)
 scale = Vector2(0.748555, 0.766667)
 sprite_frames = SubResource("SpriteFrames_efikj")
-animation = &"right3"
+animation = &"left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -5)
+position = Vector2(1.5, -5)
 shape = SubResource("RectangleShape2D_xhfnw")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
@@ -379,7 +381,7 @@ z_index = 7
 position = Vector2(-2.5, 50)
 scale = Vector2(0.572917, 0.625)
 sprite_frames = SubResource("SpriteFrames_wamoa")
-animation = &"esquerda"
+animation = &"block"
 
 [node name="Buster_interface" type="AnimatedSprite2D" parent="."]
 light_mask = 4
@@ -388,12 +390,13 @@ z_index = 6
 position = Vector2(-3, 50)
 scale = Vector2(0.536834, 0.564786)
 sprite_frames = SubResource("SpriteFrames_vadok")
-animation = &"red_right"
+animation = &"normal_right"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.15
 
 [node name="Aura" parent="." instance=ExtResource("12_ujrku")]
+z_index = 1
 position = Vector2(-1, 26)
 scale = Vector2(1.2, 1.2)
 

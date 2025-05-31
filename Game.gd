@@ -83,7 +83,7 @@ func spawn_mobs():
 	var count = get_tree().get_node_count_in_group("Enemies")
 	print(count)
 	
-	if count < 4: 
+	if count < 6: 
 		var mob = mob_scene.instantiate()
 		mob.add_to_group("Enemies")
 		var left_spawn_pos = Vector2(Spawn_esquerda.position.x, initial_y_position)

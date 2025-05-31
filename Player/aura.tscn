@@ -4,12 +4,12 @@
 
 [sub_resource type="Curve" id="Curve_03vby"]
 _limits = [-200.0, 200.0, 0.0, 1.0]
-_data = [Vector2(0, 34.7957), 0.0, 26.2869, 0, 0, Vector2(0.138686, -51.7398), -2395.02, -2395.02, 0, 0, Vector2(0.332117, 129.198), 808.321, 808.321, 0, 0, Vector2(0.437956, -47.8064), 0.0, 0.0, 0, 0, Vector2(0.79562, -102.874), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 34.7957), 0.0, 26.2869, 0, 0, Vector2(0.138686, -51.7398), -2395.02, -2395.02, 0, 0, Vector2(0.364964, 200), 808.321, 808.321, 0, 0, Vector2(0.478102, -79.2738), 0.0, 0.0, 0, 0, Vector2(0.79562, -102.874), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_p61b2"]
 bake_resolution = 110
-_data = [Vector2(0.0839416, 0.0068078), 0.0, 0.0, 0, 0, Vector2(0.229927, 0.272315), -3.52345, -3.52345, 0, 0, Vector2(0.30292, 0.518154), 0.0, 0.0, 0, 0, Vector2(0.423358, 0.921331), -8.0832, -8.0832, 0, 0, Vector2(0.518248, 0.950832), -8.08322, -8.08322, 0, 0, Vector2(0.554744, 0.47882), 0.0, 0.0, 0, 0, Vector2(0.671533, 0.134645), 0.0, 0.0, 0, 0, Vector2(0.762774, 0.567322), 0.0, 0.0, 0, 0, Vector2(0.857664, 0.744327), 0.0, 0.0, 0, 0, Vector2(1, 0.419818), 1.55536, 0.0, 0, 0]
+_data = [Vector2(0.0839416, 0.0068078), 0.0, 0.0, 0, 0, Vector2(0.229927, 0.272315), -3.52345, -3.52345, 0, 0, Vector2(0.30292, 0.518154), 0.0, 0.0, 0, 0, Vector2(0.423358, 0.921331), -8.0832, -8.0832, 0, 0, Vector2(0.518248, 0.950832), -8.08322, -8.08322, 0, 0, Vector2(0.631387, 0.793495), 0.0, 0.0, 0, 0, Vector2(0.70438, 1), 0.0, 0.0, 0, 0, Vector2(0.762774, 0.567322), 0.0, 0.0, 0, 0, Vector2(0.857664, 0.744327), 0.0, 0.0, 0, 0, Vector2(1, 0.419818), 1.55536, 0.0, 0, 0]
 point_count = 10
 
 [sub_resource type="Gradient" id="Gradient_ov7bk"]
@@ -27,26 +27,25 @@ script = ExtResource("1_03vby")
 rotation = 6.28319
 skew = -1.56905
 amount = 6000
-lifetime = 0.68
+lifetime = 0.63
 randomness = 0.34
 use_fixed_seed = true
 seed = 811693306
-lifetime_randomness = 0.78
+lifetime_randomness = 1.0
 fixed_fps = 42
 emission_shape = 1
 emission_sphere_radius = 16.92
-gravity = Vector2(0, -500)
+spread = 41.35
+gravity = Vector2(0, -559.03)
 linear_accel_min = -100.0
 linear_accel_max = 100.0
-radial_accel_min = 10.81
-radial_accel_max = 10.81
 radial_accel_curve = SubResource("Curve_03vby")
 damping_min = 66.892
 damping_max = 100.0
 angle_min = -720.0
 angle_max = 77.8
-scale_amount_min = 0.3
-scale_amount_max = 1.3
+scale_amount_min = 0.0
+scale_amount_max = 1.8
 scale_amount_curve = SubResource("Curve_p61b2")
 color = Color(0.828365, 0.899944, 0.937272, 1)
 color_ramp = SubResource("Gradient_ov7bk")
