@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3n7gwylm1mei"]
+
+[ext_resource type="Texture2D" uid="uid://5mld2kk31e3v" path="res://mobs/mob_double/image-removebg-preview.png" id="1_s0ew7"]
+[ext_resource type="Script" uid="uid://cx1kp58ruqm1s" path="res://mobs/bloodFX/blood.gd" id="1_sb4lj"]
+
+[node name="Skeleton" type="Node2D"]
+script = ExtResource("1_sb4lj")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+rotation = 4.71239
+scale = Vector2(0.3, 0.3)
+emitting = false
+amount = 12
+texture = ExtResource("1_s0ew7")
+lifetime = 0.97
+one_shot = true
+speed_scale = 2.73
+explosiveness = 1.0
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 180.0
+gravity = Vector2(0, -50)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+scale_amount_min = 0.1
+scale_amount_max = 0.1

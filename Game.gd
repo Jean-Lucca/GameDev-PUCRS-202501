@@ -75,7 +75,7 @@ func _process(delta):
 		spawn_timer = fmod(spawn_timer, spawn_interval)  # Keep timer in sync with beats
 		start_spawning()
 	
-func spawn_mobs():
+func spawn_mobs() -> void:
 	var screen_size = get_viewport_rect().size
 	var screen_half_width = screen_size.x / 2
 	var camera_pos = player.global_position
@@ -93,11 +93,21 @@ func spawn_mobs():
 
 		mob_instance.add_to_group("Enemies")
 		var left_spawn_pos = Vector2(Spawn_esquerda.position.x + randf_range(-20, 20), initial_y_position)
+
+		for enemy in get_tree().get_nodes_in_group("Enemies"):
+			if not is_instance_valid(enemy):
+				continue
+			if (enemy.global_position - left_spawn_pos).length() < 10:
+				left_spawn_pos.x += 15  # afasta um pouco
+
 		mob_instance.global_position = left_spawn_pos
 		current_scene.add_child(mob_instance)
 
 		var sprite = mob_instance.get_node("AnimatedSprite2D")
 		sprite.play()
+
+		# Espera 0.3 segundos antes de spawnar o próximo
+		await get_tree().create_timer(0.3).timeout
 
 		# MOB DIREITA
 		var mob2_instance
@@ -108,6 +118,13 @@ func spawn_mobs():
 
 		mob2_instance.add_to_group("Enemies")
 		var right_spawn_pos = Vector2(Spawn_direita.position.x + randf_range(-20, 20), initial_y_position)
+
+		for enemy in get_tree().get_nodes_in_group("Enemies"):
+			if not is_instance_valid(enemy):
+				continue
+			if (enemy.global_position - right_spawn_pos).length() < 10:
+				right_spawn_pos.x += 15  # afasta um pouco
+
 		mob2_instance.global_position = right_spawn_pos
 		current_scene.add_child(mob2_instance)
 

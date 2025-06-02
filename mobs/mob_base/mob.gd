@@ -4,7 +4,7 @@ var player: CharacterBody2D
 var camera: Camera2D
 @onready var HitCounter = $HitCounter
 @onready var Explosion = preload("res://mobs/bloodFX/Explosion.tscn")
-@export var speed: float = 200.0  # Speed at which the mob chases the player
+@export var speed: float = 100.0  # Speed at which the mob chases the player
 @export var attack_range: float = 80.0  # Distance to stop and attack
 var stop = false	
 var barras = 1
@@ -27,9 +27,13 @@ func _physics_process(delta):
 	move()
 		
 func stopMoving():
+	var sprite = $AnimatedSprite2D
 	stop = true
+	sprite.stop()
 func startMoving():
+	var sprite = $AnimatedSprite2D
 	stop = false
+	sprite.play()
 		
 func move():
 	var sprite = $AnimatedSprite2D

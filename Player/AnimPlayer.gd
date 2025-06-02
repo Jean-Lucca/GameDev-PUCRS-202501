@@ -5,12 +5,12 @@ extends CharacterBody2D
 @onready var sprite = $PlayerSprite
 @onready var buster_right = $Buster_interface
 @onready var current_action = $CurrentAction
-@export var attack_range := 200.0
+@export var attack_range :=  200.0
 @export var wind_slash: PackedScene
 @onready var camera = $Camera2D
 var facing_dir := 1  # 1 = right, -1 = left
 @onready var hit_sound = $HitSound
-@onready var life = 300000000
+@onready var life = 3
 var shader_material;
 var is_invincible = false
 var invincibility_time = 0.0
@@ -21,13 +21,11 @@ var count_attacks = 0
 @onready var slow_motion_timer = $Timer
 var can_attack := true
 @onready var attack_cooldown_timer := Timer.new()
-	
+@onready var stop_timer = Timer.new()	
 
 func _ready():
 	shader_material = sprite.material as ShaderMaterial
-	add_to_group("AnimPlayer")
-	wind_slash = preload("res://Player/wind_slash.tscn")
-	
+	add_to_group("AnimPlayer")	
 	var explosion1 = Explosion.instantiate()  # Preload this scene
 	explosion1.global_position = global_position  # Match position
 	explosion1.pop_aura()
@@ -59,7 +57,7 @@ func animate_side():
 func get_side_input(delta):
 	#if is_attacking:
 		#return
-	
+	stop_timer.stop()
 	velocity.x = 0
 	var vel := Input.get_axis("left", "right")
 	
@@ -68,6 +66,7 @@ func get_side_input(delta):
 		facing_dir = sign(vel)
 	
 	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):
+		startAllEnemy()
 		var enemy_hit = detect_enemy_in_direction(facing_dir)
 		setAnim(facing_dir)
 		is_attacking = true
@@ -194,7 +193,7 @@ func startAllEnemy():
 	for enemy in get_tree().get_nodes_in_group("Enemies"):
 		if enemy == null:
 			continue
-		
+		print("iniciou de volta")
 		enemy.startMoving()
 		
 
@@ -204,23 +203,33 @@ func move_side(delta):
 	animate_side()
 	move_and_slide()
 
-func detect_enemy_in_direction(dir: int) -> Node2D:
+func detect_enemy_in_direction(dir: int) -> CharacterBody2D:
 	var enemies = get_tree().get_nodes_in_group("Enemies")
-	var found_enemy = null
+	var found_enemy: CharacterBody2D = null
 
 	for enemy in enemies:
 		if not is_instance_valid(enemy):
 			continue
 
-		var to_enemy = enemy.global_position - global_position
+		var enemy_body = enemy as CharacterBody2D
+		if enemy_body == null:
+			continue  # não é do tipo esperado
+
+		# Se tiver flags de status, exemplo:
+		# if enemy_body.is_dead:
+		#     continue
+
+		var to_enemy = enemy_body.global_position - global_position
 		var horizontal_ok = (dir == 1 and to_enemy.x > 0) or (dir == -1 and to_enemy.x < 0)
 		var vertical_ok = abs(to_enemy.y) < 50  # margem vertical
-		var range_ok = to_enemy.length() < attack_range
+		var range_ok = to_enemy.length_squared() < attack_range * attack_range
 
 		if horizontal_ok and vertical_ok and range_ok:
-			found_enemy = enemy
+			found_enemy = enemy_body
 			break
+
 	return found_enemy
+
 
 func detect_enemy_in_direction_delta() -> void:
 	if get_tree() == null:
@@ -299,6 +308,9 @@ func _physics_process(delta):
 	move_side(delta)
 	is_limit_break_full()
 	detect_enemy_in_direction_delta()
+	
+func _on_stop_timer_timeout():
+	startAllEnemy()  # retoma movimento de todos os inimigos
 
 func take_damage():
 	if is_invincible:
@@ -308,6 +320,7 @@ func take_damage():
 	is_invincible = true
 	invincibility_time = INVINCIBILITY_DURATION
 	$PlayerSprite.modulate = Color(1, 1, 1, 0.5)  # visual: fica meio transparente
+	stopAllEnemy()  # para todos os inimigos	
 	hit_sound.play()
 
 	if life <= 0:

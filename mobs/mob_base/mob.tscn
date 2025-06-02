@@ -175,7 +175,7 @@ height = 77.8301
 
 [node name="Mob" type="CharacterBody2D"]
 scale = Vector2(1.36, 1.63113)
-collision_layer = 2
+collision_layer = 6
 script = ExtResource("1_nokgg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

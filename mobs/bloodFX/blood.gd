@@ -4,4 +4,5 @@ extends Node2D
 
 func pop_explosion():
 	$CPUParticles2D.emitting = true
-	bloodsplatter.get_direction_()
+	if bloodsplatter:
+		bloodsplatter.get_direction_()

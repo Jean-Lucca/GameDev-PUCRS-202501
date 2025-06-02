@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://60okax2aajfx"]
+[gd_scene load_steps=12 format=3 uid="uid://60okax2aajfx"]
 
+[ext_resource type="Script" uid="uid://cbo8m6so3555e" path="res://Levels/level_1.gd" id="1_7fl83"]
 [ext_resource type="PackedScene" uid="uid://d3equlu2k18pa" path="res://Player/AnimPlayer.tscn" id="1_ysn8j"]
 [ext_resource type="Script" uid="uid://djgyigcwfq8jo" path="res://Levels/camera_2d.gd" id="3_iotdp"]
 [ext_resource type="Texture2D" uid="uid://dls2gokdm267g" path="res://neoncity/1.png" id="5_7fl83"]
@@ -14,6 +15,7 @@
 size = Vector2(6137, 42)
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_7fl83")
 
 [node name="AnimPlayer" parent="." groups=["Player"] instance=ExtResource("1_ysn8j")]
 texture_filter = 1

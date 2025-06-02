@@ -35,7 +35,7 @@ color = Color(0.992157, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 6400
+amount = 800
 lifetime = 0.47
 one_shot = true
 explosiveness = 0.8

@@ -1,7 +1,8 @@
-[gd_scene load_steps=43 format=3 uid="uid://d3equlu2k18pa"]
+[gd_scene load_steps=44 format=3 uid="uid://d3equlu2k18pa"]
 
 [ext_resource type="Script" uid="uid://bkv0gni4voe8x" path="res://Player/AnimPlayer.gd" id="1_kpjcp"]
 [ext_resource type="Shader" uid="uid://ywovqbutp63v" path="res://Player/AnimPlayer.gdshader" id="2_0qryd"]
+[ext_resource type="PackedScene" uid="uid://ljerhkxtqw1o" path="res://Player/wind_slash.tscn" id="2_1ir0u"]
 [ext_resource type="Texture2D" uid="uid://bhtx6wywyq5hk" path="res://Sprites/cloud_attack.png" id="2_3q168"]
 [ext_resource type="Texture2D" uid="uid://bgjn46ny5nkyc" path="res://Sprites/cloud.png" id="2_n20f4"]
 [ext_resource type="AudioStream" uid="uid://d12aaump7v4xs" path="res://SFX/jump1.ogg" id="3_2n4i2"]
@@ -352,6 +353,7 @@ animations = [{
 [node name="AnimPlayer" type="CharacterBody2D"]
 z_index = 6
 script = ExtResource("1_kpjcp")
+wind_slash = ExtResource("2_1ir0u")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 z_index = 2

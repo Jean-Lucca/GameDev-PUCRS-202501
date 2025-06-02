@@ -2,12 +2,13 @@ extends CharacterBody2D
 var target: Node2D
 var player: CharacterBody2D
 var camera: Camera2D
-@export var speed: float = 200.0  # Speed at which the mob chases the player
+@export var speed: float = 100.0  # Speed at which the mob chases the player
 @export var attack_range: float = 50.0  # Distance to stop and attack
 var stop = false	
 var revived = false
 @onready var esquerda = $Esquerda
 @onready var direita = $Direita
+@export var bones_explosion = preload("res://mobs/mob_double/skeleton.tscn")
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
@@ -26,9 +27,14 @@ func _physics_process(delta):
 	move()
 	
 func stopMoving():
+	var sprite = $AnimatedSprite2D
 	stop = true
+	sprite.stop()
+	
 func startMoving():
+	var sprite = $AnimatedSprite2D
 	stop = false
+	sprite.play()
 		
 func move():
 	var sprite = $AnimatedSprite2D
@@ -69,6 +75,12 @@ func die(die):
 	camera.shake()
 	var count = player.getAttacks()
 	queue_free()
+	if bones_explosion:
+		var explosion1 = bones_explosion.instantiate()
+		get_parent().add_child(explosion1)
+		explosion1.global_position = global_position  # Match position
+		explosion1.pop_explosion()
+	
 	if !revived:
 		#queue_free()
 		stopMoving()
