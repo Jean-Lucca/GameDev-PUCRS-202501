@@ -47,7 +47,7 @@ func move():
 		print(revived)			
 	
 	if !stop:
-		speed = 300
+		speed = 200
 		if distance > attack_range:
 			direction = direction.normalized()
 			velocity = direction * speed					
