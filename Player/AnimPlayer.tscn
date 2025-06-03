@@ -400,7 +400,7 @@ wait_time = 0.15
 
 [node name="Aura" parent="." instance=ExtResource("12_ujrku")]
 z_index = 1
-position = Vector2(-1, 26)
+position = Vector2(-3, 38)
 scale = Vector2(1.2, 1.2)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

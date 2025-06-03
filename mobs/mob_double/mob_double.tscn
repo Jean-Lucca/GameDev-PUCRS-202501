@@ -230,8 +230,7 @@ texture_filter = 1
 position = Vector2(0, -5)
 scale = Vector2(1.78906, 1.83594)
 sprite_frames = SubResource("SpriteFrames_ie3oa")
-animation = &"walk"
-frame_progress = 0.483192
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -7)

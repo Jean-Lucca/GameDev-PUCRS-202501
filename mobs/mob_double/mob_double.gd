@@ -65,7 +65,7 @@ func move():
 			move_and_slide()
 			sprite.animation = "attack"
 			sprite.play()			
-			if(sprite.frame == 3):
+			if(sprite.frame == 4):
 				player.take_damage()		
 	else:
 		speed = 0
