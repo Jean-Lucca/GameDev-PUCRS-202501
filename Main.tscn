@@ -40,6 +40,7 @@ text = "Vida: 3"
 script = ExtResource("5_lgr22")
 
 [node name="Vida2" parent="HUD" instance=ExtResource("7_wkp8b")]
+visible = false
 
 [node name="TimerLabel" type="Label" parent="HUD" groups=["HUD"]]
 offset_left = 529.0

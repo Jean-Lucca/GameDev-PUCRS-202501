@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3n7gwylm1mei"]
 
 [ext_resource type="Texture2D" uid="uid://5mld2kk31e3v" path="res://mobs/mob_double/image-removebg-preview.png" id="1_s0ew7"]
-[ext_resource type="Script" uid="uid://cx1kp58ruqm1s" path="res://mobs/bloodFX/blood.gd" id="1_sb4lj"]
+[ext_resource type="Script" uid="uid://cqfdrv07so3d8" path="res://mobs/mob_double/skeleton.gd" id="1_sb4lj"]
 
 [node name="Skeleton" type="Node2D"]
 script = ExtResource("1_sb4lj")

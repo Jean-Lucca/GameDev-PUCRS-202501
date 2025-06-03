@@ -69,7 +69,6 @@ func get_side_input(delta):
 		startAllEnemy()
 		var enemy_hit = detect_enemy_in_direction(facing_dir)
 		setAnim(facing_dir)
-		is_attacking = true
 		hit_sound.play()
 		if(pop_limit_break()):
 			return
@@ -83,8 +82,9 @@ func get_side_input(delta):
 			return
 		
 		if enemy_hit:
-			get_tree().call_group("HUD", "update_score")													
+			get_tree().call_group("HUD", "update_score")												
 			basic_attack(enemy_hit)													
+			is_attacking = true
 			get_tree().call_group("LimitBreak", "add_limit_break")
 			count_attacks += 1
 
@@ -109,8 +109,8 @@ func is_limit_break_full():
 
 func basic_attack(enemy_hit):
 	if enemy_hit == null:
-		return
-			
+		return	
+		
 	var enemy_x = 0;	
 	if facing_dir == 1:
 		enemy_x = enemy_hit.global_position.x

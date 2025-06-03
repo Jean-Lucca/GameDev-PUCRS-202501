@@ -47,7 +47,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 z_index = 1
-position = Vector2(-3659, -2)
+position = Vector2(-3658, 0)
 shape = SubResource("RectangleShape2D_uu6xs")
 
 [node name="SceneLimit" type="Marker2D" parent="."]

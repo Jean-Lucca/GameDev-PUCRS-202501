@@ -26,6 +26,11 @@ func _process(delta):
 		if player.global_position.x - bloco.global_position.x > bloco_largura:
 			var max_x = get_max_bloco_x()
 			bloco.global_position.x = max_x + bloco_largura
+		elif bloco.global_position.x - player.global_position.x > bloco_largura:
+			# Reposiciona para trás
+			var min_x = get_min_bloco_x()
+			bloco.global_position.x = min_x - bloco_largura
+
 	
 	# Repetição da colisão
 	move_collision_if_needed(collision)
@@ -49,3 +54,10 @@ func get_max_bloco_x():
 		if bloco.global_position.x > max_x:
 			max_x = bloco.global_position.x
 	return max_x
+
+func get_min_bloco_x():
+	var min_x = INF
+	for bloco in blocos:
+		if bloco.global_position.x < min_x:
+			min_x = bloco.global_position.x
+	return min_x
