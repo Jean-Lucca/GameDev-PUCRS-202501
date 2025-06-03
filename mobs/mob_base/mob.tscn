@@ -174,9 +174,10 @@ radius = 21.0588
 height = 77.8301
 
 [node name="Mob" type="CharacterBody2D"]
+physics_interpolation_mode = 2
 z_index = 2
 scale = Vector2(1.36, 1.63113)
-collision_layer = 6
+collision_layer = 2
 script = ExtResource("1_nokgg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

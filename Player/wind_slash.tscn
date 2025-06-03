@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ljerhkxtqw1o"]
 
-[ext_resource type="Script" uid="uid://cdrta8x7hrjeo" path="res://wind_slash.gd" id="1_sl1lg"]
+[ext_resource type="Script" uid="uid://cdrta8x7hrjeo" path="res://LimitBreak/wind_slash.gd" id="1_sl1lg"]
 [ext_resource type="Texture2D" uid="uid://bgjn46ny5nkyc" path="res://Sprites/cloud.png" id="2_nhwlp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5b2hg"]

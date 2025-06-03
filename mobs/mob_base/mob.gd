@@ -30,10 +30,12 @@ func stopMoving():
 	var sprite = $AnimatedSprite2D
 	stop = true
 	sprite.stop()
+	speed = 0
 func startMoving():
 	var sprite = $AnimatedSprite2D
 	stop = false
 	sprite.play()
+	speed = 100
 		
 func move():
 	var sprite = $AnimatedSprite2D
@@ -91,15 +93,29 @@ func die(wind_slash = false):
 func sistema_barra(sprite):		
 	if barras > 0:	
 		barras = barras - 1				
-		if global_position.x < player.global_position.x:  #direita
-			$".".position.x = player.position.x + 80 
+		if global_position.x < player.global_position.x:  #direita			
+			pop_tween(Vector2(player.position.x, self.position.y - 40 * 2), 0.2)					
+			#$".".position.x = player.position.x + 80 
 		else:
-			$".".position.x = player.position.x - 80 	  #esquerda			
+			pop_tween(Vector2(player.position.x - 160, self.position.y - 40 * 2), 0.2)
+			#$".".position.x = player.position.x - 80 	  #esquerda			
 		sprite.flip_h = !sprite.flip_h
 		HitCounter.on_hit()
 		return true
 	return false
-			
+	
+func pop_tween(move_target, move_duration):
+	$CollisionShape2D.disabled = true
+	stopMoving()
+	var tween := get_tree().create_tween()	
+	tween.tween_property(self, "global_position", move_target, move_duration)\
+		.set_trans(Tween.TRANS_LINEAR)		
+	await get_tree().create_timer(0.2).timeout
+	$CollisionShape2D.disabled = false
+	startMoving()
+		
+	
+	
 func _on_progress_finished():
 	queue_free()  # if you want to remove the instance after explosion
 			

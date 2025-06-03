@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d3equlu2k18pa" path="res://Player/AnimPlayer.tscn" id="1_ysn8j"]
 [ext_resource type="Script" uid="uid://djgyigcwfq8jo" path="res://Levels/camera_2d.gd" id="3_iotdp"]
 [ext_resource type="Texture2D" uid="uid://dls2gokdm267g" path="res://neoncity/1.png" id="5_7fl83"]
-[ext_resource type="Script" uid="uid://ybfvq221f33u" path="res://clouds.gd" id="6_p5226"]
+[ext_resource type="Script" uid="uid://ybfvq221f33u" path="res://neoncity/clouds.gd" id="6_p5226"]
 [ext_resource type="Texture2D" uid="uid://dui0amjt4xuay" path="res://neoncity/2.png" id="7_p5226"]
 [ext_resource type="Texture2D" uid="uid://c33sb2x76spic" path="res://neoncity/3.png" id="8_tuji2"]
 [ext_resource type="Texture2D" uid="uid://dvatkmbt682xj" path="res://neoncity/4.png" id="9_f5cpa"]

@@ -57,7 +57,7 @@ func animate_side():
 func get_side_input(delta):
 	#if is_attacking:
 		#return
-	stop_timer.stop()
+	#stop_timer.stop()
 	velocity.x = 0
 	var vel := Input.get_axis("left", "right")
 	
@@ -70,8 +70,6 @@ func get_side_input(delta):
 		var enemy_hit = detect_enemy_in_direction(facing_dir)
 		setAnim(facing_dir)
 		hit_sound.play()
-		if(pop_limit_break()):
-			return
 		
 		if !enemy_hit:
 			print("enemy not hit")
@@ -86,16 +84,17 @@ func get_side_input(delta):
 			basic_attack(enemy_hit)													
 			is_attacking = true
 			get_tree().call_group("LimitBreak", "add_limit_break")
-			count_attacks += 1
+			count_attacks += 1			
 
 func pop_limit_break():
 	nodes = get_tree().get_nodes_in_group("LimitBreak")
 	if nodes.size() > 0:
 		if nodes[0].is_full():
-			get_tree().call_group("LimitBreak", "zero_limit_break")
-			launch_wind_slash()
-			print("is full")
-			return true
+			if Input.is_action_just_pressed("special"):
+				get_tree().call_group("LimitBreak", "zero_limit_break")
+				launch_wind_slash()
+				print("is full")
+				return true
 	return false
 		
 
@@ -201,6 +200,7 @@ func move_side(delta):
 	velocity.y += gravity * delta
 	get_side_input(delta)
 	animate_side()
+	pop_limit_break()
 	move_and_slide()
 
 func detect_enemy_in_direction(dir: int) -> CharacterBody2D:
