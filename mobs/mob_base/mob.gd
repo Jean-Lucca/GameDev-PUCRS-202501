@@ -42,7 +42,7 @@ func move():
 	var direction = player.global_position - global_position
 	var distance = direction.length()
 	var separation = Vector2.ZERO
-	var min_distance_between_enemies = 50
+	var min_distance_between_enemies = 100
 	var enemies = get_tree().get_nodes_in_group("Enemies")
 	
 	for other in enemies:
@@ -74,6 +74,7 @@ func move():
 				player.take_damage()		
 	else:
 		speed = 0
+	global_position.y = Globals.player.position.y  - 90
 		
 func die(wind_slash = false):
 	var sprite = $AnimatedSprite2D

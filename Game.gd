@@ -59,8 +59,8 @@ func _process(delta):
 		time_left = 0
 		get_tree().change_scene_to_file("res://Levels/YouWin.tscn")
 	
-	Spawn_esquerda.global_position = Vector2(player.global_position.x - 800, Spawn_esquerda.global_position.y)
-	Spawn_direita.global_position = Vector2(player.global_position.x + 800, Spawn_direita.global_position.y)
+	Spawn_esquerda.global_position = Vector2(player.global_position.x - 800, 0)
+	Spawn_direita.global_position = Vector2(player.global_position.x + 800, 0)
 	
 	var time_label = get_node("HUD/TimerLabel")
 	if (time_label):
