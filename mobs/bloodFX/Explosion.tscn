@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnfy7dfavts5a"]
+[gd_scene load_steps=6 format=3 uid="uid://cnfy7dfavts5a"]
 
 [ext_resource type="Script" uid="uid://cx1kp58ruqm1s" path="res://mobs/bloodFX/blood.gd" id="1_m6hed"]
 [ext_resource type="Script" uid="uid://opvxbexo75i2" path="res://mobs/bloodFX/blood_2.gd" id="2_hsqbi"]
+[ext_resource type="Texture2D" uid="uid://bpfsx8t1mwmf7" path="res://Sprites/blood_droplet.png" id="2_jqvpj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h62tp"]
 particles_animation = true
@@ -35,7 +36,8 @@ color = Color(0.992157, 0, 0, 1)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 800
+amount = 50
+texture = ExtResource("2_jqvpj")
 lifetime = 0.47
 one_shot = true
 explosiveness = 0.8
@@ -48,6 +50,10 @@ emission_sphere_radius = 4.46
 spread = 40.0
 initial_velocity_min = 157.57
 initial_velocity_max = 333.85
+angular_velocity_min = 206.9
+angular_velocity_max = 238.53
+scale_amount_min = 0.01
+scale_amount_max = 0.03
 color = Color(1, 0, 0, 1)
 script = ExtResource("2_hsqbi")
 
