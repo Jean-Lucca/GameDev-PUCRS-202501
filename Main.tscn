@@ -30,10 +30,10 @@ theme_override_font_sizes/font_size = 30
 script = ExtResource("3_fos0i")
 
 [node name="Vida" type="Label" parent="HUD" groups=["HUD"]]
-offset_left = 997.0
-offset_top = 3.0
-offset_right = 1132.0
-offset_bottom = 40.0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 140.0
+offset_bottom = 41.0
 theme_override_fonts/font = ExtResource("4_wkp8b")
 theme_override_font_sizes/font_size = 30
 text = "Vida: 3"

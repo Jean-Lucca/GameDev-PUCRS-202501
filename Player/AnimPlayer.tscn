@@ -403,4 +403,9 @@ z_index = 1
 position = Vector2(-3, 38)
 scale = Vector2(1.2, 1.2)
 
+[node name="MissTimer" type="Timer" parent="."]
+wait_time = 0.5
+ignore_time_scale = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="MissTimer" to="." method="_on_miss_timer_timeout"]

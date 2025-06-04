@@ -5,13 +5,13 @@
 [node name="Vida" type="Node2D"]
 
 [node name="HealthBarCut" type="Sprite2D" parent="."]
-position = Vector2(1122, 24)
+position = Vector2(125, 27.5)
 texture = ExtResource("1_0hnyc")
 
 [node name="HealthBarCut2" type="Sprite2D" parent="."]
-position = Vector2(1079, 24)
+position = Vector2(82, 27.5)
 texture = ExtResource("1_0hnyc")
 
 [node name="HealthBarCut3" type="Sprite2D" parent="."]
-position = Vector2(1036, 24)
+position = Vector2(39, 27.5)
 texture = ExtResource("1_0hnyc")

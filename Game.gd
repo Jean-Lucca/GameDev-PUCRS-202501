@@ -84,7 +84,7 @@ func spawn_mobs() -> void:
 	var count = get_tree().get_node_count_in_group("Enemies")
 	print(count)
 	
-	if count < 6:
+	if count < 8:
 		# MOB ESQUERDA
 		var mob_instance
 		if randi() % 2 == 0:

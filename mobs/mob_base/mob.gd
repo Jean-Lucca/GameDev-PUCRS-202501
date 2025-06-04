@@ -41,12 +41,23 @@ func move():
 	var sprite = $AnimatedSprite2D
 	var direction = player.global_position - global_position
 	var distance = direction.length()
+	var separation = Vector2.ZERO
+	var min_distance_between_enemies = 50
+	var enemies = get_tree().get_nodes_in_group("Enemies")
 	
+	for other in enemies:
+		if other != self:
+			var diff = global_position - other.global_position
+			var dist = diff.length()
+			if dist < min_distance_between_enemies and dist > 0:
+				separation += diff.normalized() * ((min_distance_between_enemies - dist) / min_distance_between_enemies)
+
 	if !stop:
 		speed = 200
 		if distance > attack_range:
 			direction = direction.normalized()
-			velocity = direction * speed					
+			velocity = direction * speed				
+			velocity += separation * speed  # força de separação proporcional	
 			if velocity.x < 0:
 				sprite.animation = "walk"
 				sprite.flip_h = true
@@ -74,38 +85,28 @@ func die(wind_slash = false):
 	
 	if sistema_barra(sprite):
 		return
-	
-	if count == 4:
-		if sprite.material is ShaderMaterial:
-			stopMoving()
-			$".".remove_from_group("Enemies")
-			sprite.material.set_shader_parameter("progress", 0.0)
-			var tween = create_tween()
-			tween.tween_property(sprite.material, "shader_parameter/progress", 1.0, 1)
-			tween.connect("finished", Callable(self, "_on_progress_finished"))		
-	else:
-		var explosion1 = Explosion.instantiate()  # Preload this scene
-		get_parent().add_child(explosion1)
-		explosion1.global_position = global_position  # Match position
-		explosion1.pop_explosion()
-		queue_free()
-			
+		
+	var explosion1 = Explosion.instantiate()  # Preload this scene
+	get_parent().add_child(explosion1)
+	explosion1.global_position = global_position  # Match position
+	explosion1.pop_explosion()
+	queue_free()
+	get_tree().call_group("HUD", "update_score")
+		
 func sistema_barra(sprite):		
 	if barras > 0:	
 		barras = barras - 1				
 		if global_position.x < player.global_position.x:  #direita			
 			pop_tween(Vector2(player.position.x, self.position.y - 40 * 2), 0.2)					
-			#$".".position.x = player.position.x + 80 
 		else:
 			pop_tween(Vector2(player.position.x - 160, self.position.y - 40 * 2), 0.2)
-			#$".".position.x = player.position.x - 80 	  #esquerda			
 		sprite.flip_h = !sprite.flip_h
 		HitCounter.on_hit()
 		return true
 	return false
 	
 func pop_tween(move_target, move_duration):
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.disabled = false
 	stopMoving()
 	var tween := get_tree().create_tween()	
 	tween.tween_property(self, "global_position", move_target, move_duration)\

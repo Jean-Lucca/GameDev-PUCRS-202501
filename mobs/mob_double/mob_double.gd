@@ -45,12 +45,23 @@ func move():
 		startMoving()
 		$".".add_to_group("Enemies")
 		print(revived)			
+	var separation = Vector2.ZERO
+	var min_distance_between_enemies = 50
+	var enemies = get_tree().get_nodes_in_group("Enemies")
+	
+	for other in enemies:
+		if other != self:
+			var diff = global_position - other.global_position
+			var dist = diff.length()
+			if dist < min_distance_between_enemies and dist > 0:
+				separation += diff.normalized() * ((min_distance_between_enemies - dist) / min_distance_between_enemies)
 	
 	if !stop:
 		speed = 200
 		if distance > attack_range:
 			direction = direction.normalized()
-			velocity = direction * speed					
+			velocity = direction * speed		
+			velocity += separation * speed			
 			if velocity.x < 0:
 				sprite.animation = "walk"
 				sprite.flip_h = true
@@ -75,6 +86,7 @@ func die(die):
 	camera.shake()
 	var count = player.getAttacks()
 	queue_free()
+	get_tree().call_group("HUD", "update_score")
 	if bones_explosion:
 		var explosion1 = bones_explosion.instantiate()
 		get_parent().add_child(explosion1)

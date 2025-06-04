@@ -19,6 +19,7 @@ var is_attacking = false
 var nodes = null
 var count_attacks = 0
 @onready var slow_motion_timer = $Timer
+@onready var miss_timer = $MissTimer
 var can_attack := true
 @onready var attack_cooldown_timer := Timer.new()
 @onready var stop_timer = Timer.new()	
@@ -35,6 +36,13 @@ func start_slow_motion():
 	# Coloca o jogo em slow motion
 	Engine.time_scale = 0.5  # Ajuste conforme o quanto quer deixar lento	
 	slow_motion_timer.start()
+	
+func start_miss_timer():
+	# Coloca o jogo em slow motion
+	can_attack = false
+	current_action.play("block")
+	current_action.show()
+	miss_timer.start()
 
 func _on_timer_timeout():
 	# Retorna ao tempo normal após o tempo do timer
@@ -55,8 +63,8 @@ func animate_side():
 		sprite.stop()	
 		
 func get_side_input(delta):
-	#if is_attacking:
-		#return
+	if !can_attack:
+		return
 	#stop_timer.stop()
 	velocity.x = 0
 	var vel := Input.get_axis("left", "right")
@@ -75,12 +83,10 @@ func get_side_input(delta):
 			print("enemy not hit")
 			current_action.play("block")
 			# Começa o cooldown de ataque
-			can_attack = false
-			attack_cooldown_timer.start()
+			start_miss_timer()
 			return
 		
-		if enemy_hit:
-			get_tree().call_group("HUD", "update_score")												
+		if enemy_hit:														
 			basic_attack(enemy_hit)													
 			is_attacking = true
 			get_tree().call_group("LimitBreak", "add_limit_break")
@@ -206,6 +212,7 @@ func move_side(delta):
 func detect_enemy_in_direction(dir: int) -> CharacterBody2D:
 	var enemies = get_tree().get_nodes_in_group("Enemies")
 	var found_enemy: CharacterBody2D = null
+	var min_distance_sq = INF  # infinito inicialmente
 
 	for enemy in enemies:
 		if not is_instance_valid(enemy):
@@ -215,21 +222,18 @@ func detect_enemy_in_direction(dir: int) -> CharacterBody2D:
 		if enemy_body == null:
 			continue  # não é do tipo esperado
 
-		# Se tiver flags de status, exemplo:
-		# if enemy_body.is_dead:
-		#     continue
-
 		var to_enemy = enemy_body.global_position - global_position
 		var horizontal_ok = (dir == 1 and to_enemy.x > 0) or (dir == -1 and to_enemy.x < 0)
 		var vertical_ok = abs(to_enemy.y) < 50  # margem vertical
-		var range_ok = to_enemy.length_squared() < attack_range * attack_range
+		var distance_sq = to_enemy.length_squared()
+		var range_ok = distance_sq < attack_range * attack_range
 
 		if horizontal_ok and vertical_ok and range_ok:
-			found_enemy = enemy_body
-			break
+			if distance_sq < min_distance_sq:
+				min_distance_sq = distance_sq
+				found_enemy = enemy_body
 
 	return found_enemy
-
 
 func detect_enemy_in_direction_delta() -> void:
 	if get_tree() == null:
@@ -255,30 +259,33 @@ func detect_enemy_in_direction_delta() -> void:
 				left_detected = true
 
 	# Atualiza cor da barra da direita
-			
-	if right_detected:
-		current_action.show()
-		buster_right.play("red_right")
-		current_action.play("direita")
-	else:
-		buster_right.play("normal_right")
+	
+	if can_attack:
+		if right_detected:
+			current_action.show()
+			buster_right.play("red_right")
+			current_action.play("direita")
+		else:
+			if can_attack:
+				buster_right.play("normal_right")
 
-	# Atualiza cor da barra da esquerda
-	if right_detected and left_detected:
-		current_action.show()
-		buster_right.play("red_blue")
-		current_action.play("ed")
-	elif right_detected:
-		current_action.show()
-		buster_right.play("red_right")
-		current_action.play("direita")
-	elif left_detected:
-		current_action.show()
-		buster_right.play("blue_left")
-		current_action.play("esquerda")
-	else:
-		buster_right.play("normal_right")
-		current_action.hide()
+		# Atualiza cor da barra da esquerda
+		if right_detected and left_detected:
+			current_action.show()
+			buster_right.play("red_blue")
+			current_action.play("ed")
+		elif right_detected:
+			current_action.show()
+			buster_right.play("red_right")
+			current_action.play("direita")
+		elif left_detected:
+			current_action.show()
+			buster_right.play("blue_left")
+			current_action.play("esquerda")
+		else:
+			if can_attack:
+				buster_right.play("normal_right")
+				current_action.hide()
 	
 
 func animate():
@@ -322,6 +329,8 @@ func take_damage():
 	$PlayerSprite.modulate = Color(1, 1, 1, 0.5)  # visual: fica meio transparente
 	stopAllEnemy()  # para todos os inimigos	
 	hit_sound.play()
+	get_tree().call_group("HUD", "reset_score")
+	camera.flash_red()
 
 	if life <= 0:
 		get_tree().change_scene_to_file("res://Levels/GameOver.tscn")
@@ -348,4 +357,10 @@ func iframes(delta):
 
 func _on_area_2d_body_entered() -> void:
 	get_tree().change_scene_to_file("res://Levels/GameOver.tscn")
+	pass # Replace with function body.
+
+
+func _on_miss_timer_timeout():
+	can_attack = true
+	current_action.hide()
 	pass # Replace with function body.

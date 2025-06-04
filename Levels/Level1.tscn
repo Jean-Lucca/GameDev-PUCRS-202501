@@ -30,6 +30,16 @@ editor_draw_drag_margin = true
 script = ExtResource("3_iotdp")
 shake_intensity = 3.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="AnimPlayer/Camera2D"]
+
+[node name="ColorRect" type="ColorRect" parent="AnimPlayer/Camera2D/CanvasLayer"]
+visible = false
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 1152.0
+offset_bottom = 645.0
+color = Color(0.775855, 0, 0.244781, 1)
+
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 z_index = 2
 position = Vector2(771, 476)
