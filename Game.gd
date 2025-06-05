@@ -39,10 +39,7 @@ func _physics_process(delta: float) -> void:
 		scene_limit = current_scene.get_node("SceneLimit")
 	
 	if player.position.y > scene_limit.position.y:
-		get_tree().change_scene_to_file("res://Levels/GameOver.tscn")
-		
-	if Input.is_action_just_pressed("go_to_level_2"):
-		call_deferred("goto_scene", "res://Levels/Level2.tscn")
+		get_tree().change_scene_to_file("res://Levels/GameOver.tscn")	
 		
 func goto_scene(path: String) -> void:
 	print("Total children: " + str(get_child_count()))
@@ -55,6 +52,8 @@ func goto_scene(path: String) -> void:
 	
 func _process(delta):
 	time_left -= delta
+	#if(time_left <= 240):
+			
 	if (time_left <= 0):
 		time_left = 0
 		get_tree().change_scene_to_file("res://Levels/YouWin.tscn")

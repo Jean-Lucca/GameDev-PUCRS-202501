@@ -12,15 +12,16 @@ bg_color = Color(0.686275, 0.678431, 0.705882, 1)
 script = ExtResource("1_30is7")
 
 [node name="LimitBreak" type="Sprite2D" parent="."]
-position = Vector2(940.5, 558.5)
-scale = Vector2(0.888021, 0.923611)
+position = Vector2(969.86, 576.2)
+scale = Vector2(0.816979, 0.738891)
 texture = ExtResource("2_8stdt")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 852.0
-offset_top = 558.0
-offset_right = 1034.0
-offset_bottom = 591.0
+offset_left = 888.36
+offset_top = 576.7
+offset_right = 1063.36
+offset_bottom = 606.7
+scale = Vector2(0.962781, 0.800002)
 theme_override_constants/outline_size = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_iru08")
 theme_override_styles/fill = SubResource("StyleBoxFlat_30is7")

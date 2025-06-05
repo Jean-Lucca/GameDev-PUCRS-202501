@@ -16,7 +16,7 @@ var collision_width = 0
 func _ready():
 	blocos = [chao_esquerda, chao_meio, chao_direita]
 	bloco_largura = chao_meio.texture.get_size().x * 0.6
-	collision_width = collision.shape.extents.x * 2
+	collision_width = collision.shape.extents.x * 1.8
 	print("bloco_largura:", bloco_largura)
 	print("collision_width:", collision_width)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://60okax2aajfx"]
+[gd_scene load_steps=15 format=3 uid="uid://60okax2aajfx"]
 
 [ext_resource type="Script" uid="uid://cbo8m6so3555e" path="res://Levels/level_1.gd" id="1_7fl83"]
 [ext_resource type="PackedScene" uid="uid://d3equlu2k18pa" path="res://Player/AnimPlayer.tscn" id="1_ysn8j"]
@@ -7,9 +7,12 @@
 [ext_resource type="Script" uid="uid://ybfvq221f33u" path="res://neoncity/clouds.gd" id="6_p5226"]
 [ext_resource type="Texture2D" uid="uid://dui0amjt4xuay" path="res://neoncity/2.png" id="7_p5226"]
 [ext_resource type="Texture2D" uid="uid://c33sb2x76spic" path="res://neoncity/3.png" id="8_tuji2"]
+[ext_resource type="Texture2D" uid="uid://cq7o8dib6y7m2" path="res://neoncity/tarde/1.png" id="9_104vp"]
 [ext_resource type="Texture2D" uid="uid://dvatkmbt682xj" path="res://neoncity/4.png" id="9_f5cpa"]
-[ext_resource type="Texture2D" uid="uid://dsandvqr6eap7" path="res://Parallax/parallax-04.png" id="10_3momc"]
+[ext_resource type="Texture2D" uid="uid://b45fnrf8ieh3j" path="res://neoncity/tarde/2.png" id="10_3momc"]
 [ext_resource type="Texture2D" uid="uid://de0w253r2tv0n" path="res://neoncity/road&lamps.png" id="10_7fl83"]
+[ext_resource type="Texture2D" uid="uid://bsbnb1vt8ui88" path="res://neoncity/tarde/3.png" id="11_sbm5j"]
+[ext_resource type="Texture2D" uid="uid://btajnsoxplm21" path="res://neoncity/tarde/4.png" id="12_p2sgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu6xs"]
 size = Vector2(3463, 58)
@@ -24,7 +27,7 @@ position = Vector2(608, 407)
 [node name="Camera2D" type="Camera2D" parent="AnimPlayer"]
 position = Vector2(0, -20)
 offset = Vector2(0, -15)
-zoom = Vector2(2, 2)
+zoom = Vector2(1.8, 1.8)
 position_smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("3_iotdp")
@@ -112,28 +115,51 @@ texture = ExtResource("9_f5cpa")
 centered = false
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
-visible = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
-position = Vector2(0, -4)
-motion_scale = Vector2(2, 2)
-motion_mirroring = Vector2(1440, 0)
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(576, 0)
+script = ExtResource("6_p5226")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+texture = ExtResource("9_104vp")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
 texture = ExtResource("10_3momc")
 centered = false
 
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer3"]
+texture = ExtResource("11_sbm5j")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer4"]
+texture = ExtResource("12_p2sgf")
+centered = false
+
 [node name="Road&lamps" type="Sprite2D" parent="."]
-position = Vector2(577, 241.5)
+position = Vector2(577, 248.5)
 scale = Vector2(0.6, 0.582407)
 texture = ExtResource("10_7fl83")
 
 [node name="Road&lamps2" type="Sprite2D" parent="."]
-position = Vector2(1729, 241.5)
+position = Vector2(1729, 248.5)
 scale = Vector2(0.6, 0.582407)
 texture = ExtResource("10_7fl83")
 
 [node name="Road&lamps3" type="Sprite2D" parent="."]
-position = Vector2(-575, 241.5)
+position = Vector2(-575, 248.5)
 scale = Vector2(0.6, 0.582407)
 texture = ExtResource("10_7fl83")

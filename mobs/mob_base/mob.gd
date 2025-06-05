@@ -35,7 +35,7 @@ func startMoving():
 	var sprite = $AnimatedSprite2D
 	stop = false
 	sprite.play()
-	speed = 100
+	speed = 200
 		
 func move():
 	var sprite = $AnimatedSprite2D

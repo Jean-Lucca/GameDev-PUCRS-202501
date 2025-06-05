@@ -10,7 +10,7 @@ extends CharacterBody2D
 @onready var camera = $Camera2D
 var facing_dir := 1  # 1 = right, -1 = left
 @onready var hit_sound = $HitSound
-@onready var life = 3
+@onready var life = 10
 var shader_material;
 var is_invincible = false
 var invincibility_time = 0.0
@@ -31,6 +31,7 @@ func _ready():
 	explosion1.global_position = global_position  # Match position
 	explosion1.pop_aura()
 	Globals.player = self
+	buster_right.self_modulate.a = 0.5
 	
 func start_slow_motion():
 	# Coloca o jogo em slow motion
@@ -92,7 +93,9 @@ func get_side_input(delta):
 			is_attacking = true
 			get_tree().call_group("LimitBreak", "add_limit_break")
 			count_attacks += 1			
-
+		can_attack = false
+		await get_tree().create_timer(0.05).timeout
+		can_attack = true
 func pop_limit_break():
 	nodes = get_tree().get_nodes_in_group("LimitBreak")
 	if nodes.size() > 0:

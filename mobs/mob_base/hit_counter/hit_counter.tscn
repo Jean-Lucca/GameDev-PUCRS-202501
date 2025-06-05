@@ -24,12 +24,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Esquerda" type="Sprite2D" parent="."]
 texture_filter = 3
-position = Vector2(27.385, 7.4)
-scale = Vector2(0.354038, 0.108333)
+position = Vector2(32, 17.75)
+scale = Vector2(0.423077, 0.260417)
 texture = ExtResource("2_beqxx")
 
 [node name="Direita" type="Sprite2D" parent="."]
 texture_filter = 3
-position = Vector2(27, 2)
-scale = Vector2(0.348387, 0.125)
+position = Vector2(32.5, 5.5)
+scale = Vector2(0.432258, 0.270833)
 texture = ExtResource("3_ah3fo")

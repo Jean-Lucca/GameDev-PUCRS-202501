@@ -13,12 +13,12 @@ _data = [Vector2(0.0839416, 0.0068078), 0.0, 0.0, 0, 0, Vector2(0.149635, 0.7948
 point_count = 10
 
 [sub_resource type="Gradient" id="Gradient_ov7bk"]
-offsets = PackedFloat32Array(0.0927419, 0.366935, 0.584677, 0.778226, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.802663, 0.138182, 0.854426, 1, 0.817521, 0.817521, 0.817521, 1, 0.616623, 0.174686, 0.851328, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.165323, 0.447581, 0.669355, 0.903226, 1)
+colors = PackedColorArray(0.817521, 0.817521, 0.817521, 1, 0.796078, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0.616623, 0.174686, 0.851328, 1, 1, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_03vby"]
-offsets = PackedFloat32Array(0, 0.16129, 0.270161, 0.495968, 0.689516, 0.818548, 0.931452, 1)
-colors = PackedColorArray(0.0216412, 0.472479, 0.724513, 1, 0.382412, 0.470015, 0.932403, 1, 0.129234, 0.667157, 0.904855, 1, 0.303039, 0.000194833, 0.970912, 1, 0.00135054, 0.0359086, 0.0597654, 1, 0.0345977, 0.152206, 0.195916, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.16129, 0.407258, 0.576613, 0.721774, 0.818548, 0.931452, 1)
+colors = PackedColorArray(0.0216412, 0.472479, 0.724513, 1, 0.382412, 0.470015, 0.932403, 1, 1, 0, 0, 1, 0.92549, 0, 0, 1, 0.00135054, 0.0359086, 0.0597654, 1, 0.0345977, 0.152206, 0.195916, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [node name="Aura" type="Node2D"]
 script = ExtResource("1_03vby")
@@ -26,6 +26,7 @@ script = ExtResource("1_03vby")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 auto_translate_mode = 2
 texture_filter = 1
+scale = Vector2(1.3, 1.3)
 skew = -1.56905
 amount = 6000
 lifetime = 0.63
@@ -53,5 +54,5 @@ scale_amount_curve = SubResource("Curve_p61b2")
 color = Color(0.828365, 0.899944, 0.937272, 1)
 color_ramp = SubResource("Gradient_ov7bk")
 color_initial_ramp = SubResource("Gradient_03vby")
-hue_variation_min = -1.0
+hue_variation_min = -0.03
 hue_variation_max = 0.85

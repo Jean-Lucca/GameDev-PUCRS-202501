@@ -381,7 +381,7 @@ volume_db = -25.715
 
 [node name="CurrentAction" type="AnimatedSprite2D" parent="."]
 z_index = 7
-position = Vector2(-2.5, 50)
+position = Vector2(-2.5, 59)
 scale = Vector2(0.572917, 0.625)
 sprite_frames = SubResource("SpriteFrames_wamoa")
 animation = &"block"
@@ -390,7 +390,8 @@ animation = &"block"
 light_mask = 4
 visibility_layer = 4
 z_index = 6
-position = Vector2(-3, 50)
+texture_filter = 5
+position = Vector2(-3, 59)
 scale = Vector2(0.536834, 0.564786)
 sprite_frames = SubResource("SpriteFrames_vadok")
 animation = &"red_right"

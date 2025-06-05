@@ -36,7 +36,7 @@ offset_right = 140.0
 offset_bottom = 41.0
 theme_override_fonts/font = ExtResource("4_wkp8b")
 theme_override_font_sizes/font_size = 30
-text = "Vida: 3"
+text = "Vida: 10"
 script = ExtResource("5_lgr22")
 
 [node name="Vida2" parent="HUD" instance=ExtResource("7_wkp8b")]

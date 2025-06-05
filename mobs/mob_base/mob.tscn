@@ -175,7 +175,7 @@ height = 77.8301
 
 [node name="Mob" type="CharacterBody2D"]
 physics_interpolation_mode = 2
-z_index = 2
+z_index = 7
 scale = Vector2(1.36, 1.63113)
 collision_layer = 2
 script = ExtResource("1_nokgg")
@@ -195,4 +195,5 @@ shape = SubResource("CapsuleShape2D_dy6sc")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="HitCounter" parent="." instance=ExtResource("4_04md2")]
-position = Vector2(-30.1471, 31.8797)
+z_index = 7
+position = Vector2(-30.8824, 31.8797)

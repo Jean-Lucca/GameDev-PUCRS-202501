@@ -222,6 +222,7 @@ radius = 26.0
 height = 64.0
 
 [node name="MobDouble" type="CharacterBody2D"]
+z_index = 7
 collision_layer = 4
 script = ExtResource("1_77le7")
 
@@ -237,11 +238,11 @@ position = Vector2(-1, -7)
 shape = SubResource("CapsuleShape2D_gorbj")
 
 [node name="Esquerda" type="Sprite2D" parent="."]
-position = Vector2(-6, 40)
-scale = Vector2(0.487179, 0.3125)
+position = Vector2(-5.5, 43.5)
+scale = Vector2(0.570513, 0.479167)
 texture = ExtResource("3_y1j1n")
 
 [node name="Direita" type="Sprite2D" parent="."]
-position = Vector2(-3, 39)
-scale = Vector2(0.470968, 0.313)
+position = Vector2(-6, 42)
+scale = Vector2(0.570968, 0.489833)
 texture = ExtResource("4_46iq7")
