@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://dgkne7s7c1bnh"]
+[gd_scene load_steps=21 format=3 uid="uid://dgkne7s7c1bnh"]
 
 [ext_resource type="Script" uid="uid://dg5v2wum84rkg" path="res://mobs/mob_range/mob_range.gd" id="1_5fqmu"]
 [ext_resource type="Texture2D" uid="uid://ddwiy5vhl1o1b" path="res://mobs/mob_range/spritesheet.png" id="1_h1npe"]
+[ext_resource type="PackedScene" uid="uid://c5qiqasslpkfm" path="res://mobs/mob_range/mob_projectile.tscn" id="2_l7scv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5fqmu"]
 atlas = ExtResource("1_h1npe")
@@ -128,6 +129,7 @@ size = Vector2(81, 97)
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_5fqmu")
+purple_arrow = ExtResource("2_l7scv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
@@ -141,3 +143,7 @@ frame_progress = 0.196014
 visible = false
 position = Vector2(4, 10)
 shape = SubResource("RectangleShape2D_woi4l")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

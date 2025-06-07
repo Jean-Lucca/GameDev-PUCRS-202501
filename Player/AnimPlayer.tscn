@@ -14,12 +14,12 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p75ea"]
 shader = ExtResource("2_0qryd")
-shader_parameter/aura_enabled = false
-shader_parameter/aura_color = Color(0.2, 0.6, 1, 1)
-shader_parameter/aura_size = 1.176
+shader_parameter/aura_enabled = true
+shader_parameter/aura_color = Color(0.823529, 0.584314, 0.32549, 1)
+shader_parameter/aura_size = 1.321
 shader_parameter/aura_intensity = 0.497
 shader_parameter/aura2_size = 1.164
-shader_parameter/aura2_intensity = 0.6
+shader_parameter/aura2_intensity = 0.555
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gsndo"]
 atlas = ExtResource("2_n20f4")

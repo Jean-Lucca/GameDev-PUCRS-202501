@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://60okax2aajfx"]
+[gd_scene load_steps=16 format=3 uid="uid://60okax2aajfx"]
 
 [ext_resource type="Script" uid="uid://cbo8m6so3555e" path="res://Levels/level_1.gd" id="1_7fl83"]
 [ext_resource type="PackedScene" uid="uid://d3equlu2k18pa" path="res://Player/AnimPlayer.tscn" id="1_ysn8j"]
 [ext_resource type="Script" uid="uid://djgyigcwfq8jo" path="res://Levels/camera_2d.gd" id="3_iotdp"]
 [ext_resource type="Texture2D" uid="uid://dls2gokdm267g" path="res://neoncity/1.png" id="5_7fl83"]
+[ext_resource type="Script" uid="uid://cap5ri26kgufa" path="res://Levels/motion_offsetas.gd" id="6_104vp"]
 [ext_resource type="Script" uid="uid://ybfvq221f33u" path="res://neoncity/clouds.gd" id="6_p5226"]
 [ext_resource type="Texture2D" uid="uid://dui0amjt4xuay" path="res://neoncity/2.png" id="7_p5226"]
 [ext_resource type="Texture2D" uid="uid://c33sb2x76spic" path="res://neoncity/3.png" id="8_tuji2"]
@@ -18,6 +19,7 @@
 size = Vector2(3463, 58)
 
 [node name="Level1" type="Node2D"]
+texture_repeat = 1
 script = ExtResource("1_7fl83")
 
 [node name="AnimPlayer" parent="." groups=["Player"] instance=ExtResource("1_ysn8j")]
@@ -27,7 +29,7 @@ position = Vector2(608, 407)
 [node name="Camera2D" type="Camera2D" parent="AnimPlayer"]
 position = Vector2(0, -20)
 offset = Vector2(0, -15)
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("3_iotdp")
@@ -83,8 +85,9 @@ centered = false
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 texture_repeat = 3
 position = Vector2(2, 3)
-motion_scale = Vector2(0, 0)
-motion_mirroring = Vector2(575, 0)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(576, 0)
+script = ExtResource("6_104vp")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 texture_filter = 1
@@ -94,8 +97,8 @@ centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(2, 3)
-motion_scale = Vector2(0.1, 0.1)
-motion_mirroring = Vector2(575, 0)
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 texture_filter = 1
@@ -105,7 +108,7 @@ centered = false
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(2, 3)
-motion_scale = Vector2(0.2, 0.2)
+motion_scale = Vector2(0.4, 0.4)
 motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]

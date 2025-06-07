@@ -9,7 +9,7 @@ var _original_offset := Vector2.ZERO
 @onready var red_flash_rect = $CanvasLayer/ColorRect
 func _ready():
 	_original_offset = offset
-	
+
 func flash_red():
 	red_flash_rect.visible = true
 	red_flash_rect.modulate.a = 0.5  # Starting opacity

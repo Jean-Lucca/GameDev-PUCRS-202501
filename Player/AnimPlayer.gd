@@ -177,9 +177,11 @@ func push_enemies_back(origin_x: float):
 			continue  # Pula inimigos muito distantes
 
 		enemy.stopMoving()
-
+		
+		var direction = (enemy_pos - origin_x).normalized()
+		var target_position = enemy_pos + direction * push_distance
 		var target_x = enemy_pos.x - push_distance if enemy_pos.x < origin_x else enemy_pos.x + push_distance
-		var target_position = Vector2(target_x, enemy_pos.y)
+		#var target_position = Vector2(target_x, enemy_pos.y)
 
 		var tween := get_tree().create_tween()
 		tween.tween_property(enemy, "global_position", target_position, duration)\
@@ -197,15 +199,12 @@ func stopAllEnemy():
 			continue
 		
 		enemy.stopMoving()
-
 func startAllEnemy():
 	for enemy in get_tree().get_nodes_in_group("Enemies"):
 		if enemy == null:
 			continue
-		print("iniciou de volta")
 		enemy.startMoving()
 		
-
 func move_side(delta):
 	velocity.y += gravity * delta
 	get_side_input(delta)
@@ -214,7 +213,7 @@ func move_side(delta):
 	move_and_slide()
 
 func detect_enemy_in_direction(dir: int) -> CharacterBody2D:
-	var enemies = get_tree().get_nodes_in_group("Enemies")
+	var enemies = get_tree().get_nodes_in_group("Enemies") + get_tree().get_nodes_in_group("purple_arrow")
 	var found_enemy: CharacterBody2D = null
 	var min_distance_sq = INF  # infinito inicialmente
 
@@ -339,18 +338,6 @@ func take_damage():
 	if life <= 0:
 		get_tree().change_scene_to_file("res://Levels/GameOver.tscn")
 
-#chamar essa func a cada 4 ataques(?) variar de 4 a mais		
-func attack_zoom():
-	if count_attacks == 5:
-		if is_attacking:
-			if is_instance_valid(camera):
-				camera.zoom = Vector2(1.8,1.8)		
-				Engine.time_scale = 0.3				
-		else:
-			if is_instance_valid(camera):
-				camera.zoom = Vector2(1.0,1.0)		
-				Engine.time_scale = 1
-				count_attacks = 0
 				
 func iframes(delta):
 	if is_invincible:

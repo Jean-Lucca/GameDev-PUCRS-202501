@@ -15,6 +15,7 @@ var spawn_timer : float = 0.0
 var spawn_interval : float = 0.0  # Spawn mobs every 5 seconds
 var bpm: float = 120.0
 var time_left := 300.0
+var time_inverval := 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -52,21 +53,20 @@ func goto_scene(path: String) -> void:
 	scene_limit = current_scene.get_node("SceneLimit")
 	
 func _process(delta):
-	time_left -= delta
-	#if(time_left <= 240):
-			
+	Spawn_esquerda.global_position = Vector2(player.global_position.x - 800, 0)
+	Spawn_direita.global_position = Vector2(player.global_position.x + 800, 0)
+	
+	time_left -= delta			
+	time_inverval += delta
 	if (time_left <= 0):
 		time_left = 0
 		get_tree().change_scene_to_file("res://Levels/YouWin.tscn")
-	
-	Spawn_esquerda.global_position = Vector2(player.global_position.x - 800, 0)
-	Spawn_direita.global_position = Vector2(player.global_position.x + 800, 0)
 	
 	var time_label = get_node("HUD/TimerLabel")
 	if (time_label):
 		var minutes = int(time_left) / 60
 		var seconds = int(time_left) % 60
-		time_label.text = "%02d:%02d" % [minutes, seconds]
+		time_label.text = "%02d:%02d" % [minutes, seconds]	
 	
 	# Increment spawn timer
 	spawn_timer += delta
@@ -91,17 +91,20 @@ func spawn_mobs() -> void:
 		
 func spawn_enemy(from_position: Vector2):
 	var mob_instance = null
-	if randi() % 2 == 0:
-		mob_instance = mob_scene.instantiate()  
-	else:
-		mob_instance = mob_double.instantiate() 
 	
-	mob_instance.add_to_group("Enemies")
-	
+	if time_inverval >= 30:
+		mob_instance = mob_range.instantiate()
+		time_inverval = 0.0
+	else:		
+		if randf() < 0.8:
+			mob_instance = mob_double.instantiate()
+			mob_instance.add_to_group("Enemies")
+		else:
+			mob_instance = mob_scene.instantiate()
+			mob_instance.add_to_group("Enemies")
+			
 	var spawn_pos = Vector2(from_position.x + randf_range(-20, 20), Globals.player.position.y  - 90)
-	mob_instance.global_position = spawn_pos
-	
-	current_scene.add_child(mob_instance)
-	
+	mob_instance.global_position = spawn_pos	
+	current_scene.add_child(mob_instance)	
 	var sprite = mob_instance.get_node("AnimatedSprite2D")
 	sprite.play()

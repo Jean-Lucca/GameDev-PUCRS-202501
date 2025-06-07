@@ -98,25 +98,26 @@ func sistema_barra(sprite):
 	if barras > 0:	
 		barras = barras - 1				
 		if global_position.x < player.global_position.x:  #direita			
-			pop_tween(Vector2(player.position.x, self.position.y - 40 * 2), 0.2)					
+			pop_tween(Vector2(player.position.x, self.position.y - 40 * 2), 0.3)					
 		else:
-			pop_tween(Vector2(player.position.x - 160, self.position.y - 40 * 2), 0.2)
+			pop_tween(Vector2(player.position.x - 160, self.position.y - 40 * 2), 0.3)
 		sprite.flip_h = !sprite.flip_h
 		HitCounter.on_hit()
 		return true
 	return false
 	
 func pop_tween(move_target, move_duration):
-	$CollisionShape2D.disabled = false
+	var distance = global_position.distance_to(move_target)
+	var floatymove_duration = distance / 400
 	stopMoving()
 	var tween := get_tree().create_tween()	
-	tween.tween_property(self, "global_position", move_target, move_duration)\
-		.set_trans(Tween.TRANS_LINEAR)		
-	await get_tree().create_timer(0.2).timeout
-	$CollisionShape2D.disabled = false
-	startMoving()
-		
+	tween.set_ignore_time_scale(true)
+	tween.tween_property(self, "global_position", move_target, floatymove_duration)\
+		.set_trans(Tween.TRANS_LINEAR)
 	
+	await get_tree().create_timer(0.2).timeout	
+	startMoving()
+			
 	
 func _on_progress_finished():
 	queue_free()  # if you want to remove the instance after explosion
