@@ -13,6 +13,7 @@ func _ready():
 func add_limit_break():
 	if limit_bar:
 		limit_bar.value = min(limit_bar.value + 1.5, limit_bar.max_value)
+		#limit_bar.value = 100
 		update_bar_color()
 		
 func zero_limit_break():

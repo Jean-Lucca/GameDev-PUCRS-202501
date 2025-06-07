@@ -27,7 +27,7 @@ position = Vector2(608, 407)
 [node name="Camera2D" type="Camera2D" parent="AnimPlayer"]
 position = Vector2(0, -20)
 offset = Vector2(0, -15)
-zoom = Vector2(1.8, 1.8)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("3_iotdp")
@@ -115,6 +115,7 @@ texture = ExtResource("9_f5cpa")
 centered = false
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+visible = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
 motion_scale = Vector2(0, 0)

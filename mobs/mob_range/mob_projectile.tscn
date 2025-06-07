@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5qiqasslpkfm"]
+
+[ext_resource type="Texture2D" uid="uid://wbuk00fvv718" path="res://mobs/mob_range/projectile.png" id="1_7bqwi"]
+[ext_resource type="Script" uid="uid://mt2lprd0c73o" path="res://mobs/mob_range/mob_projectile.gd" id="1_aijt5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aijt5"]
+atlas = ExtResource("1_7bqwi")
+region = Rect2(0, 0, 40, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6os1g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aijt5")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5lqiv"]
+size = Vector2(90, 22)
+
+[node name="MobProjectile" type="Node2D"]
+script = ExtResource("1_aijt5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9.53674e-07, 1.19209e-07)
+scale = Vector2(2.86792, 5.24834)
+sprite_frames = SubResource("SpriteFrames_6os1g")
+animation = &"new_animation"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="AnimatedSprite2D"]
+position = Vector2(-13.9474, 0.000769317)
+rotation = 1.5708
+skew = 1.56905
+amount = 600
+lifetime = 0.16
+speed_scale = 0.3
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(-4800, 180)
+initial_velocity_max = 20.27
+radial_accel_max = 44.59
+tangential_accel_min = 27.02
+tangential_accel_max = 59.46
+color = Color(0.873002, 0.000607988, 0.872996, 1)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_5lqiv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false

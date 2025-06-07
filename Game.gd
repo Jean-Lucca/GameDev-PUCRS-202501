@@ -10,6 +10,7 @@ extends Node2D
 @onready var Spawn_direita = $SpawnDireita
 var mob_boss = load("res://mobs/mob_boss/mob_boss.tscn")
 var mob_double = load("res://mobs/mob_double/mob_double.tscn")
+var mob_range = load("res://mobs/mob_range/mob_range.tscn")
 var spawn_timer : float = 0.0
 var spawn_interval : float = 0.0  # Spawn mobs every 5 seconds
 var bpm: float = 120.0
@@ -80,40 +81,27 @@ func spawn_mobs() -> void:
 	var screen_half_width = screen_size.x / 2
 	var camera_pos = player.global_position
 	var initial_y_position = 450  
-	var count = get_tree().get_node_count_in_group("Enemies")
-	print(count)
+	var count = get_tree().get_node_count_in_group("Enemies")	
 	
-	if count < 8:
-		# MOB ESQUERDA
-		var mob_instance
-		if randi() % 2 == 0:
-			mob_instance = mob_scene.instantiate()
-		else:
-			mob_instance = mob_double.instantiate()
-
-		mob_instance.add_to_group("Enemies")
-		var left_spawn_pos = Vector2(Spawn_esquerda.position.x + randf_range(-20, 20), initial_y_position)
-		mob_instance.global_position = left_spawn_pos
-		current_scene.add_child(mob_instance)
-
-		var sprite = mob_instance.get_node("AnimatedSprite2D")
-		sprite.play()
-
+	if count < 8:			
+		spawn_enemy(Vector2(Spawn_esquerda.position.x + randf_range(-20, 20), initial_y_position))
 		# Espera 0.3 segundos antes de spawnar o próximo
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.3).timeout	
+		spawn_enemy(Vector2(Spawn_direita.position.x + randf_range(-20, 20), initial_y_position))
+		
+func spawn_enemy(from_position: Vector2):
+	var mob_instance = null
+	if randi() % 2 == 0:
+		mob_instance = mob_scene.instantiate()  
+	else:
+		mob_instance = mob_double.instantiate() 
 	
-		# MOB DIREITA
-		var mob2_instance
-		if randi() % 2 == 0:
-			mob2_instance = mob_scene.instantiate()
-		else:
-			mob2_instance = mob_double.instantiate()
-
-		mob2_instance.add_to_group("Enemies")
-		var right_spawn_pos = Vector2(Spawn_direita.position.x + randf_range(-20, 20), initial_y_position)
-
-		mob2_instance.global_position = right_spawn_pos
-		current_scene.add_child(mob2_instance)
-
-		var sprite2 = mob2_instance.get_node("AnimatedSprite2D")
-		sprite2.play()
+	mob_instance.add_to_group("Enemies")
+	
+	var spawn_pos = Vector2(from_position.x + randf_range(-20, 20), Globals.player.position.y  - 90)
+	mob_instance.global_position = spawn_pos
+	
+	current_scene.add_child(mob_instance)
+	
+	var sprite = mob_instance.get_node("AnimatedSprite2D")
+	sprite.play()
