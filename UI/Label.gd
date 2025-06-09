@@ -17,6 +17,7 @@ func show_combo_popup(combo_text: String):
 	combo_label.set("theme_override_font_sizes/font_size", 28) # Larger font size
 	combo_label.set("theme_override_colors/font_color", Color(1, 0.8, 0, 1)) # Brighter yellow
 	combo_label.position = Vector2(50, -50) # Higher starting position
+	
 	add_child(combo_label)
 
 	# Create a Tween for animation
