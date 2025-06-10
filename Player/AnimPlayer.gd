@@ -43,7 +43,7 @@ func start_miss_timer():
 	can_attack = false
 	current_action.play("block")
 	current_action.show()
-	get_tree().call_group("HUD", "reset_score")
+	#get_tree().call_group("HUD", "reset_score")
 	miss_timer.start()
 
 func _on_timer_timeout():

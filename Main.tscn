@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvdfsmvn6flws"]
+[gd_scene load_steps=15 format=3 uid="uid://bvdfsmvn6flws"]
 
 [ext_resource type="Script" uid="uid://bxqodkil6popv" path="res://Game.gd" id="1_lgr22"]
 [ext_resource type="PackedScene" uid="uid://bcx2lbhnpuubm" path="res://mobs/mob_base/mob.tscn" id="2_3dxm6"]
@@ -8,7 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://bbu6t65prtnwr" path="res://SFX/Summer_Park.ogg" id="5_fos0i"]
 [ext_resource type="Script" uid="uid://dj5fkhbypmewb" path="res://UI/vida.gd" id="5_lgr22"]
 [ext_resource type="Script" uid="uid://dmqppcllm2d15" path="res://progress_bar.gd" id="7_20pc6"]
-[ext_resource type="PackedScene" uid="uid://bx0gc1momaorl" path="res://UI/Vida.tscn" id="7_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://3uvtbeorgkxj" path="res://LimitBreak/limit_break.tscn" id="9_03owx"]
 [ext_resource type="AudioStream" uid="uid://cettesu61gq16" path="res://SFX/Wice-Asteroid-Rain.wav" id="9_wkp8b"]
 
@@ -91,9 +90,6 @@ layout_mode = 0
 offset_top = -23.0
 offset_right = 48.0
 text = "Speed"
-
-[node name="Vida2" parent="HUD" instance=ExtResource("7_wkp8b")]
-visible = false
 
 [node name="TimerLabel" type="Label" parent="HUD" groups=["HUD"]]
 offset_left = 1029.0

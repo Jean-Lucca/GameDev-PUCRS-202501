@@ -30,9 +30,11 @@ func reset_score():
 		bestscore = score
 		Globals.bestscore = bestscore
 	score = 0
-	if Globals.speed > 100:
+	if Globals.speed > 200:
 		Globals.speed = Globals.speed / 1.5
 		get_tree().call_group("HUD", "update_speed")
+	else:
+		Globals.speed = 200
 
 func show_combo_popup(combo_text: String):
 	# Create a new Label for the combo popup
