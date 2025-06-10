@@ -4,7 +4,7 @@ var player: CharacterBody2D
 var camera: Camera2D
 @onready var HitCounter = $HitCounter
 @onready var Explosion = preload("res://mobs/bloodFX/Explosion.tscn")
-@export var speed: float = 100.0  # Speed at which the mob chases the player
+@export var speed: float = Globals.speed  # Speed at which the mob chases the player
 @export var attack_range: float = 80.0  # Distance to stop and attack
 var stop = false	
 var barras = 1
@@ -35,7 +35,7 @@ func startMoving():
 	var sprite = $AnimatedSprite2D
 	stop = false
 	sprite.play()
-	speed = 200
+	speed = Globals.speed
 		
 func move():
 	var sprite = $AnimatedSprite2D
@@ -53,7 +53,7 @@ func move():
 				separation += diff.normalized() * ((min_distance_between_enemies - dist) / min_distance_between_enemies)
 
 	if !stop:
-		speed = 200
+		speed = Globals.speed
 		if distance > attack_range:
 			direction = direction.normalized()
 			velocity = direction * speed				

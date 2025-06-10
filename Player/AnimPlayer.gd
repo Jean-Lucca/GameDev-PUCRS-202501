@@ -10,7 +10,7 @@ extends CharacterBody2D
 @onready var camera = $Camera2D
 var facing_dir := 1  # 1 = right, -1 = left
 @onready var hit_sound = $HitSound
-@onready var life = 10
+@onready var life = 5
 var shader_material;
 var is_invincible = false
 var invincibility_time = 0.0
@@ -35,7 +35,7 @@ func _ready():
 	
 func start_slow_motion():
 	# Coloca o jogo em slow motion
-	Engine.time_scale = 0.5  # Ajuste conforme o quanto quer deixar lento	
+	Engine.time_scale = 0.7  # Ajuste conforme o quanto quer deixar lento	
 	slow_motion_timer.start()
 	
 func start_miss_timer():

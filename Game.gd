@@ -55,8 +55,8 @@ func goto_scene(path: String) -> void:
 func _process(delta):
 	Spawn_esquerda.global_position = Vector2(player.global_position.x - 800, 0)
 	Spawn_direita.global_position = Vector2(player.global_position.x + 800, 0)
-	
 	time_left -= delta			
+	Globals.timer = time_left
 	time_inverval += delta
 	if (time_left <= 0):
 		time_left = 0

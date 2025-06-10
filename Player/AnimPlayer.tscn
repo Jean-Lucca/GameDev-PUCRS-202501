@@ -398,7 +398,7 @@ sprite_frames = SubResource("SpriteFrames_vadok")
 animation = &"red_right"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.1
 
 [node name="Aura" parent="." instance=ExtResource("12_ujrku")]
 z_index = 1

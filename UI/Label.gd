@@ -10,8 +10,10 @@ func _ready():
 
 func update_score():
 	score += 1
-	#text = "Score: " + str(score)
 	show_combo_popup(str(score) + "x combo")
+	if Globals.speed < 400.0:
+		Globals.speed = Globals.speed * 1.02
+		get_tree().call_group("HUD", "update_speed")
 	
 func update_one_score():
 	cumulativeScore += 1 * 100
@@ -28,6 +30,9 @@ func reset_score():
 		bestscore = score
 		Globals.bestscore = bestscore
 	score = 0
+	if Globals.speed > 100:
+		Globals.speed = Globals.speed / 1.5
+		get_tree().call_group("HUD", "update_speed")
 
 func show_combo_popup(combo_text: String):
 	# Create a new Label for the combo popup

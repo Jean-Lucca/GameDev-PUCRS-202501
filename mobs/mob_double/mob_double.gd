@@ -2,7 +2,7 @@ extends CharacterBody2D
 var target: Node2D
 var player: CharacterBody2D
 var camera: Camera2D
-@export var speed: float = 100.0  # Speed at which the mob chases the player
+@export var speed: float = Globals.speed  # Speed at which the mob chases the player
 @export var attack_range: float = 50.0  # Distance to stop and attack
 var stop = false	
 var revived = false
@@ -57,7 +57,7 @@ func move():
 				separation += diff.normalized() * ((min_distance_between_enemies - dist) / min_distance_between_enemies)
 	
 	if !stop:
-		speed = 200
+		speed = Globals.speed
 		if distance > attack_range:
 			direction = direction.normalized()
 			velocity = direction * speed		

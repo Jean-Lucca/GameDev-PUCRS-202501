@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvdfsmvn6flws"]
+[gd_scene load_steps=16 format=3 uid="uid://bvdfsmvn6flws"]
 
 [ext_resource type="Script" uid="uid://bxqodkil6popv" path="res://Game.gd" id="1_lgr22"]
 [ext_resource type="PackedScene" uid="uid://bcx2lbhnpuubm" path="res://mobs/mob_base/mob.tscn" id="2_3dxm6"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://d2wefwysxfx05" path="res://Fonts/Retroville NC.ttf" id="4_wkp8b"]
 [ext_resource type="AudioStream" uid="uid://bbu6t65prtnwr" path="res://SFX/Summer_Park.ogg" id="5_fos0i"]
 [ext_resource type="Script" uid="uid://dj5fkhbypmewb" path="res://UI/vida.gd" id="5_lgr22"]
+[ext_resource type="Script" uid="uid://dmqppcllm2d15" path="res://progress_bar.gd" id="7_20pc6"]
 [ext_resource type="PackedScene" uid="uid://bx0gc1momaorl" path="res://UI/Vida.tscn" id="7_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://3uvtbeorgkxj" path="res://LimitBreak/limit_break.tscn" id="9_03owx"]
 [ext_resource type="AudioStream" uid="uid://cettesu61gq16" path="res://SFX/Wice-Asteroid-Rain.wav" id="9_wkp8b"]
@@ -22,6 +23,11 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vvyt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6i3y"]
+bg_color = Color(0.168627, 0.705882, 0.811765, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_lgr22")
@@ -63,6 +69,28 @@ offset_right = 121.0
 offset_bottom = 2.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "HP"
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD" groups=["HUD"]]
+offset_left = 14.0
+offset_top = 67.0
+offset_right = 280.0
+offset_bottom = 90.0
+tooltip_text = "Speed
+"
+theme_override_styles/background = SubResource("StyleBoxFlat_5vvyt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c6i3y")
+min_value = 100.0
+max_value = 400.0
+value = 100.0
+show_percentage = false
+script = ExtResource("7_20pc6")
+
+[node name="Label" type="Label" parent="HUD/ProgressBar"]
+modulate = Color(0, 0.724828, 0.725071, 1)
+layout_mode = 0
+offset_top = -23.0
+offset_right = 48.0
+text = "Speed"
 
 [node name="Vida2" parent="HUD" instance=ExtResource("7_wkp8b")]
 visible = false
