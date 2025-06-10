@@ -93,6 +93,7 @@ func die(wind_slash = false):
 	explosion1.pop_explosion()
 	queue_free()
 	get_tree().call_group("HUD", "update_score")
+	get_tree().call_group("HUD", "update_double_score")
 		
 func sistema_barra(sprite):		
 	if barras > 0:	

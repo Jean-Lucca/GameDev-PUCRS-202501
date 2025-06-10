@@ -88,6 +88,7 @@ func die(die):
 	var count = player.getAttacks()
 	queue_free()
 	get_tree().call_group("HUD", "update_score")
+	get_tree().call_group("HUD", "update_one_score")
 	if bones_explosion:
 		var explosion1 = bones_explosion.instantiate()
 		get_parent().add_child(explosion1)

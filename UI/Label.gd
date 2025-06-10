@@ -1,13 +1,32 @@
 extends Label
 
 @onready var score := 0
+@onready var cumulativeScore := 0
+@onready var bestscore := 0
+
+func _ready():
+	Globals.bestscore = bestscore
+	Globals.cumulativescore = cumulativeScore
 
 func update_score():
 	score += 1
 	#text = "Score: " + str(score)
 	show_combo_popup(str(score) + "x combo")
+	
+func update_one_score():
+	cumulativeScore += 1 * 100
+	Globals.cumulativescore = cumulativeScore
+	
+func update_double_score():
+	cumulativeScore += 2 * 100
+	Globals.cumulativescore = cumulativeScore
 
-func reset_score():
+func reset_score():	
+	if bestscore < score:
+		print("scoreou")
+		print(score)
+		bestscore = score
+		Globals.bestscore = bestscore
 	score = 0
 
 func show_combo_popup(combo_text: String):

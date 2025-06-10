@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg321uyckmnfe"]
+[gd_scene load_steps=5 format=3 uid="uid://dg321uyckmnfe"]
 
 [ext_resource type="Script" uid="uid://b1hfklwb4crve" path="res://Levels/GameOver.gd" id="1_4axrv"]
 [ext_resource type="FontFile" uid="uid://0mcwamf86rrp" path="res://Fonts/Xolonium-Regular.ttf" id="2_jmml3"]
+[ext_resource type="Script" uid="uid://cg5yldk10df3l" path="res://Levels/best_score.gd" id="3_6m1ti"]
+[ext_resource type="Script" uid="uid://bwn26qixq37sa" path="res://Levels/best_combo.gd" id="4_n1gc3"]
 
 [node name="YouWin" type="Control"]
 layout_mode = 3
@@ -41,13 +43,23 @@ theme_override_font_sizes/font_size = 120
 text = "You Win"
 horizontal_alignment = 1
 
-[node name="Thanks" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+[node name="TryAgain2" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 30
 theme_override_fonts/font = ExtResource("2_jmml3")
 theme_override_font_sizes/font_size = 60
-text = "Thanks for playing!"
+text = "Best combo: 0"
 horizontal_alignment = 1
+script = ExtResource("3_6m1ti")
+
+[node name="TryAgain3" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("2_jmml3")
+theme_override_font_sizes/font_size = 60
+text = "Score: 0"
+horizontal_alignment = 1
+script = ExtResource("4_n1gc3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2

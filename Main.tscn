@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvdfsmvn6flws"]
+[gd_scene load_steps=13 format=3 uid="uid://bvdfsmvn6flws"]
 
 [ext_resource type="Script" uid="uid://bxqodkil6popv" path="res://Game.gd" id="1_lgr22"]
 [ext_resource type="PackedScene" uid="uid://bcx2lbhnpuubm" path="res://mobs/mob_base/mob.tscn" id="2_3dxm6"]
@@ -11,6 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://3uvtbeorgkxj" path="res://LimitBreak/limit_break.tscn" id="9_03owx"]
 [ext_resource type="AudioStream" uid="uid://cettesu61gq16" path="res://SFX/Wice-Asteroid-Rain.wav" id="9_wkp8b"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkp8b"]
+bg_color = Color(0.41949, 0.452571, 0.391563, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20pc6"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_lgr22")
 mob_scene = ExtResource("2_3dxm6")
@@ -21,31 +33,45 @@ mob_scene = ExtResource("2_3dxm6")
 position = Vector2(12, -1)
 
 [node name="Score" type="Label" parent="HUD" groups=["HUD"]]
-offset_left = 771.0
-offset_top = 470.0
-offset_right = 942.0
-offset_bottom = 511.0
+offset_left = 843.0
+offset_top = 513.0
+offset_right = 1014.0
+offset_bottom = 554.0
 theme_override_fonts/font = ExtResource("4_wkp8b")
 theme_override_font_sizes/font_size = 30
 script = ExtResource("3_fos0i")
 
-[node name="Vida" type="Label" parent="HUD" groups=["HUD"]]
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 140.0
-offset_bottom = 41.0
+[node name="Vida" type="ProgressBar" parent="HUD" groups=["HUD"]]
+modulate = Color(0.947406, 3.77826e-06, 1.73271e-06, 1)
+offset_left = 14.0
+offset_top = 21.0
+offset_right = 280.0
+offset_bottom = 44.0
 theme_override_fonts/font = ExtResource("4_wkp8b")
 theme_override_font_sizes/font_size = 30
-text = "Vida: 10"
+theme_override_styles/background = SubResource("StyleBoxFlat_wkp8b")
+theme_override_styles/fill = SubResource("StyleBoxFlat_20pc6")
+show_percentage = false
 script = ExtResource("5_lgr22")
+
+[node name="TextEdit" type="Label" parent="HUD/Vida"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -21.0
+offset_right = 121.0
+offset_bottom = 2.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "HP"
 
 [node name="Vida2" parent="HUD" instance=ExtResource("7_wkp8b")]
 visible = false
 
 [node name="TimerLabel" type="Label" parent="HUD" groups=["HUD"]]
-offset_left = 529.0
-offset_right = 624.0
-offset_bottom = 41.0
+offset_left = 1029.0
+offset_top = 11.0
+offset_right = 1146.0
+offset_bottom = 52.0
 theme_override_fonts/font = ExtResource("4_wkp8b")
 theme_override_font_sizes/font_size = 30
 text = "01:00"

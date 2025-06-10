@@ -378,6 +378,7 @@ bus = &"SFX"
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_n20f4")
 volume_db = -25.715
+pitch_scale = 0.9
 
 [node name="CurrentAction" type="AnimatedSprite2D" parent="."]
 z_index = 7

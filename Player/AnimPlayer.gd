@@ -79,6 +79,8 @@ func get_side_input(delta):
 		startAllEnemy()
 		var enemy_hit = detect_enemy_in_direction(facing_dir)
 		setAnim(facing_dir)
+		var pitch := randf_range(0.9, 1.3)
+		hit_sound.pitch_scale = pitch
 		hit_sound.play()
 		
 		if !enemy_hit:
@@ -122,9 +124,9 @@ func basic_attack(enemy_hit):
 		
 	var enemy_x = 0;	
 	if facing_dir == 1:
-		enemy_x = enemy_hit.global_position.x
+		enemy_x = enemy_hit.global_position.x - 10
 	else:
-		enemy_x = enemy_hit.global_position.x
+		enemy_x = enemy_hit.global_position.x + 10
 	
 	#aposentado até chegar o inimigo boss
 	#push_enemies_back(enemy_x)
@@ -334,6 +336,12 @@ func take_damage():
 	hit_sound.play()
 	get_tree().call_group("HUD", "reset_score")
 	camera.flash_red()
+	if life <= 0:
+		get_tree().change_scene_to_file("res://Levels/GameOver.tscn")
+	
+func heal_damage():
+	life += 1
+	get_tree().call_group("HUD", "update_vida")
 
 	if life <= 0:
 		get_tree().change_scene_to_file("res://Levels/GameOver.tscn")
