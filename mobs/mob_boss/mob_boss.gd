@@ -2,7 +2,6 @@ extends CharacterBody2D
 var target: Node2D
 var player: CharacterBody2D
 var camera: Camera2D
-@onready var HitCounter = $HitCounter
 @onready var Explosion = preload("res://mobs/bloodFX/Explosion.tscn")
 @export var speed: float = Globals.speed  # Speed at which the mob chases the player
 @export var attack_range: float = 80.0  # Distance to stop and attack
@@ -10,9 +9,6 @@ var stop = false
 var barras = 10
 var sequencia_barras = []  
 var barraAtual = 0
-@onready var tex_esquerda = $Node2D/Esquerda
-@onready var tex_direita = $Node2D/Direita
-@onready var Visual = $VisualSequencia
 var lado_atual = ""  # vazio inicialmente
 
 func _ready():
