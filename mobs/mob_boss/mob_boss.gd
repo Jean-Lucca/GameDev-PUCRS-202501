@@ -13,6 +13,7 @@ var barraAtual = 0
 @onready var tex_esquerda = $Node2D/Esquerda
 @onready var tex_direita = $Node2D/Direita
 @onready var Visual = $VisualSequencia
+var lado_atual = ""  # vazio inicialmente
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
@@ -45,10 +46,16 @@ func popa_sequencia():
 func gerar_sequencia_barras(qtd):
 	sequencia_barras.clear()
 	for i in range(qtd):
-		if(randi() % 2 == 0):
-			sequencia_barras.append("esquerda")		
-		else:
-			sequencia_barras.append("direita")
+		if i == 0:
+			if global_position.x < player.global_position.x:
+				sequencia_barras.append("esquerda")
+			else:
+				sequencia_barras.append("direita")
+		else:	
+			if(randi() % 2 == 0):
+				sequencia_barras.append("esquerda")		
+			else:
+				sequencia_barras.append("direita")
 
 func _physics_process(delta):
 	if not player or not is_instance_valid(player):
@@ -107,8 +114,7 @@ func move():
 func die(wind_slash = false):
 	var sprite = $AnimatedSprite2D
 	camera.shake()
-	var count = player.getAttacks()	
-	popa_sequencia()
+	var count = player.getAttacks()		
 	if wind_slash:
 		queue_free()
 	
@@ -127,24 +133,27 @@ func die(wind_slash = false):
 func sistema_barra(sprite):		
 	var tweenRodou = false
 	if barras > 1:	
-		barras = barras - 1				
 		resetAttack()
-		if global_position.x < player.global_position.x && sequencia_barras[barraAtual] == "esquerda":  #direita			
-			pop_tween(Vector2(player.position.x, self.position.y - 40 * 2), 0.3)			
+		if sequencia_barras[barraAtual + 1] == "direita":  #direita			
+			pop_tween(Vector2(player.position.x + 30, self.position.y - 40 * 2), 0.3)			
 			tweenRodou = true		
-		elif  sequencia_barras[barraAtual] == "direita":
-			pop_tween(Vector2(player.position.x - 160, self.position.y - 40 * 2), 0.3)
+			print("deve ir para a direita")
+		elif  sequencia_barras[barraAtual + 1] == "esquerda":
+			pop_tween(Vector2(player.position.x - 280, self.position.y - 40 * 2), 0.3)
 			tweenRodou = true
+			print("deve ir para a esquerda")
 			
 		if(!tweenRodou):
 			if global_position.x < player.global_position.x:
 				pop_tween(Vector2(self.position.x, self.position.y - 40 * 2), 0.3)
 			else:
-				pop_tween(Vector2(self.position.x - 20, self.position.y - 40 * 2), 0.3) 
-			print("push back")			
-			pass
+				print("tween a esqureda")
+				pop_tween(Vector2(self.position.x - 160, self.position.y - 40 * 2), 0.3) 
+
 		sprite.flip_h = !sprite.flip_h
 		barraAtual += 1
+		barras = barras - 1				
+		popa_sequencia()
 		return true
 	return false
 	

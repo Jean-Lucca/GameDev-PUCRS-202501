@@ -14,7 +14,7 @@ var mob_range = load("res://mobs/mob_range/mob_range.tscn")
 var spawn_timer : float = 0.0
 var spawn_interval : float = 0.0  # Spawn mobs every 5 seconds
 var bpm: float = 120.0
-var time_left := 300.0 # 300.0
+var time_left := 0.0 # 300.0
 var time_inverval := 0.0
 
 # Called when the node enters the scene tree for the first time.
