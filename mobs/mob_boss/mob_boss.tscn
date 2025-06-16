@@ -1,12 +1,13 @@
 [gd_scene load_steps=32 format=3 uid="uid://c17u0k324vg01"]
 
-[ext_resource type="Script" uid="uid://bnft0fw71utvh" path="res://mobs/mob_base/mob.gd" id="1_3gake"]
+[ext_resource type="Script" uid="uid://dapjtqnoqqmvm" path="res://mobs/mob_boss/mob_boss.gd" id="1_5pp7n"]
 [ext_resource type="Texture2D" uid="uid://bdlw4y8cfb0t7" path="res://mobs/mob_boss/sprites/unit_atk_207002417.png" id="1_qxxn7"]
 [ext_resource type="Texture2D" uid="uid://chpev7gyd2qkl" path="res://mobs/mob_boss/sprites/unit_limit_atk_207002417.png" id="2_3gake"]
 [ext_resource type="Texture2D" uid="uid://c4157e16s4f4s" path="res://mobs/mob_boss/sprites/unit_standby_207002417.png" id="3_5pp7n"]
 [ext_resource type="Texture2D" uid="uid://byd7xex13xv3u" path="res://mobs/mob_boss/sprites/unit_move_207002417.png" id="4_qw8vy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2g8di"]
+size = Vector2(20, 62)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ofuol"]
 atlas = ExtResource("1_qxxn7")
@@ -195,26 +196,29 @@ animations = [{
 "texture": SubResource("AtlasTexture_0ci8w")
 }],
 "loop": true,
-"name": &"walk_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0ci8w")
-}],
-"loop": true,
-"name": &"walk_right",
+"name": &"walk",
 "speed": 5.0
 }]
 
 [node name="MobBoss" type="CharacterBody2D"]
-script = ExtResource("1_3gake")
+script = ExtResource("1_5pp7n")
+
+[node name="VisualSequencia" type="Node2D" parent="." groups=["HUD"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -21)
 shape = SubResource("RectangleShape2D_2g8di")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(-1, -16)
 sprite_frames = SubResource("SpriteFrames_b8pns")
-animation = &"walk_left"
-frame_progress = 0.463705
+animation = &"attack"
+frame_progress = 0.801134
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -55.0
+offset_right = 10.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
