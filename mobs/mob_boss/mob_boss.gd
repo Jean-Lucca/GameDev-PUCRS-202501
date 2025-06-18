@@ -31,13 +31,13 @@ func mostrar_sequencia():
 	var uis = get_tree().get_nodes_in_group("HUD")
 	if uis.size() > 0:
 		var hud = uis[0]
-		hud.fill_grid_with_arrows(sequencia_barras)
+		hud.fill_grid_with_arrows(sequencia_barras, barraAtual)
 		
 func popa_sequencia():
 	var uis = get_tree().get_nodes_in_group("HUD")
 	if uis.size() > 0:
 		var hud = uis[0]
-		hud.pop_first_arrow()
+		hud.pop_first_arrow(barraAtual)
 
 func gerar_sequencia_barras(qtd):
 	sequencia_barras.clear()
@@ -138,19 +138,13 @@ func sistema_barra(sprite):
 			pop_tween(Vector2(player.position.x - 280, self.position.y - 40 * 2), 0.3)
 			tweenRodou = true
 			print("deve ir para a esquerda")
-			
-		if(!tweenRodou):
-			if global_position.x < player.global_position.x:
-				pop_tween(Vector2(self.position.x, self.position.y - 40 * 2), 0.3)
-			else:
-				print("tween a esqureda")
-				pop_tween(Vector2(self.position.x - 160, self.position.y - 40 * 2), 0.3) 
 
 		sprite.flip_h = !sprite.flip_h
+		popa_sequencia()
 		barraAtual += 1
 		barras = barras - 1				
-		popa_sequencia()
 		return true
+	popa_sequencia()
 	return false
 	
 func pop_tween(move_target, move_duration):
