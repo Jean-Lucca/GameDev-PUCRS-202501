@@ -9,6 +9,7 @@ var stop = false
 var barras = 10
 var sequencia_barras = []  
 var barraAtual = 0
+var fase = 0
 var lado_atual = ""  # vazio inicialmente
 
 func _ready():
@@ -41,6 +42,7 @@ func popa_sequencia():
 
 func gerar_sequencia_barras(qtd):
 	sequencia_barras.clear()
+	
 	for i in range(qtd):
 		if i == 0:
 			if global_position.x < player.global_position.x:
@@ -52,7 +54,7 @@ func gerar_sequencia_barras(qtd):
 				sequencia_barras.append("esquerda")		
 			else:
 				sequencia_barras.append("direita")
-
+	print(sequencia_barras)
 func _physics_process(delta):
 	if not player or not is_instance_valid(player):
 		return		
@@ -114,7 +116,18 @@ func die(wind_slash = false):
 	if wind_slash:
 		queue_free()
 	
-	if sistema_barra(sprite):
+	if sistema_barra(sprite):		
+		return
+	if fase < 2 && barraAtual >= 9:
+		fase += 1
+		print(fase)
+		barraAtual = 0
+		barras = 10
+		gerar_sequencia_barras(barras)
+		mostrar_sequencia()
+		return
+	else:
+		get_tree().call_deferred("change_scene_to_file", "res://Levels/YouWin.tscn")
 		return
 		
 	var explosion1 = Explosion.instantiate()  # Preload this scene
