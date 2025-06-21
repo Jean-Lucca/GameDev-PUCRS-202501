@@ -11,6 +11,7 @@ extends Node2D
 var mob_boss = load("res://mobs/mob_boss/mob_boss.tscn")
 var mob_double = load("res://mobs/mob_double/mob_double.tscn")
 var mob_range = load("res://mobs/mob_range/mob_range.tscn")
+var mob_tank = load("res://mobs/mob_tank/mob_tank.tscn")
 var spawn_timer : float = 0.0
 var spawn_interval : float = 0.0  # Spawn mobs every 5 seconds
 var bpm: float = 120.0
@@ -99,18 +100,27 @@ func spawn_enemy(from_position: Vector2):
 		mob_instance = mob_range.instantiate()
 		time_inverval = 0.0
 	else:		
-		if Globals.bossSpawnado > 0:
+		if Globals.bossSpawnado > 1:
+			if randf() < 0.5:
+				mob_instance = mob_scene.instantiate()
+			elif randf() < 0.2:
+				mob_instance = mob_tank.instantiate()
+			else:
+				mob_instance = mob_double.instantiate()
+			mob_instance.add_to_group("Enemies")
+			
+		elif Globals.bossSpawnado > 0:
 			if randf() < 0.8:
 				mob_instance = mob_double.instantiate()
-				mob_instance.add_to_group("Enemies")
 			else:
-				mob_instance = mob_scene.instantiate()
-				mob_instance.add_to_group("Enemies")
+				mob_instance = mob_tank.instantiate()
+			mob_instance.add_to_group("Enemies")
 		else:
 			mob_instance = mob_double.instantiate()
 			mob_instance.add_to_group("Enemies")
 			
 	if boss_interval >= boss_spawn_timeout:
+		Globals.kill_all_enemies()
 		mob_instance = mob_boss.instantiate()
 		mob_instance.add_to_group("Enemies")
 		mob_instance.add_to_group("Boss")

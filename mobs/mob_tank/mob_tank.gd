@@ -4,13 +4,10 @@ var player: CharacterBody2D
 var camera: Camera2D
 @onready var Explosion = preload("res://mobs/bloodFX/Explosion.tscn")
 @export var speed: float = Globals.speed  # Speed at which the mob chases the player
-@export var attack_range: float = 120.0  # Distance to stop and attack
+@export var attack_range: float = 80.0  # Distance to stop and attack
 var stop = false	
-var barras = 10
-var sequencia_barras = []  
-var barraAtual = 0
-var fase = 0
-var lado_atual = ""  # vazio inicialmente
+var barras = 1
+var tookHit = false
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
@@ -22,66 +19,22 @@ func _ready():
 	var sprite = $AnimatedSprite2D
 	if sprite.material:
 		sprite.material = sprite.material.duplicate()  # create a unique copy		
-	if Globals.bossSpawnado == 1:
-		barras = 5
-		fase = 2
-		print("primeiro boss")	
-	if Globals.bossSpawnado == 2:
-		barras = 7
-		fase = 1
-		print("segundo boss")	
-	if Globals.bossSpawnado == 3:
-		barras = 10
-		fase = 0
-		print("terceiro boss")	
 		
-	gerar_sequencia_barras(barras)
-	mostrar_sequencia()
-	
-func getStart():
-	return sequencia_barras[0]
-
-func mostrar_sequencia():
-	var uis = get_tree().get_nodes_in_group("HUD")
-	if uis.size() > 0:
-		var hud = uis[0]
-		hud.fill_grid_with_arrows(sequencia_barras, barraAtual)
-		
-func popa_sequencia():
-	var uis = get_tree().get_nodes_in_group("HUD")
-	if uis.size() > 0:
-		var hud = uis[0]
-		hud.pop_first_arrow(barraAtual)
-
-func gerar_sequencia_barras(qtd):
-	sequencia_barras.clear()
-	
-	for i in range(qtd):
-		if i == 0:
-			if global_position.x < player.global_position.x:
-				sequencia_barras.append("esquerda")
-			else:
-				sequencia_barras.append("direita")
-		else:	
-			if(randi() % 2 == 0):
-				sequencia_barras.append("esquerda")		
-			else:
-				sequencia_barras.append("direita")
-	print(sequencia_barras)
 func _physics_process(delta):
 	if not player or not is_instance_valid(player):
 		return		
 	move()
 		
 func stopMoving():
-	pass
-func startMoving():
-	pass
-	
-func resetAttack():
 	var sprite = $AnimatedSprite2D
-	sprite.frame = 0
-	
+	stop = true
+	sprite.stop()
+	speed = 0
+func startMoving():
+	var sprite = $AnimatedSprite2D
+	stop = false
+	sprite.play()
+	speed = Globals.speed
 		
 func move():
 	var sprite = $AnimatedSprite2D
@@ -116,7 +69,7 @@ func move():
 			move_and_slide()
 			sprite.animation = "attack"
 			sprite.play()			
-			if(sprite.frame == 9):
+			if(sprite.frame == 4):
 				player.take_damage()		
 	else:
 		speed = 0
@@ -125,24 +78,13 @@ func move():
 func die(wind_slash = false):
 	var sprite = $AnimatedSprite2D
 	camera.shake()
-	var count = player.getAttacks()		
+	var count = player.getAttacks()	
+	
 	if wind_slash:
 		queue_free()
 	
-	if sistema_barra(sprite):		
+	if sistema_barra(sprite):
 		return
-	if fase < 2 && barraAtual >= 9:
-		fase += 1
-		print(fase)
-		barraAtual = 0
-		barras = 10
-		gerar_sequencia_barras(barras)
-		mostrar_sequencia()
-		return
-	else:
-		if Globals.bossSpawnado == 3:
-			get_tree().call_deferred("change_scene_to_file", "res://Levels/YouWin.tscn")
-			return
 		
 	var explosion1 = Explosion.instantiate()  # Preload this scene
 	get_parent().add_child(explosion1)
@@ -151,27 +93,18 @@ func die(wind_slash = false):
 	queue_free()
 	get_tree().call_group("HUD", "update_score")
 	get_tree().call_group("HUD", "update_double_score")
-	
 		
-func sistema_barra(sprite):		
-	var tweenRodou = false
-	if barras > 1:	
-		resetAttack()
-		if sequencia_barras[barraAtual + 1] == "direita":  #direita			
-			pop_tween(Vector2(player.position.x + 30, self.position.y - 40 * 2), 0.3)			
-			tweenRodou = true		
-			print("deve ir para a direita")
-		elif  sequencia_barras[barraAtual + 1] == "esquerda":
-			pop_tween(Vector2(player.position.x - 280, self.position.y - 40 * 2), 0.3)
-			tweenRodou = true
-			print("deve ir para a esquerda")
-
-		sprite.flip_h = !sprite.flip_h
-		popa_sequencia()
-		barraAtual += 1
+func sistema_barra(sprite):			
+	if barras > 0:	
+		stopMoving()
 		barras = barras - 1				
+		if global_position.x < player.global_position.x:  #direita						
+			pop_tween(Vector2(player.position.x - (80 * 4), self.position.y - 40 * 2), 0.1)					
+		else:
+			pop_tween(Vector2(player.position.x + (80), self.position.y - 40 * 2), 0.1)
+		sprite.flip_h = !sprite.flip_h
+		startMoving()
 		return true
-	popa_sequencia()
 	return false
 	
 func pop_tween(move_target, move_duration):
