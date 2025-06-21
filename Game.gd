@@ -101,9 +101,9 @@ func spawn_enemy(from_position: Vector2):
 		time_inverval = 0.0
 	else:		
 		if Globals.bossSpawnado > 1:
-			if randf() < 0.5:
+			if randf() < 0.3:
 				mob_instance = mob_scene.instantiate()
-			elif randf() < 0.2:
+			elif randf() < 0.3:
 				mob_instance = mob_tank.instantiate()
 			else:
 				mob_instance = mob_double.instantiate()
