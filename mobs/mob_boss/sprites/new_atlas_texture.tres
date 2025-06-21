@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cqcgnvr3daste"]
+
+[ext_resource type="Texture2D" uid="uid://bdlw4y8cfb0t7" path="res://mobs/mob_boss/sprites/unit_atk_207002417.png" id="1_d15x7"]
+
+[resource]
+atlas = ExtResource("1_d15x7")
+region = Rect2(285, 83, 133, 121)

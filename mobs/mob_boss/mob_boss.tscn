@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c17u0k324vg01"]
+[gd_scene load_steps=23 format=3 uid="uid://c17u0k324vg01"]
 
 [ext_resource type="Script" uid="uid://dapjtqnoqqmvm" path="res://mobs/mob_boss/mob_boss.gd" id="1_5pp7n"]
 [ext_resource type="Texture2D" uid="uid://bdlw4y8cfb0t7" path="res://mobs/mob_boss/sprites/unit_atk_207002417.png" id="1_qxxn7"]
@@ -9,53 +9,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2g8di"]
 size = Vector2(20, 62)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ofuol"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gake"]
 atlas = ExtResource("1_qxxn7")
-region = Rect2(0, 0, 225, 211)
+region = Rect2(60, 80, 121, 109)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h1wai"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pp7n"]
 atlas = ExtResource("1_qxxn7")
-region = Rect2(225, 0, 225, 211)
+region = Rect2(302, 80, 121, 109)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kjuer"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw8vy"]
 atlas = ExtResource("1_qxxn7")
-region = Rect2(450, 0, 225, 211)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6iotn"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(0, 211, 225, 211)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3mjcp"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(225, 211, 225, 211)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tnkpf"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(450, 211, 225, 211)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vm7j5"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(0, 422, 225, 211)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ktoep"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(225, 422, 225, 211)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_engrb"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(450, 422, 225, 211)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r54nh"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(0, 633, 225, 211)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o3qru"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(225, 633, 225, 211)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8o4w3"]
-atlas = ExtResource("1_qxxn7")
-region = Rect2(450, 633, 225, 211)
+region = Rect2(544, 80, 121, 109)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_83otm"]
 atlas = ExtResource("2_3gake")
@@ -109,40 +73,25 @@ region = Rect2(0, 0, 121, 104)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ofuol")
+"texture": SubResource("AtlasTexture_3gake")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h1wai")
+"texture": SubResource("AtlasTexture_5pp7n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kjuer")
+"texture": SubResource("AtlasTexture_5pp7n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6iotn")
+"texture": SubResource("AtlasTexture_5pp7n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3mjcp")
+"texture": SubResource("AtlasTexture_qw8vy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tnkpf")
+"texture": SubResource("AtlasTexture_qw8vy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vm7j5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ktoep")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_engrb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r54nh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o3qru")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8o4w3")
+"texture": SubResource("AtlasTexture_5pp7n")
 }],
 "loop": true,
 "name": &"attack",
@@ -191,6 +140,11 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"evolução",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0ci8w")
@@ -210,13 +164,14 @@ position = Vector2(0, -21)
 shape = SubResource("RectangleShape2D_2g8di")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(-1, -16)
+position = Vector2(16, -12)
 sprite_frames = SubResource("SpriteFrames_b8pns")
-animation = &"attack"
-frame_progress = 0.801134
+animation = &"walk"
+frame_progress = 0.493837
+flip_h = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -10.0
 offset_top = -55.0
 offset_right = 10.0

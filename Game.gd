@@ -16,6 +16,9 @@ var spawn_interval : float = 0.0  # Spawn mobs every 5 seconds
 var bpm: float = 120.0
 var time_left := 200.0 # 300.0
 var time_inverval := 0.0
+var boss_interval := 0.0
+var boss_spawn_timeout := time_left / 5
+var lastSpawn = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -58,9 +61,9 @@ func _process(delta):
 	time_left -= delta			
 	Globals.timer = time_left
 	time_inverval += delta
+	boss_interval += delta
 	if (time_left <= 0):
 		time_left = 0
-		#get_tree().change_scene_to_file("res://Levels/YouWin.tscn")
 	
 	var time_label = get_node("HUD/TimerLabel")
 	if (time_label):
@@ -90,25 +93,29 @@ func spawn_mobs() -> void:
 func spawn_enemy(from_position: Vector2):
 	var count = get_tree().get_node_count_in_group("Boss")	
 	if(count > 0):
-		return		
-		
-	var mob_instance = null
-	
+		return				
+	var mob_instance = null	
 	if time_inverval >= 30:
 		mob_instance = mob_range.instantiate()
 		time_inverval = 0.0
 	else:		
-		if randf() < 0.8:
+		if Globals.bossSpawnado > 0:
+			if randf() < 0.8:
+				mob_instance = mob_double.instantiate()
+				mob_instance.add_to_group("Enemies")
+			else:
+				mob_instance = mob_scene.instantiate()
+				mob_instance.add_to_group("Enemies")
+		else:
 			mob_instance = mob_double.instantiate()
 			mob_instance.add_to_group("Enemies")
-		else:
-			mob_instance = mob_scene.instantiate()
-			mob_instance.add_to_group("Enemies")
-	
-	if time_left <= 0:
+			
+	if boss_interval >= boss_spawn_timeout:
 		mob_instance = mob_boss.instantiate()
 		mob_instance.add_to_group("Enemies")
 		mob_instance.add_to_group("Boss")
+		Globals.bossSpawnado += 1
+		boss_interval = 0.0
 			
 	var spawn_pos = Vector2(from_position.x + randf_range(-20, 20), Globals.player.position.y  - 90)
 	mob_instance.global_position = spawn_pos	

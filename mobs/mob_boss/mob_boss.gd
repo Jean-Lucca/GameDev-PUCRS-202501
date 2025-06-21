@@ -22,6 +22,19 @@ func _ready():
 	var sprite = $AnimatedSprite2D
 	if sprite.material:
 		sprite.material = sprite.material.duplicate()  # create a unique copy		
+	if Globals.bossSpawnado == 1:
+		barras = 5
+		fase = 2
+		print("primeiro boss")	
+	if Globals.bossSpawnado == 2:
+		barras = 7
+		fase = 1
+		print("segundo boss")	
+	if Globals.bossSpawnado == 2:
+		barras = 10
+		fase = 0
+		print("terceiro boss")	
+		
 	gerar_sequencia_barras(barras)
 	mostrar_sequencia()
 	
@@ -127,8 +140,9 @@ func die(wind_slash = false):
 		mostrar_sequencia()
 		return
 	else:
-		get_tree().call_deferred("change_scene_to_file", "res://Levels/YouWin.tscn")
-		return
+		if Globals.bossSpawnado == 3:
+			get_tree().call_deferred("change_scene_to_file", "res://Levels/YouWin.tscn")
+			return
 		
 	var explosion1 = Explosion.instantiate()  # Preload this scene
 	get_parent().add_child(explosion1)

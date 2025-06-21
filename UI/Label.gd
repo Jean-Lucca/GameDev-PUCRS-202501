@@ -16,7 +16,7 @@ func update_score():
 		get_tree().call_group("HUD", "update_speed")
 		Globals.inimigosMax = 8
 	else:
-		Globals.inimigosMax = 4
+		Globals.inimigosMax = 6
 	
 func update_one_score():
 	cumulativeScore += 1 * 100
