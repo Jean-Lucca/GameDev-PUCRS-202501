@@ -28,13 +28,11 @@ func update_double_score():
 
 func reset_score():	
 	if bestscore < score:
-		print("scoreou")
-		print(score)
 		bestscore = score
 		Globals.bestscore = bestscore
 	score = 0
 	if Globals.speed > 200:
-		Globals.speed = Globals.speed / 1.5
+		Globals.speed = Globals.speed / 1.2
 		get_tree().call_group("HUD", "update_speed")
 	else:
 		Globals.speed = 200

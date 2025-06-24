@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtqbb0yymdp0d"
-path="res://.godot/imported/ATTACK 2.png-e384b2ba0be799c2d9476fc3dcfcac03.ctex"
+uid="uid://dv4srxvq563bm"
+path="res://.godot/imported/JUMP.png-072944fbc05b0845fcc575e60593a591.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mobs/mob_tank/ATTACK 2.png"
-dest_files=["res://.godot/imported/ATTACK 2.png-e384b2ba0be799c2d9476fc3dcfcac03.ctex"]
+source_file="res://mobs/mob_tank/sprites/enemy/JUMP.png"
+dest_files=["res://.godot/imported/JUMP.png-072944fbc05b0845fcc575e60593a591.ctex"]
 
 [params]
 

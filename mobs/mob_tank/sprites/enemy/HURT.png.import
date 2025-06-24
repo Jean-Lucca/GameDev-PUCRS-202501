@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://63jn26t8deak"
-path="res://.godot/imported/DEATH.png-336ba3b921558291119544dc41073d3d.ctex"
+uid="uid://3mtw5g0xgqj4"
+path="res://.godot/imported/HURT.png-ee976f7b535573807af5d3529d14a80d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mobs/mob_tank/DEATH.png"
-dest_files=["res://.godot/imported/DEATH.png-336ba3b921558291119544dc41073d3d.ctex"]
+source_file="res://mobs/mob_tank/sprites/enemy/HURT.png"
+dest_files=["res://.godot/imported/HURT.png-ee976f7b535573807af5d3529d14a80d.ctex"]
 
 [params]
 

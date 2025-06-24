@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b84dlqkl5ian4"
-path="res://.godot/imported/IDLE.png-3572bceef0007a7a603fd2cdcdbdb40d.ctex"
+uid="uid://ccb5np8lmjleb"
+path="res://.godot/imported/Smoke VFX A4.png-00d9d3f81df144cc71b94784d4cbfe50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mobs/mob_tank/IDLE.png"
-dest_files=["res://.godot/imported/IDLE.png-3572bceef0007a7a603fd2cdcdbdb40d.ctex"]
+source_file="res://mobs/mob_tank/sprites/smoke/VFX 1 Separated Frames/Smoke VFX A4.png"
+dest_files=["res://.godot/imported/Smoke VFX A4.png-00d9d3f81df144cc71b94784d4cbfe50.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btqc6xdjyucv3"
-path="res://.godot/imported/RUN.png-ad2b189ef54512cbdf5ce8bb29d35633.ctex"
+uid="uid://rauie2ridde2"
+path="res://.godot/imported/Smoke VFX B10.png-527f04c5f430bfbadde5ce67d9522a18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mobs/mob_tank/RUN.png"
-dest_files=["res://.godot/imported/RUN.png-ad2b189ef54512cbdf5ce8bb29d35633.ctex"]
+source_file="res://mobs/mob_tank/sprites/smoke/VFX 2 Separated frames/Smoke VFX B10.png"
+dest_files=["res://.godot/imported/Smoke VFX B10.png-527f04c5f430bfbadde5ce67d9522a18.ctex"]
 
 [params]
 

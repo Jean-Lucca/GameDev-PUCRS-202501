@@ -96,7 +96,7 @@ func spawn_enemy(from_position: Vector2):
 	if(count > 0):
 		return				
 	var mob_instance = null	
-	if time_inverval >= 30:
+	if time_inverval >= 3000:
 		mob_instance = mob_range.instantiate()
 		time_inverval = 0.0
 	else:		

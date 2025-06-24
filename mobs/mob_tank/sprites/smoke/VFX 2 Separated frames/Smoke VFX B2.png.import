@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcn55srrt8g3x"
-path="res://.godot/imported/ATTACK 3.png-8c86665d0c39aa8b673e13f5fc30691a.ctex"
+uid="uid://cr1vik5wmhluc"
+path="res://.godot/imported/Smoke VFX B2.png-42f600e2a19c2c9991c03df11e8ac296.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mobs/mob_tank/ATTACK 3.png"
-dest_files=["res://.godot/imported/ATTACK 3.png-8c86665d0c39aa8b673e13f5fc30691a.ctex"]
+source_file="res://mobs/mob_tank/sprites/smoke/VFX 2 Separated frames/Smoke VFX B2.png"
+dest_files=["res://.godot/imported/Smoke VFX B2.png-42f600e2a19c2c9991c03df11e8ac296.ctex"]
 
 [params]
 

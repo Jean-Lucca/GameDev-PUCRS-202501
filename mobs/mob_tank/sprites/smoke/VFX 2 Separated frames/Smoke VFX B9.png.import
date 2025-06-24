@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3mtw5g0xgqj4"
-path="res://.godot/imported/HURT.png-541946b4084372aa0800fa2d178b202d.ctex"
+uid="uid://cqu8eey5kscfv"
+path="res://.godot/imported/Smoke VFX B9.png-ea194c30e0e54ad1dc4edcf197bb4f4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mobs/mob_tank/HURT.png"
-dest_files=["res://.godot/imported/HURT.png-541946b4084372aa0800fa2d178b202d.ctex"]
+source_file="res://mobs/mob_tank/sprites/smoke/VFX 2 Separated frames/Smoke VFX B9.png"
+dest_files=["res://.godot/imported/Smoke VFX B9.png-ea194c30e0e54ad1dc4edcf197bb4f4c.ctex"]
 
 [params]
 

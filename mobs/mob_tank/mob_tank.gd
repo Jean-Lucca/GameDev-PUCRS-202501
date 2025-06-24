@@ -8,7 +8,8 @@ var camera: Camera2D
 var stop = false	
 var barras = 1
 var tookHit = false
-
+var smokeL = null
+var smokeR = null
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
 	var cameras = get_tree().get_nodes_in_group("Camera")
@@ -17,6 +18,10 @@ func _ready():
 	if players.size() > 0:
 		player = players[0]
 	var sprite = $AnimatedSprite2D
+	smokeL = $smoke
+	smokeR = $smoke2
+	smokeL.hide()
+	smokeR.hide()
 	if sprite.material:
 		sprite.material = sprite.material.duplicate()  # create a unique copy		
 		
@@ -59,9 +64,13 @@ func move():
 			velocity += separation * speed  # força de separação proporcional	
 			if velocity.x < 0:
 				sprite.animation = "walk"
-				sprite.flip_h = true
+				sprite.flip_h = true				
+				$Esquerda.hide()
+				$Esquerda2.hide()
 			elif velocity.x > 0:
 				sprite.animation = "walk"
+				$Direita.hide()
+				$Direita2.hide()
 			sprite.play()
 			move_and_slide()
 		else:
@@ -94,20 +103,33 @@ func die(wind_slash = false):
 	get_tree().call_group("HUD", "update_score")
 	get_tree().call_group("HUD", "update_double_score")
 		
+func resetAttack():
+	var sprite = $AnimatedSprite2D
+	sprite.frame = 0
+		
 func sistema_barra(sprite):			
+	resetAttack()
 	if barras > 0:	
 		stopMoving()
 		barras = barras - 1				
-		if global_position.x < player.global_position.x:  #direita						
+		if($Esquerda.visible):
+			$Esquerda2.hide()
+		if($Direita.visible):
+			$Direita2.hide()
+			
+		if global_position.x < player.global_position.x:  #direita				
+			smokeL.show()
+			smokeL.play()		
 			pop_tween(Vector2(player.position.x - (80 * 4), self.position.y - 40 * 2), 0.1)					
 		else:
+			smokeR.show()
+			smokeR.play()
 			pop_tween(Vector2(player.position.x + (80), self.position.y - 40 * 2), 0.1)
-		sprite.flip_h = !sprite.flip_h
 		startMoving()
 		return true
 	return false
 	
-func pop_tween(move_target, move_duration):
+func pop_tween(move_target, move_duration):	
 	var distance = global_position.distance_to(move_target)
 	var floatymove_duration = distance / 400
 	stopMoving()
@@ -118,6 +140,8 @@ func pop_tween(move_target, move_duration):
 	
 	await get_tree().create_timer(0.2).timeout	
 	startMoving()
+	smokeL.hide()
+	smokeR.hide()
 			
 	
 func _on_progress_finished():

@@ -1,11 +1,20 @@
-[gd_scene load_steps=29 format=3 uid="uid://bmnl406ahps0x"]
+[gd_scene load_steps=39 format=3 uid="uid://bmnl406ahps0x"]
 
 [ext_resource type="Script" uid="uid://h5pr3k7in1qk" path="res://mobs/mob_tank/mob_tank.gd" id="1_edlia"]
-[ext_resource type="Texture2D" uid="uid://dg6kl4qvkmyxn" path="res://mobs/mob_tank/ATTACK 1.png" id="2_e5l3b"]
-[ext_resource type="Texture2D" uid="uid://b3ynwdlx1oqks" path="res://mobs/mob_tank/WALK.png" id="2_knrjk"]
-[ext_resource type="Texture2D" uid="uid://dc7vgn16b1bnk" path="res://mobs/mob_tank/DEFEND.png" id="3_mw6nl"]
+[ext_resource type="Texture2D" uid="uid://dg6kl4qvkmyxn" path="res://mobs/mob_tank/sprites/enemy/ATTACK 1.png" id="2_e5l3b"]
+[ext_resource type="Texture2D" uid="uid://b3ynwdlx1oqks" path="res://mobs/mob_tank/sprites/enemy/WALK.png" id="2_knrjk"]
+[ext_resource type="Texture2D" uid="uid://dc7vgn16b1bnk" path="res://mobs/mob_tank/sprites/enemy/DEFEND.png" id="3_mw6nl"]
 [ext_resource type="Texture2D" uid="uid://2j6d7p65musk" path="res://mobs/mob_base/hit_counter/direita.png" id="5_tud6u"]
 [ext_resource type="Texture2D" uid="uid://darcdik7vlby3" path="res://mobs/mob_base/hit_counter/esquerda.png" id="6_6l2lm"]
+[ext_resource type="Texture2D" uid="uid://v506lxb2t60p" path="res://mobs/mob_tank/sprites/smoke/VFX 1 Separated Frames/Smoke VFX A1.png" id="7_q4hcl"]
+[ext_resource type="Texture2D" uid="uid://cws0c2p3jhv08" path="res://mobs/mob_tank/sprites/smoke/VFX 1 Separated Frames/Smoke VFX A2.png" id="8_tpfvj"]
+[ext_resource type="Texture2D" uid="uid://di7buyu5oc85a" path="res://mobs/mob_tank/sprites/smoke/VFX 1 Separated Frames/Smoke VFX A3.png" id="9_b5els"]
+[ext_resource type="Texture2D" uid="uid://ccb5np8lmjleb" path="res://mobs/mob_tank/sprites/smoke/VFX 1 Separated Frames/Smoke VFX A4.png" id="10_t17ra"]
+[ext_resource type="Texture2D" uid="uid://d4f83rtg8dxah" path="res://mobs/mob_tank/sprites/smoke/VFX 1 Separated Frames/Smoke VFX A5.png" id="11_pvpew"]
+[ext_resource type="Texture2D" uid="uid://mawkqrlot7vn" path="res://mobs/mob_tank/sprites/smoke/VFX 1 Separated Frames/Smoke VFX A6.png" id="12_5672i"]
+[ext_resource type="Texture2D" uid="uid://b6m87bonwo3cc" path="res://mobs/mob_tank/sprites/smoke/VFX 1 Separated Frames/Smoke VFX A7.png" id="13_dl1xx"]
+[ext_resource type="Texture2D" uid="uid://pxva67rylu4o" path="res://mobs/mob_tank/sprites/smoke/VFX 1 Separated Frames/Smoke VFX A8.png" id="14_mthdp"]
+[ext_resource type="Texture2D" uid="uid://dwnhvxpxlj8ch" path="res://mobs/mob_tank/sprites/smoke/VFX 1 Separated Frames/Smoke VFX A9.png" id="15_r17gp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_udvjd"]
 radius = 18.0
@@ -169,7 +178,46 @@ animations = [{
 "speed": 14.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_hdqh2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_r17gp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_q4hcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tpfvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_b5els")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_t17ra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_pvpew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5672i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dl1xx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mthdp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_r17gp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 13.0
+}]
+
 [node name="mob_tank" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_edlia")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -180,8 +228,9 @@ texture_filter = 3
 position = Vector2(-3, 12)
 scale = Vector2(1.84932, 2.04605)
 sprite_frames = SubResource("SpriteFrames_edlia")
-animation = &"attack"
-frame_progress = 0.498696
+animation = &"defend"
+frame = 4
+frame_progress = 0.717821
 
 [node name="Direita" type="Sprite2D" parent="."]
 position = Vector2(-2, 64)
@@ -202,3 +251,18 @@ texture = ExtResource("6_6l2lm")
 position = Vector2(-2.25, 92)
 scale = Vector2(0.49, 0.49)
 texture = ExtResource("6_6l2lm")
+
+[node name="smoke" type="AnimatedSprite2D" parent="."]
+position = Vector2(-29, 28)
+scale = Vector2(1.51042, 1.4375)
+sprite_frames = SubResource("SpriteFrames_hdqh2")
+frame = 2
+frame_progress = 0.156566
+
+[node name="smoke2" type="AnimatedSprite2D" parent="."]
+position = Vector2(31, 28)
+scale = Vector2(1.51042, 1.4375)
+sprite_frames = SubResource("SpriteFrames_hdqh2")
+frame = 8
+frame_progress = 0.842439
+flip_h = true

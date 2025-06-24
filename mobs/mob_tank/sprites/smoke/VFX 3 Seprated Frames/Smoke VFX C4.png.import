@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3ynwdlx1oqks"
-path="res://.godot/imported/WALK.png-f45117ae1d18efcc5b517c5049a76a81.ctex"
+uid="uid://4xq7j5kjhpbj"
+path="res://.godot/imported/Smoke VFX C4.png-95fd289d1027d1eda26794dbffcbe9bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mobs/mob_tank/WALK.png"
-dest_files=["res://.godot/imported/WALK.png-f45117ae1d18efcc5b517c5049a76a81.ctex"]
+source_file="res://mobs/mob_tank/sprites/smoke/VFX 3 Seprated Frames/Smoke VFX C4.png"
+dest_files=["res://.godot/imported/Smoke VFX C4.png-95fd289d1027d1eda26794dbffcbe9bf.ctex"]
 
 [params]
 
