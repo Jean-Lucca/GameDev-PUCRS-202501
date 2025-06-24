@@ -34,7 +34,7 @@ func _ready():
 		barras = 10
 		fase = 0
 		print("terceiro boss")	
-		
+	
 	gerar_sequencia_barras(barras)
 	mostrar_sequencia()
 	

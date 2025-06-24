@@ -33,6 +33,7 @@ func _ready() -> void:
 	bpm = 120.0  # Set your music's BPM
 	spawn_interval = 60.0 / bpm
 	spawn_timer = 0.0
+	Globals.bossSpawnado = 0
 	$BackgroundMusic.play()
 	AudioServer.set_bus_volume_linear(1, 0.3)
 		

@@ -35,7 +35,7 @@ mob_scene = ExtResource("2_3dxm6")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="GridContainer" type="HBoxContainer" parent="HUD" groups=["HUD"]]
+[node name="VidaBoss" type="HBoxContainer" parent="HUD" groups=["HUD"]]
 clip_contents = true
 anchors_preset = -1
 anchor_left = 0.447
@@ -48,6 +48,18 @@ offset_right = 235.556
 offset_bottom = -9.416
 grow_horizontal = 2
 script = ExtResource("8_c6i3y")
+
+[node name="Label" type="Label" parent="HUD" groups=["HUD"]]
+visible = false
+texture_filter = 3
+offset_left = 375.0
+offset_top = 164.0
+offset_right = 516.0
+offset_bottom = 187.0
+scale = Vector2(2, 2)
+size_flags_stretch_ratio = 13.52
+text = "Algo se aproxima"
+horizontal_alignment = 1
 
 [node name="LimitBreak" parent="HUD" instance=ExtResource("9_03owx")]
 position = Vector2(12, -1)
