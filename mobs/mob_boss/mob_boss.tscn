@@ -166,8 +166,7 @@ shape = SubResource("RectangleShape2D_2g8di")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, -12)
 sprite_frames = SubResource("SpriteFrames_b8pns")
-animation = &"walk"
-frame_progress = 0.493837
+animation = &"attack"
 flip_h = true
 
 [node name="ColorRect" type="ColorRect" parent="."]

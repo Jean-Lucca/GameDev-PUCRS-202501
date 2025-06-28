@@ -14,9 +14,15 @@ func update_score():
 	if Globals.speed < 400.0:
 		Globals.speed = Globals.speed * 1.02
 		get_tree().call_group("HUD", "update_speed")
-		Globals.inimigosMax = 8
+		if Globals.bossSpawnado > 1:
+			Globals.inimigosMax = 4
+		else: 
+			Globals.inimigosMax = 8
 	else:
-		Globals.inimigosMax = 6
+		if Globals.bossSpawnado > 1:
+			Globals.inimigosMax = 4
+		else: 
+			Globals.inimigosMax = 6
 	
 func update_one_score():
 	cumulativeScore += 1 * 100

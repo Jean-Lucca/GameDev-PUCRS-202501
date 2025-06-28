@@ -74,9 +74,15 @@ func _physics_process(delta):
 	move()
 		
 func stopMoving():
-	pass
+	var sprite = $AnimatedSprite2D
+	stop = true
+	sprite.stop()
+	speed = 0
 func startMoving():
-	pass
+	var sprite = $AnimatedSprite2D
+	stop = false
+	sprite.play()
+	speed = Globals.speed
 	
 func resetAttack():
 	var sprite = $AnimatedSprite2D
@@ -116,7 +122,7 @@ func move():
 			move_and_slide()
 			sprite.animation = "attack"
 			sprite.play()			
-			if(sprite.frame == 9):
+			if(sprite.frame == 6):
 				player.take_damage()		
 	else:
 		speed = 0
