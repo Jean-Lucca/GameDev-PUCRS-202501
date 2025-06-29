@@ -176,3 +176,8 @@ offset_top = -55.0
 offset_right = 10.0
 offset_bottom = 10.0
 metadata/_edit_use_anchors_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -26)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

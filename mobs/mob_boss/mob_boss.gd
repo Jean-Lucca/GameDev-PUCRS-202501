@@ -11,6 +11,8 @@ var sequencia_barras = []
 var barraAtual = 0
 var fase = 0
 var lado_atual = ""  # vazio inicialmente
+@onready var label = get_tree().get_nodes_in_group("Descricao")[1]
+@onready var labelboss = get_tree().get_nodes_in_group("Descricao")[0]
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
@@ -34,6 +36,9 @@ func _ready():
 		barras = 10
 		fase = 0
 		print("terceiro boss")	
+	
+	label.show()
+	labelboss.hide()
 	
 	gerar_sequencia_barras(barras)
 	mostrar_sequencia()
@@ -198,3 +203,9 @@ func _on_progress_finished():
 			
 func _on_visible_on_screen_notifier_2d_screen_exited():	
 	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	label.hide()
+	labelboss.show()
+	pass # Replace with function body.
