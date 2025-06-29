@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MeuJogo"
-run/main_scene="uid://bvdfsmvn6flws"
+run/main_scene="uid://ddsqgsw5ax6xs"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
